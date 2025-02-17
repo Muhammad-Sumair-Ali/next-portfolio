@@ -1,0 +1,37 @@
+.cursor-dot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  background-color: rgba(0, 255, 0, 0.9);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  transition: transform 0.05s linear;
+}
+
+.cursor-outline {
+  position: fixed;
+  left: 10;
+  top: 10;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(0, 255, 0, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  will-change: transform;
+  transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+}
+
+/* Hide default cursor */
+body {
+  cursor: none !important;
+}
+
+/* Show default cursor on clickable elements */
+a, button, [role="button"], input, textarea, select {
+  cursor: pointer !important;
+}
