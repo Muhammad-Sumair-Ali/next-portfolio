@@ -1,9 +1,12 @@
 'use client'
 import React, { useEffect, useRef } from "react";
 import createGlobe from "cobe";
-import { useSpring } from 'react-spring';
+import { useSpring } from "react-spring";
 
-export default function Map() {
+// Define a prop type that extends div attributes
+interface MapProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+export default function Map({ className, ...props }: MapProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const pointerInteracting = useRef<number | null>(null);
   const pointerInteractionMovement = useRef<number>(0);
@@ -20,8 +23,10 @@ export default function Map() {
   useEffect(() => {
     let phi = 0;
     let width = 0;
-    const onResize = () => canvasRef.current && (width = canvasRef.current.offsetWidth);
-    window.addEventListener('resize', onResize);
+    const onResize = () => {
+      if (canvasRef.current) width = canvasRef.current.offsetWidth;
+    };
+    window.addEventListener("resize", onResize);
     onResize();
     const globe = createGlobe(canvasRef.current!, {
       devicePixelRatio: 2,
@@ -38,71 +43,73 @@ export default function Map() {
       glowColor: [1.2, 1.2, 1.2],
       markers: [],
       onRender: (state) => {
-        // This prevents rotation while dragging
+        // Only rotate when not interacting
         if (!pointerInteracting.current) {
-          // Called on every animation frame.
-          // `state` will be an empty object, return updated params.
           phi += 0.005;
         }
         state.phi = phi + r.get();
         state.width = width * 2;
         state.height = width * 2;
-      }
+      },
     });
-    setTimeout(() => canvasRef.current!.style.opacity = '1');
+    // Fade in canvas
+    setTimeout(() => {
+      if (canvasRef.current) canvasRef.current.style.opacity = "1";
+    });
     return () => {
       globe.destroy();
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener("resize", onResize);
     };
   }, [r, api]);
 
   return (
-    <div style={{
-      width: '100%',
-      maxWidth: 300,
-      aspectRatio: 1,
-      margin: '0',
-      position: 'relative',
-    }}>
+    <div
+      // Pass along any className and other HTML attributes
+      className={className}
+      style={{
+        width: "100%",
+        maxWidth: 300,
+        aspectRatio: 1,
+        margin: "0",
+        position: "relative",
+      }}
+      {...props}
+    >
       <canvas
         ref={canvasRef}
         onPointerDown={(e) => {
           pointerInteracting.current = e.clientX - pointerInteractionMovement.current;
-          canvasRef.current!.style.cursor = 'grabbing';
+          if (canvasRef.current) canvasRef.current.style.cursor = "grabbing";
         }}
         onPointerUp={() => {
           pointerInteracting.current = null;
-          canvasRef.current!.style.cursor = 'grab';
+          if (canvasRef.current) canvasRef.current.style.cursor = "grab";
         }}
         onPointerOut={() => {
           pointerInteracting.current = null;
-          canvasRef.current!.style.cursor = 'grab';
+          if (canvasRef.current) canvasRef.current.style.cursor = "grab";
         }}
         onMouseMove={(e) => {
           if (pointerInteracting.current !== null) {
             const delta = e.clientX - pointerInteracting.current;
             pointerInteractionMovement.current = delta;
-            api.start({
-              r: delta / 200,
-            });
+            api.start({ r: delta / 200 });
           }
         }}
         onTouchMove={(e) => {
           if (pointerInteracting.current !== null && e.touches[0]) {
             const delta = e.touches[0].clientX - pointerInteracting.current;
             pointerInteractionMovement.current = delta;
-            api.start({
-              r: delta / 100,
-            });
+            api.start({ r: delta / 100 });
           }
         }}
         style={{
-          width: '100%',
-          height: '216px',
-          cursor: 'grab',
-          contain: 'layout paint size',
+          width: "100%",
+          height: "216px",
+          cursor: "grab",
+          contain: "layout paint size",
           opacity: 0,
-          transition: 'opacity 1s ease',
+          transition: "opacity 1s ease",
         }}
       />
     </div>
