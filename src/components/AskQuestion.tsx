@@ -147,8 +147,8 @@ export default function AnimatedTechSection() {
               transition={{ delay: 0.3, duration: 0.5 }}
               className="text-zinc-300 text-lg"
             >
-              Whether you're just starting out or looking to dive deeper into
-              Popular Stacks, I'm here to help. Let's build something amazing
+              Whether you are just starting out or looking to dive deeper into
+              Popular Stacks {","} I am here to help. Let us build something amazing
               together!
             </motion.p>
 

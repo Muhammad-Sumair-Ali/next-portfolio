@@ -3,7 +3,12 @@
 import { useEffect } from "react"
 import { motion, useAnimate } from "framer-motion"
 
-const Heading = ({ title, description }) => {
+interface HeadingProps {
+  title: string;
+  description: string;
+}
+
+const Heading = ({ title, description }: HeadingProps) => {
   const [scope, animate] = useAnimate()
 
   useEffect(() => {

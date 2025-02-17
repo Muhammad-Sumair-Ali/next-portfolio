@@ -7,7 +7,6 @@ import {
   MapPinIcon,
   LinkIcon,
   ClockIcon,
-  HeartIcon,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Map from "./common/Map";
@@ -37,7 +36,7 @@ export default function AboutSection() {
               <span>Karachi, Sindh</span>
             </div>
             <div className=" relative h-[200px] w-full overflow-hidden rounded-lg">
-              <Map className="h-full w-full" />
+              <Map className={"h-full w-full"} />
             </div>
           </CardContent>
         </Card>
@@ -114,16 +113,16 @@ export default function AboutSection() {
               <path d="m18 17 2-5-2-5" />
             </svg>
             <p className="font-semibold text-xl text-gray-200 transition-all duration-500">
-               Our Tech Stacks
+              Our Tech Stacks
             </p>
           </div>
           <div className="grid grid-cols-5 md:grid-cols-10 gap-3">
             {techStacks.map((tech, i) => (
               <div
-              key={i}
-              className="aspect-square relative w-full bg-zinc-800 hover:scale-110 hover:bg-black shadow-md  transition-all duration-300 rounded-lg flex items-center justify-center p-2 "
+                key={i}
+                className="aspect-square relative w-full bg-zinc-800 hover:scale-110 hover:bg-black shadow-md  transition-all duration-300 rounded-lg flex items-center justify-center p-2 "
               >
-              <div className="absolute left-16 -top-8 transform -translate-x-1/2 h-[130px] w-[90px] bg-gradient-to-t from-purple-800 via-fuchsia-800 to-orange-900 blur-3xl opacity-25 -z-10"></div>
+                <div className="absolute left-16 -top-8 transform -translate-x-1/2 h-[130px] w-[90px] bg-gradient-to-t from-purple-800 via-fuchsia-800 to-orange-900 blur-3xl opacity-25 -z-10"></div>
 
                 <div className={`w-full h-full ${tech.className}`}>
                   {React.cloneElement(tech.svg, {

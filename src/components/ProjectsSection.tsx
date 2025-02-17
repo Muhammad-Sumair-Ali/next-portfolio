@@ -1,21 +1,8 @@
 "use client";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { ArrowRight, Badge, ExternalLink, Github } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Info } from "lucide-react";
-import { useState } from "react";
-import { IconBulb, IconBulbOff } from "@tabler/icons-react";
 import { ProjectCard } from "./ProjectCard";
-
-
 
 const ProjectsSection = () => {
   const projects = [
@@ -54,14 +41,14 @@ const ProjectsSection = () => {
         ))}
       </div>
       <Link href={"/projects"}>
-      <Button
-        variant="outline"
-        className="group px-4 m-auto py-3 -mt-4 text-sm bg-zinc-950 border-gray-800 text-gray-200 hover:bg-zinc-800 hover:text-gray-100 transition-all flex items-center gap-2"
+        <Button
+          variant="outline"
+          className="group px-4 m-auto py-3 -mt-4 text-sm bg-zinc-950 border-gray-800 text-gray-200 hover:bg-zinc-800 hover:text-gray-100 transition-all flex items-center gap-2"
         >
-        See More Projects
-        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-      </Button>
-        </Link>
+          See More Projects
+          <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+        </Button>
+      </Link>
     </div>
   );
 };

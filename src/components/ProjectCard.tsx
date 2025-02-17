@@ -10,7 +10,18 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { ExternalLink, Github, Info } from "lucide-react"
 
 import Pic from "@/assets/Feature.jpg";
-export function ProjectCard({ project }) {
+
+interface Project {
+  title: string;
+  description: string;
+  longDescription?: string;
+  image?: string;
+  liveUrl?: string;
+  githubUrl?: string;
+  tags: string[];
+}
+
+export function ProjectCard({ project }: { project: Project }) {
   const { title, description, longDescription, image, liveUrl, githubUrl, tags } = project
   const [showDetails, setShowDetails] = useState(false)
 

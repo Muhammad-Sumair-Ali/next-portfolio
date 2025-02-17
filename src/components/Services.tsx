@@ -19,7 +19,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 const services = [
@@ -43,11 +42,17 @@ const services = [
   },
 ];
 
+interface Service {
+  title: string;
+  description: string;
+  icon: React.ComponentType;
+}
+
 export function WhatIOffer() {
   const [open, setOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState(null);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
 
-  const handleOpenDialog = (service) => {
+  const handleOpenDialog = (service: Service): void => {
     setSelectedService(service);
     setOpen(true);
   };
