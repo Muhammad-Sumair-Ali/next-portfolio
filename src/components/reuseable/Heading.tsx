@@ -12,9 +12,11 @@ const Heading = ({ title, description }: HeadingProps) => {
   const [scope, animate] = useAnimate()
 
   useEffect(() => {
-    animate(scope.current, { opacity: 1, y: 0 }, { duration: 0.5, ease: "easeOut" })
-    animate("hr", { scaleX: 1 }, { duration: 0.5, ease: "easeOut", delay: 0.3 })
-  }, [animate, scope.current])
+    animate(scope.current, { opacity: 1, y: 0 }, { duration: 0.5, ease: "easeOut" });
+    animate("hr", { scaleX: 1 }, { duration: 0.5, ease: "easeOut", delay: 0.3 });
+  }, [animate, scope]);
+  
+
   return (
     <motion.div ref={scope} initial={{ opacity: 0, y: 20 }}>
       <div className="mt-36 px-8 mb-20 max-w-[1010px] m-auto">

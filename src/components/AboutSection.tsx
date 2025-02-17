@@ -66,7 +66,7 @@ export default function AboutSection() {
             </div>
 
             <p className="mt-4 text-xs italic text-gray-400">
-              "Consistency is the key to mastery."
+              Consistency is the key to mastery.
             </p>
           </CardContent>
         </Card>

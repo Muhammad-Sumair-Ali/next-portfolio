@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { MoonIcon, SunIcon, Languages, AppWindow, Menu } from "lucide-react"
+import { MoonIcon, SunIcon, Languages, AppWindow } from "lucide-react"
 import { FaHome, FaProjectDiagram, FaBook, FaUser } from "react-icons/fa"
 
 
