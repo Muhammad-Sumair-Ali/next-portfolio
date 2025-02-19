@@ -51,21 +51,21 @@ export default function Hero() {
 
   return (
     <>
-      <div className="relative  max-w-[1010px] p-4  mx-auto mt-32 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="relative  max-w-[1010px] p-4  mx-auto mt-32 mb-32 flex flex-col md:flex-row justify-between items-center gap-6">
         {/* Top Center Blurred Gradient Effect */}
 
-        <div className="flex flex-col text-center sm:text-left">
-          <h1 className="flex max-w-[550px] flex-wrap gap-2 text-lg lg:text-[30px] font-bold sm:text-xl">
-            <div className="text-2xl lg:text-5xl">I&apos;m Muhammad Sumair,</div>
+        <div className="flex flex-col text-center  sm:text-left">
+          <h1 className="flex max-w-[550px] flex-wrap text-zinc-300 gap-2 text-2xl lg:text-[30px] font-bold sm:text-xl">
+            <div className="text-[32px] lg:text-5xl ">I&apos;m Muhammad Sumair,</div>
             <div className="flex flex-wrap gap-2">
               <motion.div
                 layout
                 key="title-middle-left"
-                className="text-3xl lg:text-5xl whitespace-nowrap"
+                className="text-4xl mt-1 lg:text-5xl whitespace-nowrap"
               >
-                a Full Stack Engineer
+                a Full Stack Developer
               </motion.div>
-              <div className="relative overflow-hidden flex-wrap text-2xl  sm:text-3xl lg:text-5xl flex gap-x-2 min-w-0">
+              <div className="relative mt-2 overflow-hidden flex-wrap text-4xl  sm:text-3xl lg:text-5xl flex gap-x-2 min-w-0">
                 building
                 <AnimatePresence mode="popLayout">
                   <motion.div
@@ -84,15 +84,15 @@ export default function Hero() {
                     </span>
                   </motion.div>
                 </AnimatePresence>
-                <div className="flex flex-wrap items-center gap-x-2 mt-3 text-xl lg:text-3xl">
+                <div className="flex flex-wrap items-center text-zinc-200 gap-x-2 mt-3 text-2xl lg:text-3xl">
                   <motion.div
                     layout
                     key="title-middle-right"
                     className="whitespace-nowrap"
                   >
-                    <span className="text-2xl lg:text-4xl">websites</span> using
+                    <span className="text-4xl lg:text-4xl mt-4">websites using</span> 
                   </motion.div>
-                  <h2 className="whitespace-nowrap ">React & NextJS</h2>
+                  <h2 className="whitespace-nowrap ml-auto mt-1 px-4 ">React & Next</h2>
                 </div>
               </div>
             </div>
@@ -103,14 +103,14 @@ export default function Hero() {
         </div>
 
         <motion.div
-          className="relative block size-56 lg:size-80 -m-0 lg:-mr-5 rounded-full"
+          className="relative block size-64 lg:size-80 -m-0 lg:-mr-12 rounded-full"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.3 }}
         >
           <Image
             src={Dev}
-            className="rounded-full grayscale hover:grayscale-0 transition-all duration-1000"
+            className="rounded-full absolute   grayscale hover:grayscale-0 transition-all duration-1000"
             width={320}
             height={280}
             alt="Profile"

@@ -12,6 +12,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Map from "./common/Map";
 import techStacks from "@/data/tech";
 import React from "react";
+import TechSkills from "./reuseable/skills";
 
 const connectLinks = [
   { icon: <GithubIcon className="w-5 h-5" />, text: "GitHub" },
@@ -29,7 +30,7 @@ export default function AboutSection() {
       {/* Grid container with improved responsive columns */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {/* Location Card - Added overflow-hidden */}
-        <Card className="bg-black text-white border-zinc-800 overflow-hidden">
+        <Card className="bg-zinc-950 text-white border-zinc-500 border overflow-hidden">
           <CardContent>
             <div className="flex  items-center gap-2 p-4">
               <MapPinIcon className="w-4 h-4" />
@@ -41,7 +42,7 @@ export default function AboutSection() {
           </CardContent>
         </Card>
 
-        <Card className="bg-black text-white border-zinc-800 h-full shadow-lg rounded-2xl">
+        <Card className="bg-zinc-950 text-white border-zinc-500 h-full border rounded-2xl">
           <CardContent className="p-6 h-full flex flex-col">
             <div className="flex items-center gap-2 mb-4">
               <ClockIcon className="w-4 h-4 text-blue-400" />
@@ -72,7 +73,7 @@ export default function AboutSection() {
         </Card>
 
         {/* Connect Card - Fixed height for consistency */}
-        <Card className="bg-black text-white border-zinc-800 h-full">
+        <Card className="bg-zinc-950  text-white border-zinc-500 border h-full">
           <CardContent className="p-6 h-full flex flex-col">
             <div className="flex items-center gap-2 mb-4">
               <LinkIcon className="w-4 h-4" />
@@ -93,47 +94,7 @@ export default function AboutSection() {
           </CardContent>
         </Card>
       </div>
-
-      <Card className="bg-gradient-to-l to-slate-950/50 bg-black/50  text-white border-zinc-800 w-full h-full">
-        <CardContent className="p-6 h-full">
-          <div className="flex items-center  gap-2 mb-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-5 h-5 animate-bounce" // Bounce animation for the icon
-            >
-              <path d="m6 17 2-5-2-5" />
-              <path d="m2 17 2-5-2-5" />
-              <path d="m14 17 2-5-2-5" />
-              <path d="m18 17 2-5-2-5" />
-            </svg>
-            <p className="font-semibold text-xl text-gray-200 transition-all duration-500">
-              Our Tech Stacks
-            </p>
-          </div>
-          <div className="grid grid-cols-5 md:grid-cols-10 gap-3">
-            {techStacks.map((tech, i) => (
-              <div
-                key={i}
-                className="aspect-square relative w-full bg-zinc-800 hover:scale-110 hover:bg-black shadow-md  transition-all duration-300 rounded-lg flex items-center justify-center p-2 "
-              >
-                <div className="absolute left-16 -top-8 transform -translate-x-1/2 h-[130px] w-[90px] bg-gradient-to-t from-purple-800 via-fuchsia-800 to-orange-900 blur-3xl opacity-25 -z-10"></div>
-
-                <div className={`w-full h-full ${tech.className}`}>
-                  {React.cloneElement(tech.svg, {
-                    className: "w-full h-full fill-zinc-200 ",
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      <TechSkills />
     </div>
   );
 }
