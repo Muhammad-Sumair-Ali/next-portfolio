@@ -51,21 +51,23 @@ export default function Hero() {
 
   return (
     <>
-      <div className="relative  max-w-[1010px] p-4  mx-auto mt-32 mb-32 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="relative  max-w-[1010px] p-4  mx-auto mt-32 mb-16 flex flex-col md:flex-row justify-between items-center gap-6">
         {/* Top Center Blurred Gradient Effect */}
 
-        <div className="flex flex-col text-center  sm:text-left">
-          <h1 className="flex max-w-[550px] flex-wrap text-zinc-300 gap-2 text-2xl lg:text-[30px] font-bold sm:text-xl">
-            <div className="text-[32px] lg:text-5xl ">I&apos;m Muhammad Sumair,</div>
+        <div className="flex flex-col text-left pt-10  sm:text-left">
+          <h1 className="flex max-w-[550px] flex-wrap text-zinc-800 dark:text-zinc-200 gap-2 text-xl lg:text-[30px] font-bold sm:text-xl">
+            <div className="text-3xl lg:text-5xl ">
+              I&apos;m Muhammad Sumair,
+            </div>
             <div className="flex flex-wrap gap-2">
               <motion.div
                 layout
                 key="title-middle-left"
-                className="text-4xl mt-1 lg:text-5xl whitespace-nowrap"
+                className="text-2xl mt-1 font-bold lg:text-5xl whitespace-nowrap"
               >
                 a Full Stack Developer
               </motion.div>
-              <div className="relative mt-2 overflow-hidden flex-wrap text-4xl  sm:text-3xl lg:text-5xl flex gap-x-2 min-w-0">
+              <div className="relative mt-2 overflow-hidden font-bold flex-wrap text-2xl  sm:text-3xl lg:text-5xl flex gap-x-2 min-w-0">
                 building
                 <AnimatePresence mode="popLayout">
                   <motion.div
@@ -76,7 +78,7 @@ export default function Hero() {
                     exit="exit"
                     layout
                     transition={{ type: "tween", duration: 0.3 }}
-                    className="inline-flex items-center justify-center whitespace-nowrap"
+                    className="inline-flex items-center font-bold justify-center whitespace-nowrap"
                   >
                     <span className={textItem.className}>
                       {textItem.key.charAt(0).toUpperCase() +
@@ -84,26 +86,31 @@ export default function Hero() {
                     </span>
                   </motion.div>
                 </AnimatePresence>
-                <div className="flex flex-wrap items-center text-zinc-200 gap-x-2 mt-3 text-2xl lg:text-3xl">
+                <div className="flex flex-wrap items-center font-semibold text-zinc-800 dark:text-zinc-400 gap-x-2 mt-3 text-2xl lg:text-3xl">
                   <motion.div
                     layout
                     key="title-middle-right"
                     className="whitespace-nowrap"
                   >
-                    <span className="text-4xl lg:text-4xl mt-4">websites using</span> 
+                    <span className="text-2xl lg:text-4xl ">
+                      websites using
+                    </span>
                   </motion.div>
-                  <h2 className="whitespace-nowrap ml-auto mt-1 px-4 ">React & Next</h2>
+                  <h2 className="whitespace-nowrap -mb-2 text-3xl">
+                    React & Next
+                  </h2>
                 </div>
               </div>
             </div>
           </h1>
-          {/* <div className="text-sm text-muted-foreground mt-4">
-            MS Jatoi • UTC/GMT +8
-          </div> */}
+          <div className="text-sm font-mono text-gray-400 mt-4">
+          MS DEV / {new Date().toLocaleTimeString("en-US", { timeZone: "Asia/Karachi" })}
+
+          </div>
         </div>
 
         <motion.div
-          className="relative block size-64 lg:size-80 -m-0 lg:-mr-12 rounded-full"
+          className="relative  size-64 lg:size-80 hidden md:block -m-0 lg:-mr-12 rounded-full"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.3 }}
@@ -116,7 +123,7 @@ export default function Hero() {
             alt="Profile"
             priority
           />
-          <div className="absolute inset-0 mt-16 w-64 ml-4 -z-10 bg-gradient-to-tl from-purple-800 to-orange-800 opacity-35 h-72 blur-3xl" />
+          <div className="absolute inset-0 mt-16 w-64 ml-4 -z-10 bg-gradient-to-tl from-purple-800 to-orange-800 dark:opacity-35 opacity-40 h-72 blur-3xl" />
         </motion.div>
       </div>
     </>

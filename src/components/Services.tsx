@@ -58,7 +58,7 @@ export function WhatIOffer() {
   };
 
   return (
-    <section className="pb-12 pt-6 max-w-[1010px] m-auto dark relative">
+    <section className="pb-12 pt-6 max-w-[1010px] m-auto  relative">
       <div className="absolute top-28 -right-28 transform -translate-x-1/2 h-[230px] w-[690px] bg-gradient-to-r from-purple-800 via-pink-800 to-orange-800 blur-3xl opacity-25 -ml-20 -z-10"></div>
 
       <div className="container mx-auto px-4">

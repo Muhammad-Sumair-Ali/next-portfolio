@@ -22,7 +22,7 @@ const Heading = ({ title, description }: HeadingProps) => {
       <div className="mt-36 px-8 mb-20 max-w-[1010px] m-auto">
         <div className="text-left flex items-start flex-col">
           <motion.h1
-            className="text-5xl font-bold text-white dark:text-gray-200 mb-4"
+            className="text-5xl font-bold text-black dark:text-white mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
@@ -30,7 +30,7 @@ const Heading = ({ title, description }: HeadingProps) => {
             {title}
           </motion.h1>
           <motion.p
-            className="text-lg text-gray-300 dark:text-gray-400"
+            className="text-lg text-zinc-800 font-semibold dark:text-gray-400"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
@@ -40,7 +40,7 @@ const Heading = ({ title, description }: HeadingProps) => {
         </div>
       </div>
       <motion.hr
-        className="-mt-4 border-zinc-800 dark:border-gray-700"
+        className="-mt-4 border-zinc-200 dark:border-gray-700"
         initial={{ scaleX: 0 }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
       />

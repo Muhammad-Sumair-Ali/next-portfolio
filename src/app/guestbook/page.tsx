@@ -78,7 +78,7 @@ const GuestBook: React.FC = () => {
         title="GuestBook"
         description="Taaarif Na sahi, Koi Achi Baat Tou Kehhjaa"
       />
-      <div className="max-w-[1010px] mx-auto dark relative">
+      <div className="max-w-[1010px] mx-auto  relative">
         {/* Leave a message form  */}
         <Card className="bg-black/50 text-white shadow shadow-zinc-700 max-w-4xl m-auto my-8">
           <CardHeader>

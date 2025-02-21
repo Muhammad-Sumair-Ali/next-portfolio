@@ -68,7 +68,7 @@ export default function Map({ className, ...props }: MapProps) {
       className={className}
       style={{
         width: "100%",
-        maxWidth: 300,
+        maxWidth: 380,
         aspectRatio: 1,
         margin: "0",
         position: "relative",
