@@ -20,8 +20,8 @@ const TechSkills = () => {
   if (!mounted) return null
 
   return (
-    <Card className="bg-white dark:bg-zinc-950 w-[990px] overflow-hidden border-2 shadow-black/10 dark:shadow-zinc-700">
-      <CardContent className="py-6 px-6 relative">
+    <Card className="bg-white dark:bg-zinc-950 w-full md:w-[990px] overflow-hidden border-2 shadow-black/10 dark:shadow-zinc-700">
+      <CardContent className="px-3 py-6 md:p-6 relative">
         {/* Background gradient animation */}
         <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-transparent to-orange-500/5 dark:from-purple-500/10 dark:via-transparent dark:to-orange-500/10 opacity-30 animate-gradient" />
 
@@ -46,7 +46,7 @@ const TechSkills = () => {
               </svg>
               <div className="absolute inset-0 bg-black/10 dark:bg-white/20 blur-xl rounded-full" />
             </div>
-            <h2 className="font-bold text-2xl bg-gradient-to-r from-gray-900 via-gray-700 to-gray-800 dark:from-white dark:via-gray-200 dark:to-gray-400 text-transparent bg-clip-text">
+            <h2 className="font-bold text-xl md:text-2xl bg-gradient-to-r from-gray-900 via-gray-700 to-gray-800 dark:from-white dark:via-gray-200 dark:to-gray-400 text-transparent bg-clip-text">
               Our Tech Stack
             </h2>
           </div>
@@ -54,16 +54,20 @@ const TechSkills = () => {
           {/* Tech stack rows with marquee effect */}
           <div className="flex flex-col gap-4">
             {/* First row - left to right */}
-            <div className="flex overflow-hidden">
-              <div className="flex gap-6 animate-marquee">
+            <div className="flex overflow-hidden relative">
+              <div className="flex animate-marquee-infinite whitespace-nowrap">
+                <TechRow items={firstRow} isHovered={isHovered} setIsHovered={setIsHovered} />
+                <TechRow items={firstRow} isHovered={isHovered} setIsHovered={setIsHovered} />
                 <TechRow items={firstRow} isHovered={isHovered} setIsHovered={setIsHovered} />
                 <TechRow items={firstRow} isHovered={isHovered} setIsHovered={setIsHovered} />
               </div>
             </div>
 
             {/* Second row - right to left */}
-            <div className="flex overflow-hidden">
-              <div className="flex gap-6 animate-marquee-reverse">
+            <div className="flex overflow-hidden relative">
+              <div className="flex animate-marquee-infinite-reverse whitespace-nowrap">
+                <TechRow items={secondRow} isHovered={isHovered} setIsHovered={setIsHovered} />
+                <TechRow items={secondRow} isHovered={isHovered} setIsHovered={setIsHovered} />
                 <TechRow items={secondRow} isHovered={isHovered} setIsHovered={setIsHovered} />
                 <TechRow items={secondRow} isHovered={isHovered} setIsHovered={setIsHovered} />
               </div>
@@ -85,14 +89,14 @@ const TechRow = ({
   setIsHovered: (index: number | null) => void
 }) => {
   return (
-    <div className="flex gap-6 min-w-max px-4">
+    <div className="flex gap-4  md:gap-6 px-4">
       {items.map((tech, i) => (
         <TooltipProvider key={`tech-${i}`} delayDuration={100}>
           <Tooltip>
             <TooltipTrigger asChild>
               <div
                 className={cn(
-                  "group relative aspect-square w-20 backdrop-blur-sm",
+                  "group relative aspect-square w-[70px] md:w-20 backdrop-blur-sm",
                   "hover:scale-110 bg-white/5 hover:bg-white/10 dark:bg-transparent dark:hover:bg-black/80 shadow-lg transition-all duration-300",
                   "rounded-xl flex items-center justify-center p-2 shrink-0",
                   "border border-black/5 hover:border-black/10 dark:border-white/5 dark:hover:border-white/20",
@@ -138,3 +142,4 @@ const TechRow = ({
 }
 
 export default TechSkills
+

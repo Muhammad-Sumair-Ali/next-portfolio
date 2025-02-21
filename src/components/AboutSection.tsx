@@ -15,12 +15,13 @@ import Map from "./common/Map";
 import techStacks from "@/data/tech";
 import React from "react";
 import TechSkills from "./reuseable/skills";
+import { FaTiktok } from "react-icons/fa";
 
 const connectLinks = [
   { icon: <GithubIcon className="w-5 h-5" />, text: "GitHub" },
   { icon: <FacebookIcon className="w-5 h-5" />, text: "Facebook" },
   { icon: <InstagramIcon className="w-5 h-5" />, text: "Instagram" },
-  { icon: <TwitterIcon className="w-5 h-5" />, text: "X" },
+  { icon: <FaTiktok className="w-5 h-5" />, text: "TikTok" },
   { icon: <YoutubeIcon className="w-5 h-5" />, text: "YouTube" },
 ];
 

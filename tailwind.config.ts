@@ -9,6 +9,10 @@ const config: Config = {
     "app/**/*.{ts,tsx}",
     "components/**/*.{ts,tsx}",
     "*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
@@ -63,6 +67,8 @@ const config: Config = {
         marquee: "marquee 30s linear infinite",
         "marquee-reverse": "marquee-reverse 30s linear infinite",
         gradient: "gradient 15s linear infinite",
+        "marquee-infinite": "marquee-infinite 40s linear infinite",
+        "marquee-infinite-reverse": "marquee-infinite-reverse 40s linear infinite",
       },
       keyframes: {
         marquee: {
@@ -80,6 +86,14 @@ const config: Config = {
           "50%": {
             "background-position": "100% 50%",
           },
+        },
+        "marquee-infinite": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "marquee-infinite-reverse": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
         },
       },
     },

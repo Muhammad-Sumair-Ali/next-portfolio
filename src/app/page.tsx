@@ -1,5 +1,5 @@
 import AboutSection from "@/components/AboutSection";
-import AnimatedTechSection from "@/components/AskQuestion";
+import AskQuestions from "@/components/AskQuestion";
 import Footer from "@/components/common/Footer";
 import ProjectsSection from "@/components/ProjectsSection";
 import Hero from "@/components/reuseable/Hero";
@@ -13,7 +13,7 @@ export default function Home() {
       <ProjectsSection />
       <AboutSection />
       <WhatIOffer/>
-      <AnimatedTechSection />
+      <AskQuestions />
       <Footer />
     </div>
   );

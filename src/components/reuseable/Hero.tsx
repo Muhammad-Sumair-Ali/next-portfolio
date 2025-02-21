@@ -49,6 +49,18 @@ export default function Hero() {
   const textItem = TEXTS[currentIndex];
   if (!textItem) return null;
 
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      setTime(new Date().toLocaleTimeString("en-US", { timeZone: "Asia/Karachi" }));
+    };
+
+    updateTime(); 
+    const interval = setInterval(updateTime, 1000); 
+
+    return () => clearInterval(interval); 
+  }, []);
   return (
     <>
       <div className="relative  max-w-[1010px] p-4  mx-auto mt-32 mb-16 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -104,8 +116,7 @@ export default function Hero() {
             </div>
           </h1>
           <div className="text-sm font-mono text-gray-400 mt-4">
-          MS DEV / {new Date().toLocaleTimeString("en-US", { timeZone: "Asia/Karachi" })}
-
+          MS DEV / {time}
           </div>
         </div>
 
