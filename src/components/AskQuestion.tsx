@@ -1,11 +1,15 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Mail } from "lucide-react"
-import Image from "next/image"
- import Code from "@/assets/code.jpg"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Mail } from "lucide-react";
+import Image from "next/image";
+import Code from "@/assets/code.jpg";
+import Link from "next/link";
+
+
+
 export default function AskQuestions() {
   const badges = [
     { text: "React.js", className: "md:left-12 md:top-14" },
@@ -14,13 +18,13 @@ export default function AskQuestions() {
     { text: "Next.js", className: "md:right-14 md:bottom-28" },
     { text: "Tailwind CSS", className: "md:left-24 md:bottom-20" },
     { text: "Node.js", className: "md:right-24 md:bottom-14" },
-  ]
+  ];
 
   return (
     <div className="relative w-full px-4 py-2 md:py-16">
       {/* Background gradient */}
       <div
-        className="absolute -bottom-36 right-0 md:-right-28 transform md:-translate-x-1/2 h-[230px] w-full md:w-[650px] 
+        className="absolute bottom-20 right-0 md:-right-28 transform md:-translate-x-1/2 h-[230px] w-full md:w-[650px] 
           blur-3xl opacity-20 -z-10 bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300
           dark:from-purple-800 dark:via-pink-800 dark:to-orange-800"
       />
@@ -29,7 +33,7 @@ export default function AskQuestions() {
         <section
           className="flex flex-col md:flex-row md:max-h-[330px] items-center justify-between gap-8 md:gap-2 p-6 
             backdrop-blur-lg shadow-2xl rounded-2xl border border-gray-300 bg-white/80
-            dark:bg-gradient-to-l dark:from-black/50 dark:to-slate-950/65 dark:border-zinc-700/50"
+            dark:bg-gradient-to-l dark:from-black/95 dark:to-black dark:border-zinc-700/50"
         >
           {/* Floating badges and image */}
           <div className="relative w-full md:w-1/2 h-[200px]  md:h-96 flex items-center justify-center">
@@ -125,8 +129,9 @@ export default function AskQuestions() {
               transition={{ delay: 0.3, duration: 0.5 }}
               className="text-gray-700 dark:text-zinc-300 text-base md:text-lg"
             >
-              Whether you are just starting out or looking to dive deeper into Popular Stacks, I am here to help. Let us
-              build something amazing together!
+              Whether you are just starting out or looking to dive deeper into
+              Popular Stacks, I am here to help. Let us build something amazing
+              together!
             </motion.p>
 
             <motion.div
@@ -135,30 +140,32 @@ export default function AskQuestions() {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="flex flex-col sm:flex-row items-center gap-4 justify-start"
             >
-              <Button
-                variant="destructive"
-                className="w-full sm:w-auto border font-sans inline-block rounded-3xl transition-all
-                  bg-transparent border-gray-400 text-gray-700 hover:bg-gray-200
-                  dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800/50 dark:hover:text-white"
-                onClick={() => (window.location.href = "mailto:muhammadsumair224@gmail.com")}
-              >
-                GuestBook
-              </Button>
-              <Button
+              <Link href="/guestbook">
+                <Button
+                  variant="destructive"
+                  className="w-full sm:w-auto border font-sans inline-block rounded-3xl transition-all
+                bg-transparent border-gray-400 text-gray-700 hover:bg-gray-200
+                dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800/50 dark:hover:text-white"
+                >
+                  GuestBook
+                </Button>
+              </Link>
+                <Button
                 variant="outline"
                 className="w-full sm:w-auto border font-serif rounded-3xl transition-all flex items-center gap-2
                   bg-black border-gray-400 text-gray-200 hover:bg-gray-200
                   dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800/50 dark:hover:text-white"
-                onClick={() => (window.location.href = "mailto:MuhammadSumair225@gmail.com")}
-              >
+                onClick={() =>
+                  (window.location.href = "mailto:muhammadsumair225@gmail.com")
+                }
+                >
                 <Mail className="size-5" />
                 <span className="truncate">MuhammadSumair225@gmail.com</span>
-              </Button>
+                </Button>
             </motion.div>
           </div>
         </section>
       </div>
     </div>
-  )
+  );
 }
-

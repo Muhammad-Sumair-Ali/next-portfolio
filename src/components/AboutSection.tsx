@@ -28,6 +28,9 @@ const connectLinks = [
 export default function AboutSection() {
   return (
     <div className="m-auto relative max-w-[1010px] mb-12 mt-4 mx-auto p-4 space-y-6">
+       <h2 className="text-4xl font-bold mb-10 text-zinc-900 dark:text-zinc-200 text-center m-auto">
+        About Me
+      </h2>
       {/* Background effect */}
       <div className="absolute -right-72 -top-8 transform -translate-x-1/2 h-[230px] w-[650px] bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 blur-3xl opacity-30 dark:from-purple-900 dark:via-pink-950 dark:to-orange-900 dark:opacity-40 -z-10"></div>
 

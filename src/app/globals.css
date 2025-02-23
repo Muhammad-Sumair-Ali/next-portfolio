@@ -23,7 +23,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #3a0719; 
+    background: #585656; 
     border-radius: 10px;
     transition: background 0.3s ease;
   }
@@ -90,6 +90,19 @@
 @layer base {
   * {
     @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;

@@ -108,7 +108,7 @@ const Projects = () => {
             value={selectedTag || "all"} 
             onValueChange={(value) => setSelectedTag(value === "all" ? null : value)}
           >
-            <SelectTrigger className="w-[200px]">
+            <SelectTrigger className="w-[200px] dark:text-zinc-200 text-black">
               <SelectValue placeholder="Filter by technology" />
             </SelectTrigger>
             <SelectContent>

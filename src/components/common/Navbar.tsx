@@ -1,30 +1,51 @@
-"use client"
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { MoonIcon, SunIcon, Languages, AppWindow } from "lucide-react"
-import { FaHome, FaProjectDiagram, FaBook, FaUser } from "react-icons/fa"
-import { ThemeToggle } from "../reuseable/ThemeToggle"
+"use client";
 
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Menu,
+  PenLine,
+  MessageCircle,
+  BarChart3,
+  Flame,
+  User,
+  Monitor,
+  Moon,
+  Languages,
+  Command,
+} from "lucide-react";
 
+import { motion } from "framer-motion";
+import { DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
+import {
+  AppWindow,
+  Home,
+  FolderKanban,
+  BookOpen,
+  Globe,
+  ExternalLink,
+} from "lucide-react";
+import { ThemeToggle } from "../reuseable/ThemeToggle";
+import { CommandMenu } from "../reuseable/CommandMenu";
 
 const NAV_LINKS = [
-  { href: "/", label: "Home", icon: FaHome },
-  { href: "/projects", label: "Projects", icon: FaProjectDiagram },
-  { href: "/guestbook", label: "Guestbook", icon: FaBook },
-  { href: "/about", label: "About", icon: FaUser },
-]
+  { href: "/guestbook", label: "Guestbook", icon: MessageCircle },
+  { href: "/dashboard", label: "Dashboard", icon: BarChart3 },
+  { href: "/projects", label: "Projects", icon: Flame },
+  { href: "/about", label: "About", icon: User },
+  { href: "/contact", label: "Contact", icon: Monitor },
+];
 
 export default function Navbar() {
-  const pathname = usePathname()
-  const [isDarkMode, setIsDarkMode] = useState(false)
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-    // Add your dark mode logic here
-  }
+  const pathname = usePathname();
 
   return (
     <>
@@ -34,18 +55,20 @@ export default function Navbar() {
         <header className="relative w-full max-w-[950px] rounded-full bg-white/35 dark:bg-white/5 px-6 shadow-lg backdrop-blur-sm">
           <nav className="flex items-center justify-between py-3 text-black dark:text-white">
             {/* Left - Logo */}
-            <Link href="/" className="text-xl font-mono font-semibold  tracking-widest">
+            <Link
+              href="/"
+              className="text-xl font-mono font-semibold tracking-widest"
+            >
               MS
             </Link>
 
             {/* Right - Links (Desktop) */}
             <div className="hidden md:flex items-center gap-5 gap-x-6 text-sm">
-            
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative text-zinc-500 font-medium dark:text-zinc-400  dark:hover:text-white hover:text-black transition-all duration-300 ${
+                  className={`relative text-zinc-500 font-medium dark:text-zinc-400 dark:hover:text-white hover:text-black transition-all duration-300 ${
                     pathname === link.href ? "text-white" : ""
                   }`}
                 >
@@ -60,22 +83,73 @@ export default function Navbar() {
               ))}
 
               <div className="flex items-center gap-x-3 border-l border-gray-700">
-                <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white transition-all">
+                <ThemeToggle />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-zinc-600  hover:text-zinc-800  dark:text-zinc-400 dark:hover:bg-white/10  dark:hover:text-white"
+                >
                   <Languages className="h-5 w-5" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white transition-all mr-2">
-                  <AppWindow className="h-5 w-5" />
-                </Button>
-              <ThemeToggle/>
+                <CommandMenu />
               </div>
             </div>
 
             {/* Mobile Menu */}
-            
+            <div className="md:hidden flex items-center ">
+              <ThemeToggle />
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-zinc-600  hover:text-zinc-800  dark:text-zinc-400 dark:hover:bg-white/10  dark:hover:text-white"
+              >
+                <Languages className="h-5 w-5" />
+              </Button>
+              <CommandMenu />
+
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-zinc-600 hover:text-zinc-800  dark:text-zinc-400 dark:hover:bg-white/10  dark:hover:text-white"
+                  >
+                    <Menu className="h-5 w-5" />
+                    <span className="sr-only">Toggle menu</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="end"
+                  className="w-[180px] bg-white/20 dark:bg-black/80 rounded-lg border-white/10 backdrop-blur-xl"
+                >
+                  {NAV_LINKS.map((link) => {
+                    const Icon = link.icon;
+                    return (
+                      <DropdownMenuItem
+                        key={link.href}
+                        asChild
+                        className="focus:bg-black/10 dark:focus:bg-white/10 focus:text-black dark:focus:text-white"
+                      >
+                        <Link
+                          href={link.href}
+                          className={`flex items-center text-black/70 dark:text-white gap-2 px-2 py-1.5 text-sm ${
+                            pathname === link.href
+                              ? "text-white"
+                              : "text-white/70 hover:text-white transition-colors"
+                          }`}
+                        >
+                          <Icon className="h-4 w-4" />
+                          {link.label}
+                        </Link>
+                      </DropdownMenuItem>
+                    );
+                  })}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </nav>
         </header>
       </div>
     </>
-  )
+  );
 }
-

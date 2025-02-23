@@ -4,7 +4,6 @@ import Heading from "@/components/reuseable/Heading";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { AlertCircle, ThumbsUp, ThumbsDown } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { motion } from "framer-motion";
@@ -40,7 +39,9 @@ interface Entry {
 
 const GuestBook: React.FC = () => {
   const [entries, setEntries] = useState<Entry[]>(mockEntries);
-  const [newEntry, setNewEntry] = useState<Omit<Entry, "id" | "date" | "avatar">>({
+  const [newEntry, setNewEntry] = useState<
+    Omit<Entry, "id" | "date" | "avatar">
+  >({
     name: "",
     email: "",
     message: "",
@@ -65,7 +66,9 @@ const GuestBook: React.FC = () => {
       id: entries.length + 1,
       ...newEntry,
       date: new Date().toISOString().split("T")[0],
-      avatar: `/placeholder.svg?height=40&width=40&text=${newEntry.name.charAt(0)}`,
+      avatar: `/placeholder.svg?height=40&width=40&text=${newEntry.name.charAt(
+        0
+      )}`,
     };
     setEntries([entry, ...entries]);
     setNewEntry({ name: "", email: "", message: "" });
@@ -80,33 +83,41 @@ const GuestBook: React.FC = () => {
       />
       <div className="max-w-[1010px] mx-auto  relative">
         {/* Leave a message form  */}
-        <Card className="bg-black/50 text-white shadow shadow-zinc-700 max-w-4xl m-auto my-8">
-          <CardHeader>
-            <h2 className="text-xl -my-2  font-bold">Leave a Message</h2>
-          </CardHeader>
-          <CardContent>
+
+        <div className="w-full md:w-[640px] p-4 text-white  max-w-4xl m-auto my-4">
+          <div>
             <form onSubmit={handleSubmit} className="space-y-4 ">
-              <Textarea
-                className="border-none shadow shadow-zinc-500 "
-                placeholder="Your Message"
-                name="message"
-                value={newEntry.message}
-                onChange={handleInputChange}
-              />
+              <div className="flex flex-row gap-4">
+                <Avatar className="border border-zinc-500">
+                  <AvatarImage src="/public/vercel.svg" alt="not found" />
+                  <AvatarFallback>user</AvatarFallback>
+                </Avatar>
+                <Textarea
+                  className="border font-semibold border-zinc-400 py-2 px-4  min-h-24  dark:border-zinc-700 rounded-xl text-xl  "
+                  placeholder="Your Message"
+                  name="message"
+                  onChange={handleInputChange}
+                  value={newEntry.message}
+                />
+              </div>
               {error && (
-                <Alert variant="destructive">
+                <Alert variant="destructive" className="max-w-lg m-auto h-14">
                   <AlertCircle className="h-4 w-4" />
                   <AlertTitle>Error</AlertTitle>
                   <AlertDescription>{error}</AlertDescription>
                 </Alert>
               )}
-              <Button type="submit">Submit</Button>
+                  <div className="flex justify-end gap-4 font-semibold px-3">
+              <Button size="lg"  className="bg-black text-white hover:bg-zinc-900 border">Logout</Button>
+              <Button size="lg"  className="bg-zinc-200 ring-1 dark:ring-0 ring-slate-400 dark:bg-white text-zinc-900 font-semibold hover:bg-zinc-300">Submit</Button>
+              </div>
             </form>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
         <div className="absolute bottom-4 right-8 transform -translate-r-1/2 h-[230px] w-[690px] bg-gradient-to-r from-purple-800 via-pink-800 to-orange-800 blur-3xl opacity-20  -z-10"></div>
+        <div className="absolute top-24 left-2 transform -translate-r-1/2 h-[130px] w-[390px] bg-gradient-to-b from-purple-800 via-pink-800 to-orange-800 blur-3xl opacity-15  -z-10"></div>
 
-        <div className="max-w-2xl m-auto">
+        <div className="max-w-3xl m-auto text-black dark:text-white">
           {/* Messages cards  */}
           {entries.map((entry) => (
             <motion.div
@@ -114,7 +125,7 @@ const GuestBook: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-6 bg-black/35 px-8 py-4 border rounded-xl"
+              className="mb-6 dark:bg-zinc-950 shadow-lg hover:bg-white/80 dark:hover:bg-black shadow-zinc-300 dark:shadow-zinc-950 bg-white  px-8 py-4 border rounded-2xl"
             >
               <div className="flex items-center justify-between space-x-6 mb-2">
                 <div className="flex items-center gap-x-2 ">
@@ -128,7 +139,7 @@ const GuestBook: React.FC = () => {
                   {entry.date}
                 </span>
               </div>
-              <p className="text-gray-200">{entry.message}</p>
+              <p className="text-zinc-600 dark:text-gray-200">{entry.message}</p>
               <div className="mt-2 flex justify-end space-x-4">
                 <Button variant="outline" size="sm">
                   <ThumbsUp className="h-4 w-4 mr-1" />
