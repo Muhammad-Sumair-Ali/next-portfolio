@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const connectDB = async () => {
   try {
     if (mongoose.connection.readyState >= 1) return;
-    const mongoUrl = process.env.MONGO_URL;
+    const mongoUrl = process.env.MONGODB_URI;
     if (!mongoUrl) {
       throw new Error("MONGO_URL is not defined in the environment variables");
     }
