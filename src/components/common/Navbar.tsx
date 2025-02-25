@@ -1,6 +1,4 @@
 "use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -12,27 +10,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   Menu,
-  PenLine,
   MessageCircle,
   BarChart3,
   Flame,
   User,
   Monitor,
-  Moon,
   Languages,
-  Command,
 } from "lucide-react";
 
 import { motion } from "framer-motion";
-import { DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
-import {
-  AppWindow,
-  Home,
-  FolderKanban,
-  BookOpen,
-  Globe,
-  ExternalLink,
-} from "lucide-react";
+
 import { ThemeToggle } from "../reuseable/ThemeToggle";
 import { CommandMenu } from "../reuseable/CommandMenu";
 
@@ -120,7 +107,7 @@ export default function Navbar() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   align="end"
-                  className="w-[180px] bg-white/20 dark:bg-black/80 rounded-lg border-white/10 backdrop-blur-xl"
+                  className="w-[180px] bg-white/40 dark:bg-black/80 rounded-lg border-white/10 backdrop-blur-xl"
                 >
                   {NAV_LINKS.map((link) => {
                     const Icon = link.icon;
@@ -128,7 +115,7 @@ export default function Navbar() {
                       <DropdownMenuItem
                         key={link.href}
                         asChild
-                        className="focus:bg-black/10 dark:focus:bg-white/10 focus:text-black dark:focus:text-white"
+                        className="focus:bg-black/10 text-zinc-800 dark:text-zinc-200 dark:focus:bg-white/10 focus:text-black dark:focus:text-white"
                       >
                         <Link
                           href={link.href}

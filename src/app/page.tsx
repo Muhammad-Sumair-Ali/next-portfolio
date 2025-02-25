@@ -11,7 +11,7 @@ import { useEffect } from "react";
 
 export default function Home() {
   const { data: session, status } = useSession();
-  // const router = useRouter();
+
 
 
   useEffect(() => {
@@ -20,12 +20,7 @@ export default function Home() {
     console.log("LoggedIn User status =>",status )
   }
   }, [])
-  // if (status === "loading") return <p>Loading...</p>;
 
-  // if (!session) {
-  //   router.push("/login");
-  //   return null;
-  // }
 
   return (
     <>

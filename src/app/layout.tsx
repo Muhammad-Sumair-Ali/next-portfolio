@@ -1,10 +1,10 @@
-"use client"; 
-
+"use client"
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import { SessionProvider } from "next-auth/react";
+
 
 const nunito = Nunito({
   subsets: ["latin"],

@@ -12,9 +12,6 @@ import {
   LogOut,
   Twitter,
 } from "lucide-react";
-
-// import { signIn, signOut, useSession } from "next-auth/react";
-import {  useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import {
   CommandDialog,
@@ -28,6 +25,10 @@ import {
 } from "@/components/ui/command";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { LoginDialog } from "../LoginDialog";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+
+
+import { useSession, signOut } from "next-auth/react";
 
 // Define command groups with items in an object listing
 interface CommandItem {
@@ -38,11 +39,16 @@ interface CommandItem {
 }
 
 export function CommandMenu() {
+
+
+  // logOut issue  hai 
   const [open, setOpen] = useState(false);
 
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
+
   // Handle keyboard shortcut (⌘K or Ctrl+K)
   useEffect(() => {
+    console.log("session" ,session)
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
@@ -52,7 +58,7 @@ export function CommandMenu() {
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, []);
-
+  
   const socialLinks = {
     github: "https://github.com/yourusername",
     twitter: "https://twitter.com/yourusername",
@@ -133,15 +139,30 @@ export function CommandMenu() {
               className="dark:text-zinc-200 border-b text-zinc-900"
               heading={"Account"}
             >
+              {session?.user && (
+                <div className="flex items-center gap-2 px-4 py-2 border rounded-lg">
+                  <Avatar className="w-10 h-10">
+                    <AvatarImage
+                      src={session.user.image ?? undefined}
+                      alt="User Avatar"
+                    />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                  <span className="text-sm font-medium dark:text-zinc-200 text-zinc-800">
+                    {session.user.name}
+                  </span>
+                </div>
+              )}
+
               {session ? (
-                <CommandItem>
+                // <CommandItem onClick={() => signOut()} className="mt-1">
+                <CommandItem onSelect={() => signOut()} className="mt-1">
                   <LogOut className=" h-4 w-4" />
                   <span>Log out</span>
                 </CommandItem>
               ) : (
                 <CommandItem>
                   <LogIn className=" h-4 w-4" />
-
                   <LoginDialog />
                 </CommandItem>
               )}
