@@ -101,7 +101,7 @@ export default function Navbar() {
                     size="icon"
                     className="text-zinc-600 hover:text-zinc-800  dark:text-zinc-400 dark:hover:bg-white/10  dark:hover:text-white"
                   >
-                    <Menu className="h-5 w-5" />
+                    <Menu className="h-6 w-6" />
                     <span className="sr-only">Toggle menu</span>
                   </Button>
                 </DropdownMenuTrigger>
@@ -119,7 +119,7 @@ export default function Navbar() {
                       >
                         <Link
                           href={link.href}
-                          className={`flex items-center text-black/70 dark:text-white gap-2 px-2 py-1.5 text-sm ${
+                          className={`flex items-center text-black/70 dark:text-white gap-2 px-2 py-1.5 text-md ${
                             pathname === link.href
                               ? "text-white"
                               : "text-white/70 hover:text-white transition-colors"

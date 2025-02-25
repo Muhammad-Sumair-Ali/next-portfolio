@@ -82,7 +82,7 @@ export default function AskQuestions() {
                 >
                   <Badge
                     variant="secondary"
-                    className="transition-all shadow-sm border
+                    className="transition-all shadow-sm lg:text-[16px] border
                       bg-gray-200 text-gray-700 hover:bg-gray-300 border-gray-400
                       dark:bg-zinc-800/90 dark:text-zinc-300 dark:hover:bg-zinc-700/90 dark:border-zinc-700/50"
                   >
@@ -109,7 +109,7 @@ export default function AskQuestions() {
           </div>
 
           {/* Text Section */}
-          <div className="w-full md:w-1/2 text-left md:text-left space-y-5">
+          <div className="w-full md:w-1/2 text-left md:text-left space-y-5 my-6">
             <motion.h2
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -138,12 +138,12 @@ export default function AskQuestions() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="flex flex-col sm:flex-row items-center gap-4 justify-start"
+              className="flex flex-col sm:flex-row  gap-4 justify-start"
             >
               <Link href="/guestbook">
                 <Button
                   variant="destructive"
-                  className="w-full sm:w-auto border font-sans inline-block rounded-3xl transition-all
+                  className="w-full  border font-sans rounded-3xl transition-all
                 bg-transparent border-gray-400 text-gray-700 hover:bg-gray-200
                 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800/50 dark:hover:text-white"
                 >

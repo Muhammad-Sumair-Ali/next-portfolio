@@ -24,7 +24,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto overflow-hidden">
+      <div className="max-w-5xl mx-auto overflow-hidden">
         <Hero />
         <ProjectsSection />
         <AboutSection />

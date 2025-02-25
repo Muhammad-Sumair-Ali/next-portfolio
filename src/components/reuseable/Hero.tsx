@@ -134,7 +134,7 @@ export default function Hero() {
             alt="Profile"
             priority
           />
-          <div className="absolute inset-0 mt-16 w-64 ml-4 -z-10 bg-gradient-to-tl from-purple-800 to-orange-800 dark:opacity-35 opacity-40 h-72 blur-3xl" />
+          <div className="absolute right-28 mt-16 w-44 ml-4 -z-10 bg-gradient-to-tl from-purple-800 to-orange-800 dark:opacity-35 opacity-40 h-72 blur-3xl" />
         </motion.div>
       </div>
     </>
