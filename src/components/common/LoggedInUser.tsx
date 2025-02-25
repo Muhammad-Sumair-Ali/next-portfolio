@@ -14,7 +14,7 @@ export default function LoggedInUser() {
   ) : (
     <div className="px-4 flex flex-col gap-4 my-28">
     <button onClick={() => signIn("google")}>Sign in with Google</button>
-    <button onClick={() => signIn("github")}>Sign in with Github</button>
+    <button onClick={() => signIn("github")}>Sign with Github</button>
     </div>
   );
 }
