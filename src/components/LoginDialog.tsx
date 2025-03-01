@@ -6,16 +6,21 @@ import { Button } from "@/components/ui/button";
 
 import { Github } from "lucide-react";
 
-import { signIn } from "next-auth/react"
+import { signIn } from "next-auth/react";
 
-export function LoginDialog() {
+export function LoginDialog({ isDialog }: { isDialog: boolean }) {
   const [open, setOpen] = useState(false);
   // const { data: session } = useSession();
   return (
     <>
-      <span onClick={() => setOpen(true)} className="w-full max-w-sm ">
-        Sign In
-      </span>
+      {isDialog ? (
+        <Button onClick={() => setOpen(true)}  className="px-8">Login</Button>
+      ) : (
+        <span onClick={() => setOpen(true)} className="w-full max-w-sm ">
+          Sign In
+        </span>
+      )}
+
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-[400px] p-0 overflow-hidden">
           <div className="relative flex flex-col p-8">

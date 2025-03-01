@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <div className="relative w-full px-4 sm:px-6 lg:px-8">
       {/* Gradient Background Effect */}
-      <div className="absolute -bottom-28 left-1/2 transform -translate-x-1/2 h-[350px] w-[550px] bg-gradient-to-r from-purple-600 via-fuchsia-500 to-orange-500 blur-3xl opacity-30 -z-10"></div>
+      <div className="absolute -bottom-28 left-1/2 transform -translate-x-1/2 h-[350px] w-[350px] bg-gradient-to-r from-purple-600 via-fuchsia-500 to-orange-500 blur-3xl opacity-30 -z-10"></div>
 
       <footer className="w-full max-w-[990px] mx-auto bg-white/35  dark:bg-black/50 backdrop-blur-lg border-none  dark:border-zinc-700 mt-20 rounded-2xl shadow-lg overflow-hidden">
         <div className="px-6 py-12 sm:px-10 lg:px-12">
@@ -61,7 +61,7 @@ export default function Footer() {
           <div className="border-t border-zinc-200 dark:border-zinc-700 mt-10" />
 
           {/* Copyright Section */}
-          <div className="text-center text-zinc-600 dark:text-zinc-400 mt-6 text-sm">
+          <div style={{fontFamily:"cursive"}} className="text-center text-zinc-600 font-semibold dark:text-zinc-400 mt-6 text-sm">
             &copy; {new Date().getFullYear()} Muhammad Sumair | Full Stack Developer
           </div>
         </div>

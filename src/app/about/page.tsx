@@ -47,14 +47,14 @@ const About = () => {
             <h2 className="mb-4 text-2xl font-semibold text-gray-800 dark:text-zinc-200">
               Beyond Code
             </h2>
-            <p className="text-gray-600 dark:text-zinc-400">
+            <div className="text-gray-600 dark:text-zinc-400">
               When I'm not debugging, you'll find me:
               <ul className="mt-2 list-inside list-disc space-y-2">
                 <li>🔥 Contributing to open-source projects</li>
                 <li>📚 Mentoring new developers in community forums</li>
                 <li>☕ Experimenting with new coffee brewing techniques</li>
               </ul>
-            </p>
+            </div>
           </section>
         </div>
       </div>

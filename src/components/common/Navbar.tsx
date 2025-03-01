@@ -8,28 +8,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  Menu,
-  MessageCircle,
-  BarChart3,
-  Flame,
-  User,
-  Monitor,
-  Languages,
-} from "lucide-react";
+import { Menu, Languages } from "lucide-react";
 
 import { motion } from "framer-motion";
 
 import { ThemeToggle } from "../reuseable/ThemeToggle";
 import { CommandMenu } from "../reuseable/CommandMenu";
-
-const NAV_LINKS = [
-  { href: "/guestbook", label: "Guestbook", icon: MessageCircle },
-  { href: "/dashboard", label: "Dashboard", icon: BarChart3 },
-  { href: "/projects", label: "Projects", icon: Flame },
-  { href: "/about", label: "About", icon: User },
-  { href: "/contact", label: "Contact", icon: Monitor },
-];
+import { NAV_LINKS } from "@/helpers/utils";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -46,7 +31,7 @@ export default function Navbar() {
               href="/"
               className="text-xl font-mono font-semibold tracking-widest"
             >
-              MS
+              <span style={{ fontFamily: "cursive" }}>MS</span>
             </Link>
 
             {/* Right - Links (Desktop) */}

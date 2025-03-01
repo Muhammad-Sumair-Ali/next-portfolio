@@ -163,7 +163,7 @@ export function CommandMenu() {
               ) : (
                 <CommandItem>
                   <LogIn className=" h-4 w-4" />
-                  <LoginDialog />
+                  <LoginDialog isDialog={false} />
                 </CommandItem>
               )}
             </CommandGroup>
