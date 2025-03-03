@@ -1,35 +1,47 @@
-"use client"; 
+"use client";
 
-import AboutSection from "@/components/AboutSection";
-import AskQuestions from "@/components/AskQuestion";
-import ProjectsSection from "@/components/ProjectsSection";
-import Hero from "@/components/reuseable/Hero";
-import { WhatIOffer } from "@/components/Services";
+import dynamic from "next/dynamic";
 import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
+import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
+
+const Hero = dynamic(() => import("@/components/reuseable/Hero"));
+const ProjectsSection = dynamic(() => import("@/components/ProjectsSection"));
+const AboutSection = dynamic(() => import("@/components/AboutSection"));
+const WhatIOffer = dynamic(() => import("@/components/Services").then((mod) => mod.WhatIOffer));
+const AskQuestions = dynamic(() => import("@/components/AskQuestion"));
 
 export default function Home() {
   const { data: session, status } = useSession();
-
-
+  const path = usePathname();
 
   useEffect(() => {
-  if(session){
-    console.log("LoggedIn User=>",session )
-    console.log("LoggedIn User status =>",status )
-  }
-  }, [])
-
+    if (session) {
+      console.log("LoggedIn User=>", session);
+      console.log("LoggedIn User status =>", status);
+    }
+  }, []);
 
   return (
     <>
-      <div className="w-full sm:max-w-5xl mx-auto overflow-hidden">
+      {path === "/" ? <Navbar /> : null}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+        className="w-full sm:max-w-5xl mx-auto overflow-hidden"
+      >
         <Hero />
         <ProjectsSection />
         <AboutSection />
         <WhatIOffer />
         <AskQuestions />
-      </div>
+      </motion.div>
+      {path === "/" ? <Footer /> : null}
     </>
   );
 }

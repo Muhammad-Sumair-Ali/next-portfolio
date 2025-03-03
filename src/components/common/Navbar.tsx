@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 
 import { ThemeToggle } from "../reuseable/ThemeToggle";
 import { CommandMenu } from "../reuseable/CommandMenu";
-import { NAV_LINKS } from "@/helpers/utils";
+import { NAV_LINKS } from "@/config/Link";
 
 export default function Navbar() {
   const pathname = usePathname();

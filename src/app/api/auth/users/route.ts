@@ -1,22 +1,35 @@
-import { NextResponse } from "next/server";
+import userModel from "@/models/user.model";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: Request) {
-  const { id } = await req.json();
+import connectDB from "@/db";
+import { verifyToken } from "@/helpers/auth";
 
-  // Dummy authentication (Replace with real logic)
-  if (id) {
-    const response = NextResponse.json({ message: "users get successful" });
+export async function GET(req:NextRequest) {
+  try {
+    await connectDB(); 
 
-    // Set the authentication token as an HttpOnly cookie
-    response.cookies.set("token", "your-secure-token", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      path: "/",
+    const authHeader = req.headers.get("authorization");
+    if (!authHeader) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // Verify user from token
+    const token = authHeader.split(" ")[1]; 
+    const user = verifyToken(token); 
+
+    if (!user || user.role !== "admin") {
+      return NextResponse.json({ error: "Access Denied" }, { status: 403 });
+    }
+
+    // Fetch all users
+    const users = await userModel.find().select("-password");
+
+    return NextResponse.json({ 
+      data: users, 
+      message: "Users fetched successfully" 
     });
 
-    return response;
+  } catch (error: any) {
+    return NextResponse.json({ error: "Internal Server Error", details: error.message }, { status: 500 });
   }
-
-  return NextResponse.json({ error: "ERROR : SOMETHING WENT WRONG" }, { status: 401 });
 }

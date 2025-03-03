@@ -3,26 +3,25 @@
 
 export { auth as middleware } from "./auth"
 
+import jwt from 'jsonwebtoken';
 
-// export function middleware(req: NextRequest) {
-//   const { pathname } = req.nextUrl;
+export default function authMiddleware(handler:any) {
+  return async (req:any, res:any) => {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ message: 'Unauthorized, token required' });
+    }
 
-//   // Check if the request is for an admin route
-//   if (pathname.startsWith("/admin")) {
-//     const token = req.cookies.get("token")?.value;
-
-//     // Redirect if no token is found
-//     if (!token) {
-//       return NextResponse.redirect(new URL("/", req.url));
-//     }
-//   }
-
-//   return NextResponse.next();
-// }
-
-// // Apply middleware only to admin routes
-// export const config = {
-//   matcher: ["/admin/:path*"],
-// };
-
+    try {
+      if (!process.env.JWT_SECRET) {
+        throw new Error('JWT_SECRET is not defined');
+      }
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.admin = decoded;
+      return handler(req, res);
+    } catch (error) {
+      return res.status(401).json({ message: 'Unauthorized, invalid token' });
+    }
+  };
+}
 

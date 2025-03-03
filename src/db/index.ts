@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 let isConnected = false;
+
+
 const connectDB = async () => {
   if (isConnected) {
     console.log("=> Using existing database connection");
@@ -12,7 +14,7 @@ const connectDB = async () => {
       throw new Error("MONGO_URL is not defined in the environment variables");
     }
     console.log("Connecting to MongoDB...");
-    await mongoose.connect(mongoUrl);
+    await mongoose.connect(mongoUrl,{ dbName: "portfolio",});
     isConnected = true;
     console.log("Connected to MongoDB");
   } catch (error) {

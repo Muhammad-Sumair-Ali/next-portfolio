@@ -1,63 +1,97 @@
-"use client";
-
-import { useState } from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-
-import { Github } from "lucide-react";
-
-import { signIn } from "next-auth/react";
+"use client"
+import { useState } from "react"
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Github, Mail } from "lucide-react"
+import { signIn } from "next-auth/react"
+import { LoginForm } from "@/app/admin/components/Login"
 
 export function LoginDialog({ isDialog }: { isDialog: boolean }) {
-  const [open, setOpen] = useState(false);
-  // const { data: session } = useSession();
+  const [open, setOpen] = useState(false)
+  const [showEmailLogin, setShowEmailLogin] = useState(false)
+
   return (
     <>
       {isDialog ? (
-        <Button onClick={() => setOpen(true)}  className="px-8">Login</Button>
+        <Button onClick={() => setOpen(true)} className="px-8">
+          Login
+        </Button>
       ) : (
-        <span onClick={() => setOpen(true)} className="w-full max-w-sm ">
+        <span onClick={() => setOpen(true)} className="w-full max-w-sm cursor-pointer">
           Sign In
         </span>
       )}
 
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog
+        open={open}
+        onOpenChange={(newOpen) => {
+          setOpen(newOpen)
+          if (!newOpen) {
+            setShowEmailLogin(false)
+          }
+        }}
+      >
         <DialogContent className="sm:max-w-[400px] p-0 overflow-hidden">
-          <div className="relative flex flex-col p-8">
-            <DialogTitle className="text-zinc-800  dark:text-zinc-200">
-              Login
-            </DialogTitle>
+          <div className="relative flex flex-col px-5 py-6">
+            <DialogTitle className="text-zinc-800 dark:text-zinc-200">Login</DialogTitle>
 
-            <div className="my-4 text-left text-zinc-800  dark:text-zinc-200">
-              <p className="text-sm text-muted-foreground mt-1">
-                Choose your sign in method
-              </p>
+            <div className="my-4 text-left text-zinc-800 dark:text-zinc-200">
+              <p className="text-sm text-muted-foreground mt-1">Choose your sign in method</p>
             </div>
 
-            <div className="grid gap-4 text-zinc-800  dark:text-zinc-200">
-              <Button
-                variant="outline"
-                onClick={() => signIn("github")}
-                className="bg-background hover:bg-accent transition-colors"
-              >
-                <Github className="mr-2 h-4 w-4" />
-                Continue with GitHub
-              </Button>
+            {!showEmailLogin ? (
+              <>
+                <div className="grid gap-4 text-zinc-800 dark:text-zinc-200 p-3 ">
+                  <Button
+                    variant="outline"
+                    onClick={() => signIn("github")}
+                    className="bg-background hover:bg-accent transition-colors"
+                  >
+                    <Github className="mr-2 h-4 w-4" />
+                    Continue with GitHub
+                  </Button>
 
-              <Button
-                variant="outline"
-                className="bg-background hover:bg-accent transition-colors"
-                onClick={() => signIn("google")}
-              >
-                <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
-                  <path
-                    d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
-                    fill="currentColor"
-                  />
-                </svg>
-                Continue with Google
-              </Button>
-            </div>
+                  <Button
+                    variant="outline"
+                    className="bg-background hover:bg-accent transition-colors"
+                    onClick={() => signIn("google")}
+                  >
+                    <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
+                      <path
+                        d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                    Continue with Google
+                  </Button>
+
+                  <div className="relative my-2">
+                    <div className="absolute inset-0 flex items-center">
+                      <span className="w-full border-t border-muted-foreground/20"></span>
+                    </div>
+                    <div className="relative flex justify-center text-xs">
+                      <span className="bg-background px-2 text-muted-foreground">Or</span>
+                    </div>
+                  </div>
+
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowEmailLogin(true)}
+                    className="bg-background hover:bg-accent transition-colors"
+                  >
+                    <Mail className="mr-2 h-4 w-4" />
+                    Sign in with Email
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <div className="my-6">
+                <Button variant="ghost" size="sm" onClick={() => setShowEmailLogin(false)} className="mb-4 text-sm">
+                  ← Back to all sign in options
+                </Button>
+                <LoginForm />
+              </div>
+            )}
           </div>
 
           <div className="bg-muted p-4 text-center text-xs text-muted-foreground">
@@ -66,5 +100,6 @@ export function LoginDialog({ isDialog }: { isDialog: boolean }) {
         </DialogContent>
       </Dialog>
     </>
-  );
+  )
 }
+

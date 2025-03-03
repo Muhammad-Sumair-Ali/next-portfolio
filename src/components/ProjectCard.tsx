@@ -50,6 +50,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
         <div className="relative aspect-video cursor-pointer overflow-hidden">
           <Image
+            priority={false}
             src={Pic || image}
             alt={title}
             fill
@@ -140,6 +141,7 @@ export function ProjectCard({ project }: { project: Project }) {
           </DialogHeader>
           <div className="relative aspect-video w-full h-44 overflow-hidden rounded-lg">
             <Image
+          priority={false}
               src={Pic || "/placeholder.svg"}
               alt={title}
               fill

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Heading from "@/components/reuseable/Heading";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,7 +9,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { motion } from "framer-motion";
 import { signOut, useSession } from "next-auth/react";
 import { LoginDialog } from "@/components/LoginDialog";
-import { useGuestbookActions } from "../hooks/useGuestbook";
+import { useGuestbookActions } from "../../../hooks/useGuestbook";
 
 const GuestBook: React.FC = () => {
   const { data: session } = useSession();
@@ -20,8 +20,13 @@ const GuestBook: React.FC = () => {
     handleAddMessage,
     handleInputChange,
     isLoading,
+    fetchMessages,
     newEntry,
   } = useGuestbookActions();
+  
+  useEffect(() => {
+    fetchMessages();
+  }, []);
 
   return (
     <>

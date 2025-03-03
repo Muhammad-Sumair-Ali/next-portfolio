@@ -1,5 +1,5 @@
 
-import { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 
 interface GuestbookEntry {
@@ -17,9 +17,6 @@ export const useGuestbookActions = () => {
   const [messages, setMessages] = useState<GuestbookEntry[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    fetchMessages();
-  }, []);
 
   const fetchMessages = async () => {
     try {
@@ -82,6 +79,6 @@ export const useGuestbookActions = () => {
     handleInputChange,
     isLoading,
     newEntry,
-    
+    fetchMessages
   };
 };

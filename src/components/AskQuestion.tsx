@@ -8,8 +8,6 @@ import Image from "next/image";
 import Code from "@/assets/code.jpg";
 import Link from "next/link";
 
-
-
 export default function AskQuestions() {
   const badges = [
     { text: "React.js", className: "md:left-12 md:top-14" },
@@ -100,6 +98,7 @@ export default function AskQuestions() {
             >
               <Image
                 src={Code}
+                priority={false}
                 alt="Tech Stack Illustration"
                 width={160}
                 height={160}
@@ -150,7 +149,7 @@ export default function AskQuestions() {
                   GuestBook
                 </Button>
               </Link>
-                <Button
+              <Button
                 variant="outline"
                 className="w-full sm:w-auto border font-serif rounded-3xl transition-all flex items-center gap-2
                   bg-black border-gray-400 text-gray-200 hover:bg-gray-200
@@ -158,10 +157,10 @@ export default function AskQuestions() {
                 onClick={() =>
                   (window.location.href = "mailto:muhammadsumair225@gmail.com")
                 }
-                >
+              >
                 <Mail className="size-5" />
                 <span className="truncate">MuhammadSumair225@gmail.com</span>
-                </Button>
+              </Button>
             </motion.div>
           </div>
         </section>

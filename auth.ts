@@ -14,6 +14,7 @@ interface AdditionalUserData {
 }
 
 export const authOptions = {
+  
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -32,6 +33,7 @@ export const authOptions = {
       },
     }),
   ],
+  
   callbacks: {
     async signIn(params: { user: User, account: Account | null, profile?: Profile }) {
       const { user, account, profile } = params;

@@ -1,8 +1,7 @@
 "use client"
 import { Nunito } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/common/Navbar";
-import Footer from "@/components/common/Footer";
+import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
 
 
@@ -18,9 +17,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <SessionProvider> 
-          <Navbar />
+        <Toaster position="top-center" />
           {children}
-          <Footer />
         </SessionProvider>
       </body>
     </html>

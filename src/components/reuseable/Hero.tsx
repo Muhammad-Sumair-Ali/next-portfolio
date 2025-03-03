@@ -53,13 +53,15 @@ export default function Hero() {
 
   useEffect(() => {
     const updateTime = () => {
-      setTime(new Date().toLocaleTimeString("en-US", { timeZone: "Asia/Karachi" }));
+      setTime(
+        new Date().toLocaleTimeString("en-US", { timeZone: "Asia/Karachi" })
+      );
     };
 
-    updateTime(); 
-    const interval = setInterval(updateTime, 1000); 
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, []);
   return (
     <>
@@ -116,7 +118,7 @@ export default function Hero() {
             </div>
           </h1>
           <div className="text-sm font-mono text-gray-400 mt-4">
-          MS DEV / {time}
+            MS DEV / {time}
           </div>
         </div>
 
@@ -132,7 +134,7 @@ export default function Hero() {
             width={320}
             height={280}
             alt="Profile"
-            priority
+            priority={false}
           />
           <div className="absolute right-28 mt-16 w-44 ml-4 -z-10 bg-gradient-to-tl from-purple-800 to-orange-800 dark:opacity-35 opacity-40 h-72 blur-3xl" />
         </motion.div>

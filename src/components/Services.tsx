@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -9,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Code, Paintbrush, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -20,27 +18,9 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { SERVICES_SECTION_LINKS } from "@/config/Link";
 
-const services = [
-  {
-    title: "Web Development",
-    description:
-      "Building robust and scalable web applications using modern technologies.",
-    icon: Code,
-  },
-  {
-    title: "Web Design",
-    description:
-      "Creating beautiful and intuitive user interfaces for exceptional user experiences.",
-    icon: Paintbrush,
-  },
-  {
-    title: "Website Maintenance",
-    description:
-      "Keeping your website up-to-date with the latest features and security patches.",
-    icon: RefreshCw,
-  },
-];
+
 
 interface Service {
   title: string;
@@ -66,7 +46,7 @@ export function WhatIOffer() {
           What I Offer
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+          {SERVICES_SECTION_LINKS.map((service, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
