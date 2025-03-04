@@ -1,3 +1,4 @@
+"use client"
 import { useState, useEffect } from "react";
 import { projectsApi } from "@/hooks/useApi";
 import toast from "react-hot-toast";

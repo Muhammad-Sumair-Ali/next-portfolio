@@ -1,3 +1,4 @@
+"use client"
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { projectsApi } from '@/hooks/useApi';
 import toast from 'react-hot-toast';

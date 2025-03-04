@@ -1,3 +1,4 @@
+"use client"
 import { useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
