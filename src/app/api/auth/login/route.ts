@@ -1,5 +1,5 @@
 
-import connectDB from "@/db";
+import { connectDb } from "@/db";
 import userModel from "@/models/user.model";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -11,7 +11,7 @@ if (!JWT_SECRET) {
 }
 
 export async function POST(req:NextRequest) {
-  await connectDB();
+  await connectDb();
   try {
     const { email, password } = await req.json();
 

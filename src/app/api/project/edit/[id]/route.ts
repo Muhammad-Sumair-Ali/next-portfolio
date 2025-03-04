@@ -1,4 +1,4 @@
-import connectDB from "@/db";
+import {connectDb} from "@/db";
 import { NextRequest, NextResponse } from "next/server";
 
 import { v2 as cloudinary } from "cloudinary";
@@ -14,8 +14,8 @@ cloudinary.config({
 export async function GET(
   req: NextRequest,
 ) {
+  await connectDb();
   try {
-    await connectDB();
     
     // Await params before accessing id
     const url = new URL(req.url);
@@ -51,8 +51,8 @@ export async function GET(
 
 // Update a project
 export async function PUT(req: NextRequest,) {
+  await connectDb();
   try {
-    await connectDB();
     
     // Get the current session to verify admin status
     // const session = await auth();
@@ -167,8 +167,8 @@ export async function PUT(req: NextRequest,) {
 
 // Delete a project
 export async function DELETE(req: NextRequest,) {
+  await connectDb();
   try {
-    await connectDB();
     
     // Get the current session to verify admin status
     // const session = await auth();
@@ -233,8 +233,8 @@ export async function PATCH(
   req: NextRequest,
  
 ) {
+  await connectDb();
   try {
-    await connectDB();
     
     // Get the current session to verify admin status
     // const session = await auth();

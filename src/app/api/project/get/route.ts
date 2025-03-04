@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import connectDB from "@/db";
+import {connectDb} from "@/db";
 import Project from "@/models/project.model";
 import { v2 as cloudinary } from "cloudinary";
 
@@ -12,8 +12,8 @@ cloudinary.config({
 
 // Get all projects
 export async function GET(req: NextRequest) {
+  await connectDb();
   try {
-    await connectDB();
     
     const { searchParams } = new URL(req.url);
     const pinnedOnly = searchParams.get("pinned") === "true";

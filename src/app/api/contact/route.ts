@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import connectDB from "@/db";
+import { connectDb } from "@/db";
 import messageModel from "@/models/message.model";
 
 // Handle POST request
 export async function POST(req: NextRequest) {
-  await connectDB();
+  await connectDb();
   try {
     const { name, email, subject, message, services } = await req.json();
     
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
 
 // Handle GET request
 export async function GET() {
-  await connectDB();
+  await connectDb();
   try {
     const messages = await messageModel.find();
     return NextResponse.json({ success: true, data: messages }, { status: 201 });

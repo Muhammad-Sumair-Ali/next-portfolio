@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import connectDB from "@/db";
+import {connectDb} from "@/db";
 import Project from "@/models/project.model";
 import { auth } from "../../../../../auth";
 import { v2 as cloudinary } from "cloudinary";
@@ -12,7 +12,7 @@ cloudinary.config({
 
 // Create a new project
 export async function POST(req: NextRequest) {
-  await connectDB();
+  await connectDb();
   
   try {
     // Get the current session to verify admin status

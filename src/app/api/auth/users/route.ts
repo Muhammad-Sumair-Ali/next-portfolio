@@ -1,12 +1,12 @@
 import userModel from "@/models/user.model";
 import { NextRequest, NextResponse } from "next/server";
 
-import connectDB from "@/db";
 import { verifyToken } from "@/helpers/auth";
+import { connectDb } from "@/db";
 
 export async function GET(req:NextRequest) {
+  await connectDb(); 
   try {
-    await connectDB(); 
 
     const authHeader = req.headers.get("authorization");
     if (!authHeader) {

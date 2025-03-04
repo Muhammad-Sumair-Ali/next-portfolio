@@ -2,7 +2,7 @@ import NextAuth, { Account, Profile, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import { database } from "@/lib/mongodbClient"; // Import database connection
-import connectDB from "@/db";
+import {connectDb} from "@/db";
 
 interface AdditionalUserData {
   username?: string;
@@ -39,7 +39,7 @@ export const authOptions = {
       const { user, account, profile } = params;
       if (!account || !profile) return false;
       
-      await connectDB();
+      await connectDb();
       const db = await database;
       const usersCollection = db.collection("users");
       
@@ -94,7 +94,7 @@ export const authOptions = {
       return true;
     },
     async session({ session }: { session: any }) {
-      await connectDB();
+      await connectDb();
       const db = await database;
       const usersCollection = db.collection("users");
       

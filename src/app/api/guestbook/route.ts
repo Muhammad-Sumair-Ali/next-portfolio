@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import Guestbook from "@/models/guestbook.model";
 import { auth } from "../../../../auth";
-import connectDB from "@/db";
+import { connectDb } from "@/db";
 
 export async function GET() {
-  await connectDB();
+  await connectDb();
   const session = await auth();
   const currentUserId = session?.user?.id;
   
@@ -29,7 +29,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  await connectDB();
+  await connectDb();
   const session = await auth();
   
   if (!session) {
