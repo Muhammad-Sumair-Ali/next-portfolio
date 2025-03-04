@@ -1,28 +1,27 @@
 import mongoose from "mongoose";
 
+const mongoUrl = process.env.MONGODB_URI as string;
 
-let isConnected = false;
+if (!mongoUrl) {
+  throw new Error("MONGO_URL environment variable is not set.");
+}
 
 export async function connectDb() {
-  if (isConnected) {
-    console.log("=> Using existing database connection");
+  if (mongoose.connection.readyState === 1) {
+    console.log(" Using existing database connection");
     return;
   }
-  
+
   try {
-    const mongoUrl = process.env.MONGODB_URI;
+    await mongoose.connect(mongoUrl, {
+      connectTimeoutMS: 10000, 
+      socketTimeoutMS: 45000,  
+    });
 
-    if (!mongoUrl) {
-      throw new Error("MONGO_URL environment variable is not set.");
-    }
-
-    await mongoose.connect(mongoUrl);
-
-    isConnected = true; 
     console.log("Connected to MongoDB");
 
   } catch (error) {
-    console.error("Failed to connect to MongoDB");
-    console.error(error);
+    console.error(" Failed to connect to MongoDB:", error);
+    throw new Error("Database connection error");
   }
 }

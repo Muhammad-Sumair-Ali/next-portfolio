@@ -11,12 +11,14 @@ const options = {
     strict: true,
     deprecationErrors: true,
   },
+  connectTimeoutMS: 10000, // 10 seconds timeout
+  socketTimeoutMS: 45000, // 45 seconds socket timeout
 };
 
 const client = new MongoClient(uri, options);
 const clientPromise = client.connect();
 
-// Assign a default database (Make sure the DB exists in MongoDB)
+// Assign a default database
 export const database = clientPromise.then(client => client.db("portfolio"));
 
 export default clientPromise;
