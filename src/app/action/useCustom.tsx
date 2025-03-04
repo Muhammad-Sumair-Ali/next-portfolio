@@ -14,13 +14,13 @@ export const useFetch = <T,>(url: string): FetchResponse<T> => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const token = localStorage.getItem("adminToken"); 
-
+  
   const fetchData = async () => {
     setLoading(true);
     setError(null);
-
+    
     try {
+      const token = localStorage.getItem("adminToken"); 
 
       const headers = token ? { Authorization: `Bearer ${token}` } : {}; // Set header if token exists
 
@@ -52,13 +52,13 @@ export const useFetchContact = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const token = localStorage.getItem("adminToken"); 
-
+  
   const fetchData = async () => {
     setLoading(true);
     setError(null);
-
+    
     try {
+      const token = localStorage.getItem("adminToken"); 
       const headers = token ? { Authorization: `Bearer ${token}` } : {}; // Set header if token exists
 
       const response = await axios.get("/api/contact",{ headers });

@@ -20,9 +20,10 @@ import {
 } from "@/components/ui/sidebar";
 import { NAV_ITEMS_ADMIN } from "@/config/Link";
 
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const router = useRouter();
+const router = useRouter();
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
 
   useEffect(() => {

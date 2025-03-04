@@ -1,28 +1,14 @@
 'use client';
+
 import axios, { AxiosResponse } from 'axios';
 import toast from 'react-hot-toast';
 
-// Create an axios instance with base configuration
 const api = axios.create({
   baseURL: '/api',
   headers: {
     'Content-Type': 'application/json',
   },
 });
-
-// Add an interceptor to include the token in every request
-const token = localStorage.getItem("adminToken");
-if (token) {
-  api.interceptors.request.use(
-    (config) => {
-      config.headers['Authorization'] = `Bearer ${token}`;
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
-}
 
 interface Project {
   _id?: string;
@@ -35,14 +21,28 @@ interface Project {
   imageUrl?: string;
 }
 
+// Helper function to get the token safely
+const getToken = (): string | null => {
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('adminToken');
+  }
+  return null;
+};
+
+// Set headers dynamically
+const getHeaders = () => {
+  const token = getToken();
+  return token ? { Authorization: `Bearer ${token}` } : {};
+};
+
 export const projectsApi = {
   // Get all projects
   getProjects: async (params: Record<string, any> = {}): Promise<Project[]> => {
     try {
-      const response: AxiosResponse<Project[]> = await api.get('/project/get', { params });
+      const response: AxiosResponse<Project[]> = await api.get('/project/get', {params});
       return response.data;
     } catch (error) {
-      toast.error((error as any).response?.data?.message || "Error getting projects");
+      toast.error((error as any).response?.data?.message || 'Error getting projects');
       throw error;
     }
   },
@@ -53,7 +53,7 @@ export const projectsApi = {
       const response: AxiosResponse<Project> = await api.get(`/project/update/${id}`);
       return response.data;
     } catch (error) {
-      toast.error((error as any).response?.data?.message || "Error getting single project");
+      toast.error((error as any).response?.data?.message || 'Error getting single project');
       throw error;
     }
   },
@@ -61,15 +61,16 @@ export const projectsApi = {
   // Create a new project
   createProject: async (formData: FormData): Promise<Project> => {
     try {
-      const response: AxiosResponse<Project> = await api.post('/project/add', formData, {
+      const response: AxiosResponse<Project> = await axios.post('/api/project/add', formData, {
         headers: {
+          ...getHeaders(), // Add headers dynamically
           'Content-Type': 'multipart/form-data',
         },
       });
-      toast.success("Project created successfully");
+      toast.success('Project created successfully');
       return response.data;
     } catch (error) {
-      toast.error((error as any).response?.data?.message || "Error creating project");
+      toast.error((error as any).response?.data?.message || 'Error creating project');
       throw error;
     }
   },
@@ -77,15 +78,16 @@ export const projectsApi = {
   // Update an existing project
   updateProject: async (id: string, formData: FormData): Promise<Project> => {
     try {
-      const response: AxiosResponse<Project> = await api.put(`/project/edit/${id}`, formData, {
+      const response: AxiosResponse<Project> = await axios.put(`/api/project/edit/${id}`, formData, {
         headers: {
+          ...getHeaders(), // Add headers dynamically
           'Content-Type': 'multipart/form-data',
         },
       });
-      toast.success("Project updated successfully");
+      toast.success('Project updated successfully');
       return response.data;
     } catch (error) {
-      toast.error(`Error updating project ${id}:`, (error as any).response?.data?.message || "Error updating project");
+      toast.error(`Error updating project ${id}: ${(error as any).response?.data?.message || 'Error updating project'}`);
       throw error;
     }
   },
@@ -93,11 +95,13 @@ export const projectsApi = {
   // Delete a project
   deleteProject: async (id: string): Promise<{ message: string }> => {
     try {
-      const response: AxiosResponse<{ message: string }> = await api.delete(`/project/edit/${id}`);
-      toast.success("Project deleted successfully");
+      const response: AxiosResponse<{ message: string }> = await api.delete(`/project/edit/${id}`, {
+        headers: getHeaders(), // Add headers dynamically
+      });
+      toast.success('Project deleted successfully');
       return response.data;
     } catch (error) {
-      toast.error(`Error deleting project ${id}:`, (error as any).response?.data?.message);
+      toast.error(`Error deleting project ${id}: ${(error as any).response?.data?.message}`);
       throw error;
     }
   },

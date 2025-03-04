@@ -68,7 +68,15 @@ const UsersDashboard = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentUserRole, setCurrentUserRole] = useState<string | null>(null);
   const { data: session } = useSession();
-  const token = localStorage.getItem("adminToken")
+
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setToken(localStorage.getItem("adminToken") || "");
+    }
+  }, []);
+
   const {
     data: apiResponse,
     error,
