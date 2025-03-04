@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Dev from "@/assets/deve.png";
 
+
 const TEXTS = [
   {
     key: "amazing",
@@ -123,7 +124,7 @@ export default function Hero() {
         </div>
 
         <motion.div
-          className="relative  size-64 lg:size-80 hidden md:block -m-0 lg:-mr-12 rounded-full"
+          className="relative  size-64 lg:size-80 hidden md:block -m-0 lg:- mr-12 rounded-full"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.3 }}
@@ -138,6 +139,8 @@ export default function Hero() {
           />
           <div className="absolute right-28 mt-16 w-44 ml-4 -z-10 bg-gradient-to-tl from-purple-800 to-orange-800 dark:opacity-35 opacity-40 h-72 blur-3xl" />
         </motion.div>
+
+
       </div>
     </>
   );

@@ -35,7 +35,7 @@ const GuestBook: React.FC = () => {
         description="Taaarif Na sahi, Koi Achi Baat Tou Kehhjaa"
       />
 
-      <div className="max-w-[1010px] mx-auto relative">
+      <div className="max-w-[1010px] min-h-screen mx-auto relative">
         <div className="absolute bottom-96 left-28 transform -translate-x-1/2 h-[550px] w-[410px] bg-gradient-to-r from-purple-600 via-fuchsia-500 to-orange-500 blur-3xl opacity-15 -z-10"></div>
         {/* Leave a message form */}
         <div className="w-full md:w-[560px] p-4 text-white max-w-4xl m-auto my-4">
@@ -115,15 +115,15 @@ const GuestBook: React.FC = () => {
                       <AvatarImage src={entry.avatar} alt={entry.name} />
                       <AvatarFallback>{entry.name.charAt(0)}</AvatarFallback>
                     </Avatar>
-                    <span className="ml-auto  -my-1 text-zinc-700 dark:text-zinc-400 text-[13px]">
-                      <h3 className="font-semibold text-[14px]">
+                    <span className="ml-auto  -my-1 text-zinc-700 dark:text-zinc-400 text-[14px]">
+                      <h3 className="font-semibold text-[15px]">
                         {entry.name}
                       </h3>
                       {entry.date}
                     </span>
                   </div>
                 </div>
-                <p className="text-zinc-800 text-[16px] pl-12 dark:text-gray-200">
+                <p className="text-zinc-800 text-[15px] pl-12 dark:text-gray-200">
                   {entry.message}
                 </p>
               </motion.div>

@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import {connectDb} from "@/db";
+import { connectDb } from "@/db";
 import Project from "@/models/project.model";
-import { auth } from "../../../../../auth";
 import { v2 as cloudinary } from "cloudinary";
+import { verifyToken } from "@/helpers/auth";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -13,27 +13,38 @@ cloudinary.config({
 // Create a new project
 export async function POST(req: NextRequest) {
   await connectDb();
-  
+
   try {
-    // Get the current session to verify admin status
-    const session = await auth();
-    
-    // Uncomment this when you're ready to enforce authentication
-    // if (!session || !session.user.isAdmin) {
-    //   return NextResponse.json({ error: "Unauthorized access" }, { status: 401 });
-    // }
-    
+
+    const authHeader = req.headers.get("authorization");
+    if (!authHeader) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // Verify user from token
+    const token = authHeader.split(" ")[1];
+    const user = verifyToken(token);
+
+    if (!user || user.role !== "admin") {
+      return NextResponse.json({ error: "Access Denied" }, { status: 403 });
+    }
+
     const formData = await req.formData();
-    
+
     // Get form fields
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
-    const tags = formData.get("tags")?.toString()?.split(",").map(tag => tag.trim()) || [];
-    const demoLink = formData.get("demoLink") as string || "";
-    const githubLink = formData.get("githubLink") as string || "";
+    const tags =
+      formData
+        .get("tags")
+        ?.toString()
+        ?.split(",")
+        .map((tag) => tag.trim()) || [];
+    const demoLink = (formData.get("demoLink") as string) || "";
+    const githubLink = (formData.get("githubLink") as string) || "";
     const isPinned = formData.get("isPinned") === "true";
     const image = formData.get("image");
-    
+
     // Validate required fields
     if (!title || !description || !image) {
       return NextResponse.json(
@@ -41,22 +52,28 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-    
+
     // Upload image to Cloudinary
     if (!(image instanceof Blob)) {
-      return NextResponse.json({ error: "Invalid image format" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid image format" },
+        { status: 400 }
+      );
     }
-    
+
     const imageBuffer = await image.arrayBuffer();
     const imageBase64 = Buffer.from(imageBuffer).toString("base64");
     const imageDataUrl = `data:${image.type};base64,${imageBase64}`;
-    
-    const uploadResult = await new Promise<{ secure_url: string; public_id: string }>((resolve, reject) => {
+
+    const uploadResult = await new Promise<{
+      secure_url: string;
+      public_id: string;
+    }>((resolve, reject) => {
       cloudinary.uploader.upload(
         imageDataUrl,
         {
           folder: "portfolio_projects",
-          transformation: [{ width: 1200, height: 630, crop: "fill" }]
+          transformation: [{ width: 1200, height: 630, crop: "fill" }],
         },
         (error, result) => {
           if (error) reject(error);
@@ -65,7 +82,7 @@ export async function POST(req: NextRequest) {
         }
       );
     });
-    
+
     // Create new project
     const newProject = await Project.create({
       title,
@@ -76,23 +93,26 @@ export async function POST(req: NextRequest) {
       isPinned,
       demoLink,
       githubLink,
-      createdBy: session?.user?.id || "anonymous",
+      createdBy: user?.email || "anonymous",
+      
     });
-    
+
     // Return the created project
-    return NextResponse.json({
-      success: true,
-      message: "Project added successfully",
-      project: newProject,
-    }, { status: 201 });
-    
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Project added successfully",
+        project: newProject,
+      },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("Error adding project:", error);
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
     return NextResponse.json(
       { success: false, error: "Failed to add project", details: errorMessage },
       { status: 500 }
     );
   }
 }
-

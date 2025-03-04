@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -22,71 +21,20 @@ import {
   Github,
 } from "lucide-react";
 import ProjectForm from "../components/ProjectForm";
-import { projectsApi } from "@/hooks/useApi";
-import toast from "react-hot-toast";
-
-interface Project {
-  _id: string;
-  title: string;
-  imageUrl?: string;
-  tags: string[];
-  demoLink?: string;
-  githubLink?: string;
-  isPinned: boolean;
-}
-
+import { useAdminProjects } from "@/hooks/useProjects"; 
 
 export default function AdminProjects() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [showForm, setShowForm] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const fetchProjects = async () => {
-    setIsLoading(true);
-    try {
-      const response = await projectsApi.getProjects();
-      const fetchedProjects = response as Project[];
-      setProjects(fetchedProjects);
-      setError(null);
-    } catch (error) {
-      toast.error((error as any).response?.data?.message || "fetch projects failed")
-      setError("Failed to load projects. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchProjects();
-  }, []);
-
-  const handleEditProject = (project: Project) => {
-    setSelectedProject(project);
-    setShowForm(true);
-  };
- 
-
-  const handleDeleteProject = async (id: string): Promise<void> => {
-    if (!window.confirm("Are you sure you want to delete this project?")) {
-      return;
-    }
-
-    try {
-      await projectsApi.deleteProject(id);
-      setProjects(projects.filter((project) => project._id !== id));
-    } catch (err) {
-      toast.error((error as any).response?.data?.message || "error delete project!!")
-
-    }
-  };
-
-  const handleFormClose = () => {
-    setShowForm(false);
-    setSelectedProject(null);
-    fetchProjects(); 
-  };
+  const {
+    projects,
+    isLoading,
+    error,
+    showForm,
+    selectedProject,
+    handleEditProject,
+    handleDeleteProject,
+    handleFormClose,
+    openAddProjectForm
+  } = useAdminProjects();
 
   if (showForm) {
     return (
@@ -102,7 +50,7 @@ export default function AdminProjects() {
     <div className="container mx-auto py-8 space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold">Manage Projects</h1>
-        <Button onClick={() => setShowForm(true)}>
+        <Button onClick={openAddProjectForm}>
           <Plus className="mr-2 h-4 w-4" /> Add New Project
         </Button>
       </div>
@@ -119,7 +67,7 @@ export default function AdminProjects() {
         <Card>
           <CardContent className="py-12 text-center">
             <p className="text-muted-foreground mb-4">No projects found</p>
-            <Button onClick={() => setShowForm(true)}>
+            <Button onClick={openAddProjectForm}>
               Add Your First Project
             </Button>
           </CardContent>

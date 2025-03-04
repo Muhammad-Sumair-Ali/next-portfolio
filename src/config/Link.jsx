@@ -1,5 +1,4 @@
 import { BarChartIcon, MessageCircle,
-  BarChart3,
   Flame,
   User,
   Monitor,
@@ -53,7 +52,6 @@ export const HEADER_LINKS = [
 
 export const NAV_LINKS = [
   { href: "/user/guestbook", label: "Guestbook", icon: MessageCircle },
-  { href: "/user/dashboard", label: "Dashboard", icon: BarChart3 },
   { href: "/user/projects", label: "Projects", icon: Flame },
   { href: "/user/about", label: "About", icon: User },
   { href: "/user/contact", label: "Contact", icon: Monitor },

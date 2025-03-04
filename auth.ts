@@ -1,7 +1,7 @@
 import NextAuth, { Account, Profile, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
-import { database } from "@/lib/mongodbClient"; // Import database connection
+import { database } from "@/lib/mongodbClient"; 
 import {connectDb} from "@/db";
 
 interface AdditionalUserData {

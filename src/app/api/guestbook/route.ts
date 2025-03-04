@@ -5,8 +5,7 @@ import { connectDb } from "@/db";
 
 export async function GET() {
   await connectDb();
-  const session = await auth();
-  const currentUserId = session?.user?.id;
+
   
   try {
     const messages = await Guestbook.find().sort({ createdAt: -1 });
@@ -17,8 +16,6 @@ export async function GET() {
       message: msg.message,
       avatar: msg.profileUrl || "",
       date: new Date(msg.createdAt).toLocaleDateString(),
-      likes: msg.likes?.length || 0,
-      liked: currentUserId ? (msg.likes || []).includes(currentUserId) : false
     }));
     
     return NextResponse.json(formattedMessages);

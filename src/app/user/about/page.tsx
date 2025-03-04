@@ -9,7 +9,7 @@ const About = () => {
           "👋 Hi there! I'm Muhammad Sumair, a web developer who loves building websites."
         }
       />
-      <div className="mx-auto max-w-[1010px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto min-h-screen max-w-[1010px] px-4 sm:px-6 lg:px-8">
         {/* Content Section */}
         <div className="space-y-8 rounded-2xl p-8 ">
           <section>

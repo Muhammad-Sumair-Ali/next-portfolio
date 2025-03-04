@@ -1,8 +1,8 @@
 import {connectDb} from "@/db";
 import { NextRequest, NextResponse } from "next/server";
-
 import { v2 as cloudinary } from "cloudinary";
 import Project from "@/models/project.model";
+import { verifyToken } from "@/helpers/auth";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -54,13 +54,18 @@ export async function PUT(req: NextRequest,) {
   await connectDb();
   try {
     
-    // Get the current session to verify admin status
-    // const session = await auth();
-    
-    // Uncomment this when you're ready to enforce authentication
-    // if (!session || !session.user.isAdmin) {
-    //   return NextResponse.json({ error: "Unauthorized access" }, { status: 401 });
-    // }
+    const authHeader = req.headers.get("authorization");
+    if (!authHeader) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // Verify user from token
+    const token = authHeader.split(" ")[1];
+    const user = verifyToken(token);
+
+    if (!user || user.role !== "admin") {
+      return NextResponse.json({ error: "Access Denied" }, { status: 403 });
+    }
     
     const url = new URL(req.url);
     const projectId = url.pathname.split('/').pop();
@@ -170,13 +175,18 @@ export async function DELETE(req: NextRequest,) {
   await connectDb();
   try {
     
-    // Get the current session to verify admin status
-    // const session = await auth();
-    
-    // Uncomment this when you're ready to enforce authentication
-    // if (!session || !session.user.isAdmin) {
-    //   return NextResponse.json({ error: "Unauthorized access" }, { status: 401 });
-    // }
+    const authHeader = req.headers.get("authorization");
+    if (!authHeader) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // Verify user from token
+    const token = authHeader.split(" ")[1];
+    const user = verifyToken(token);
+
+    if (!user || user.role !== "admin") {
+      return NextResponse.json({ error: "Access Denied" }, { status: 403 });
+    }
     
     // Await params before accessing id
     const url = new URL(req.url);
@@ -236,13 +246,18 @@ export async function PATCH(
   await connectDb();
   try {
     
-    // Get the current session to verify admin status
-    // const session = await auth();
-    
-    // Uncomment this when you're ready to enforce authentication
-    // if (!session || !session.user.isAdmin) {
-    //   return NextResponse.json({ error: "Unauthorized access" }, { status: 401 });
-    // }
+    const authHeader = req.headers.get("authorization");
+    if (!authHeader) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // Verify user from token
+    const token = authHeader.split(" ")[1];
+    const user = verifyToken(token);
+
+    if (!user || user.role !== "admin") {
+      return NextResponse.json({ error: "Access Denied" }, { status: 403 });
+    }
     
     // Await params before accessing id
     const url = new URL(req.url);

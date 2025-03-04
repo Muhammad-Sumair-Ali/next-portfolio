@@ -1,105 +1,22 @@
 'use client'
 
-import { useState, ChangeEvent, FormEvent } from "react";
+import { Send, Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Send, Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react";
 import Heading from "@/components/reuseable/Heading";
 import { SERVICES_CONTACT_FORM } from "@/config/Link";
-import { useSession } from "next-auth/react";
-import toast from "react-hot-toast";
-
-
-interface FormState {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-  services: string[];
-}
-
-interface ErrorsState {
-  name?: string;
-  email?: string;
-  subject?: string;
-  message?: string;
-}
+import { useContactForm } from "@/hooks/useContactForm"; 
 
 const Contact = () => {
-  const {data:session} =  useSession();
-
-  const [form, setForm] = useState<FormState>({ 
-    name: session?.user?.name || "", 
-    email: session?.user?.email || "", 
-    subject: "", 
-    message: "", 
-    services: [] 
-  });
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<ErrorsState>({});
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-    // Clear error for this field when user starts typing
-    if (errors[e.target.name as keyof ErrorsState]) {
-      setErrors({ ...errors, [e.target.name]: "" });
-    }
-  };
-
-  const handleServiceToggle = (service: string) => {
-    setForm((prev) => ({
-      ...prev,
-      services: prev.services.includes(service)
-        ? prev.services.filter((s) => s !== service)
-        : [...prev.services, service],
-    }));
-  };
-
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-  };
-
-  const validateForm = () => {
-    const newErrors: ErrorsState = {};
-    
-    if (!form.name.trim()) newErrors.name = "Name is required";
-    if (!form.email.trim()) newErrors.email = "Email is required";
-    else if (!validateEmail(form.email)) newErrors.email = "Please enter a valid email";
-    if (!form.subject.trim()) newErrors.subject = "Subject is required";
-    if (!form.message.trim()) newErrors.message = "Message is required";
-    
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
-    if (!validateForm()) return;
-    
-    setLoading(true);
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      
-      const data = await res.json();
-      if (res.ok) {
-        toast.success("Message sent successfully!");
-        setForm({ name: "", email: "", subject: "", message: "", services: [] });
-      } else {
-        toast.error(data.error || "Something went wrong!");
-      }
-    } catch (error) {
-      toast.error("Network error!");
-    }
-    setLoading(false);
-  };
-
+  const {
+    form,
+    errors,
+    loading,
+    handleChange,
+    handleServiceToggle,
+    handleSubmit
+  } = useContactForm();
 
   return (
     <>
@@ -110,9 +27,10 @@ const Contact = () => {
         }
       />
 
-      <div className="mt-6 mx-auto max-w-[1010px]">
+      <div className="mt-6 mx-auto min-h-screen max-w-[1010px]">
         <div className="grid md:grid-cols-2 items-start gap-14 p-8 rounded-2xl backdrop-blur-xl border-zinc-200 dark:border-zinc-800">
           <div className="pt-8">
+            {/* Left side contact info remains the same */}
             <h1 className="text-4xl font-bold bg-gradient-to-br from-zinc-900 to-zinc-600 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent">
               Get in Touch
             </h1>

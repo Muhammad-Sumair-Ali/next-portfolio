@@ -52,14 +52,16 @@ export const useFetchContact = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const token = localStorage.getItem("adminToken"); 
 
   const fetchData = async () => {
     setLoading(true);
     setError(null);
 
     try {
+      const headers = token ? { Authorization: `Bearer ${token}` } : {}; // Set header if token exists
 
-      const response = await axios.get("/api/contact");
+      const response = await axios.get("/api/contact",{ headers });
       setData(response.data.data);
     } catch (error) {
       if (axios.isAxiosError(error)) {
