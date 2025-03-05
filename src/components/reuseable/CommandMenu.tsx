@@ -48,7 +48,7 @@ export function CommandMenu() {
 
   // Handle keyboard shortcut (⌘K or Ctrl+K)
   useEffect(() => {
-    console.log("session" ,session)
+    // console.log("session" ,session)
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
