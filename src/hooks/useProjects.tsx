@@ -1,5 +1,6 @@
 "use client"
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { projectsApi } from "@/hooks/useApi";
 import toast from "react-hot-toast";
 
@@ -14,30 +15,33 @@ interface Project {
 }
 
 export const useAdminProjects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const queryClient = useQueryClient();
+
+  const { 
+    data: projects = [], 
+    isLoading, 
+    error: queryError,
+    refetch 
+  } = useQuery<Project[], Error>({
+    queryKey: ['adminProjects'],
+    queryFn: async () => {
+      try {
+        const response = await projectsApi.getProjects();
+        return response as Project[];
+      } catch (error) {
+        toast.error((error as any).response?.data?.message || "Fetch projects failed");
+        throw new Error("Failed to load projects. Please try again.");
+      }
+    }
+  });
+
+  const error = queryError ? queryError.message : null;
 
   const fetchProjects = async () => {
-    setIsLoading(true);
-    try {
-      const response = await projectsApi.getProjects();
-      const fetchedProjects = response as Project[];
-      setProjects(fetchedProjects);
-      setError(null);
-    } catch (error) {
-      toast.error((error as any).response?.data?.message || "Fetch projects failed");
-      setError("Failed to load projects. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
+    await refetch();
   };
-
-  useEffect(() => {
-    fetchProjects();
-  }, []);
 
   const handleEditProject = (project: Project) => {
     setSelectedProject(project);
@@ -51,8 +55,11 @@ export const useAdminProjects = () => {
 
     try {
       await projectsApi.deleteProject(id);
-      setProjects(projects.filter((project) => project._id !== id));
+      queryClient.setQueryData<Project[]>(['adminProjects'], 
+        (oldData) => (oldData || []).filter((project) => project._id !== id)
+      );
       toast.success("Project deleted successfully");
+      queryClient.invalidateQueries({ queryKey: ['adminProjects'] });
     } catch (err) {
       toast.error((err as any).response?.data?.message || "Error deleting project");
     }
@@ -61,7 +68,7 @@ export const useAdminProjects = () => {
   const handleFormClose = () => {
     setShowForm(false);
     setSelectedProject(null);
-    fetchProjects(); 
+    queryClient.invalidateQueries({ queryKey: ['adminProjects'] });
   };
 
   const openAddProjectForm = () => {

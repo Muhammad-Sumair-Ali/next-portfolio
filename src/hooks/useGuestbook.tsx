@@ -1,5 +1,5 @@
 "use client"
-import { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import { useState, ChangeEvent, FormEvent} from "react";
 import axios from "axios";
 
 interface GuestbookEntry {
@@ -15,20 +15,10 @@ export const useGuestbookActions = () => {
   const [error, setError] = useState<string | null>(null);
   const [messages, setMessages] = useState<GuestbookEntry[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [token, setToken] = useState("");
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setToken(localStorage.getItem("adminToken") || "");
-    }
-  }, []);
-
   
   const fetchMessages = async () => {
     try {
-      const headers = token ? { Authorization: `Bearer ${token}` } : {}; // Set header if token exists
-
-      const response = await axios.get("/api/guestbook",{headers});
+      const response = await axios.get("/api/guestbook");
       if (response.data && Array.isArray(response.data)) {
         setMessages(response.data);
       } else {

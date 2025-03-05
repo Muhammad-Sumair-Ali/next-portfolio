@@ -37,8 +37,7 @@ const router = useRouter();
       setIsAdmin(true);
     }
   }, [router]);
-
-  // Prevent rendering the page until authentication is checked
+  
   if (isAdmin === null) {
     return (
       <div className="flex h-screen items-center justify-center text-2xl">

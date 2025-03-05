@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
 
 interface FetchResponse<T> {
   data: T | {} | null;
@@ -20,10 +21,8 @@ export const useFetch = <T,>(url: string): FetchResponse<T> => {
     setError(null);
     
     try {
-      const token = localStorage.getItem("adminToken"); 
-
+      const token = localStorage.getItem("adminToken");
       const headers = token ? { Authorization: `Bearer ${token}` } : {}; // Set header if token exists
-
       const response = await axios.get<T>(url, { headers });
       setData(response.data);
     } catch (error) {
@@ -40,13 +39,24 @@ export const useFetch = <T,>(url: string): FetchResponse<T> => {
     }
   };
 
+  // Using React Query for data fetching
+  const query = useQuery({
+    queryKey: [url],
+    queryFn: async () => {
+      const token = localStorage.getItem("adminToken");
+      const headers = token ? { Authorization: `Bearer ${token}` } : {};
+      const response = await axios.get<T>(url, { headers });
+      return response.data;
+    },
+    enabled: false, // Don't fetch automatically
+  });
+
   useEffect(() => {
     fetchData();
   }, [url]);
 
   return { data, error, loading, refetch: fetchData };
 };
-
 
 export const useFetchContact = () => {
   const [data, setData] = useState(null);
@@ -58,9 +68,8 @@ export const useFetchContact = () => {
     setError(null);
     
     try {
-      const token = localStorage.getItem("adminToken"); 
+      const token = localStorage.getItem("adminToken");
       const headers = token ? { Authorization: `Bearer ${token}` } : {}; // Set header if token exists
-
       const response = await axios.get("/api/contact",{ headers });
       setData(response.data.data);
     } catch (error) {
@@ -76,12 +85,22 @@ export const useFetchContact = () => {
       setLoading(false);
     }
   };
+  
+  // Using React Query for contacts
+  const query = useQuery({
+    queryKey: ["contacts"],
+    queryFn: async () => {
+      const token = localStorage.getItem("adminToken");
+      const headers = token ? { Authorization: `Bearer ${token}` } : {};
+      const response = await axios.get("/api/contact", { headers });
+      return response.data.data;
+    },
+    enabled: false, // Don't fetch automatically
+  });
 
   useEffect(() => {
     fetchData();
   }, []);
 
   return { data, error, loading, refetch: fetchData };
-
-
 }

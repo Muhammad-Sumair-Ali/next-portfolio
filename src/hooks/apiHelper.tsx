@@ -17,7 +17,7 @@ const useApiHelper = () => {
         api.defaults.headers["Authorization"] = `Bearer ${token}`;
       }
     }
-  }, []); // Runs once on mount
+  }, []); 
 };
 
 export { api, useApiHelper };

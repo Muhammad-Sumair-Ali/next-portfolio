@@ -4,7 +4,7 @@ import { FaGithub, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <div className="relative w-full px-4 sm:px-6 lg:px-8">
+    <div className="relative w-full px-4 sm:px-6 mt-8 lg:px-8">
       {/* Gradient Background Effect */}
       <div className="absolute -bottom-28 left-1/2 transform -translate-x-1/2 h-[350px] w-[350px] bg-gradient-to-r from-purple-600 via-fuchsia-500 to-orange-500 blur-3xl opacity-30 -z-10"></div>
 
@@ -14,12 +14,12 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* About Section */}
             <div>
-              <h3 className="text-lg md:text-xl font-semibold text-black dark:text-zinc-100">About Me</h3>
+              <h3 className="text-xl font-semibold text-black dark:text-zinc-100">About Me</h3>
               <p className="text-zinc-600 dark:text-zinc-400 text-sm mt-2">
                 Passionate Full Stack Developer building modern, scalable, and user-friendly web applications.
               </p>
               <div className="mt-6">
-                <h3 className="text-lg md:text-xl font-semibold text-black dark:text-zinc-100">Follow Me</h3>
+                <h3 className="text-xl font-semibold text-black dark:text-zinc-100">Follow Me</h3>
                 <div className="flex space-x-4 mt-3">
                   {[FaGithub, FaTwitter, FaLinkedin, FaInstagram].map((Icon, index) => (
                     <motion.a
@@ -61,7 +61,7 @@ export default function Footer() {
           <div className="border-t border-zinc-200 dark:border-zinc-700 mt-10" />
 
           {/* Copyright Section */}
-          <div style={{fontFamily:"cursive"}} className="text-center text-zinc-600 font-semibold dark:text-zinc-400 mt-6 text-sm">
+          <div className="text-center text-zinc-600 font-bold dark:text-zinc-400 mt-6 text-[16px]">
             &copy; {new Date().getFullYear()} Muhammad Sumair | Full Stack Developer
           </div>
         </div>

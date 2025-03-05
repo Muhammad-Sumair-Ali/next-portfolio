@@ -4,30 +4,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Dev from "@/assets/deve.png";
+import { HERO_TEXTS } from "@/config/Link";
 
 
-const TEXTS = [
-  {
-    key: "amazing",
-    className:
-      "bg-gradient-to-r from-[#ff1835] to-[#ffc900] bg-clip-text text-transparent",
-  },
-  {
-    key: "stunning",
-    className:
-      "bg-gradient-to-r from-[#0077ff] to-[#00e7df] bg-clip-text text-transparent",
-  },
-  {
-    key: "fantastic",
-    className:
-      "bg-gradient-to-r from-[#7f00de] to-[#ff007f] bg-clip-text text-transparent",
-  },
-  {
-    key: "attractive",
-    className:
-      "bg-gradient-to-r from-[#2ecc70] to-[#1ca085] bg-clip-text text-transparent",
-  },
-];
+
 
 const SPEED = 2;
 
@@ -39,15 +19,15 @@ const variants = {
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % TEXTS.length);
+      setCurrentIndex((prev) => (prev + 1) % HERO_TEXTS.length);
     }, SPEED * 1000);
     return () => clearInterval(timer);
   }, []);
 
-  const textItem = TEXTS[currentIndex];
+  const textItem = HERO_TEXTS[currentIndex];
   if (!textItem) return null;
 
   const [time, setTime] = useState("");
@@ -78,11 +58,11 @@ export default function Hero() {
               <motion.div
                 layout
                 key="title-middle-left"
-                className="text-2xl mt-1 font-bold lg:text-5xl whitespace-nowrap"
+                className="text-3xl mt-1 font-bold lg:text-5xl whitespace-nowrap"
               >
                 a Full Stack Developer
               </motion.div>
-              <div className="relative mt-2 overflow-hidden font-bold flex-wrap text-2xl  sm:text-3xl lg:text-5xl flex gap-x-2 min-w-0">
+              <div className="relative mt-2 overflow-hidden font-bold flex-wrap text-3xl  sm:text-3xl lg:text-5xl flex gap-x-2 min-w-0">
                 building
                 <AnimatePresence mode="popLayout">
                   <motion.div
@@ -111,8 +91,8 @@ export default function Hero() {
                       websites using
                     </span>
                   </motion.div>
-                  <h2 className="whitespace-nowrap -mb-2 text-3xl">
-                    React & Next
+                  <h2 className="whitespace-nowrap font-semibold -mb-1 text-xl md:text-3xl">
+                    Modern Stacks
                   </h2>
                 </div>
               </div>

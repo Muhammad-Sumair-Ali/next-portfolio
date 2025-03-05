@@ -15,37 +15,48 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
+  DialogFooter,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { SERVICES_SECTION_LINKS } from "@/config/Link";
-
-
-
-interface Service {
-  title: string;
-  description: string;
-  icon: React.ComponentType;
-}
+import useServiceRequest, { Service } from "@/hooks/useServiceRequest";
 
 export function WhatIOffer() {
   const [open, setOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
+  
+  const {
+    formData,
+    isSubmitting,
+    handleInputChange,
+    prepareFormData,
+    submitServiceRequest
+  } = useServiceRequest();
 
   const handleOpenDialog = (service: Service): void => {
+    prepareFormData(service);
     setSelectedService(service);
     setOpen(true);
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const success = await submitServiceRequest();
+    if (success) {
+      setOpen(false);
+    }
+  };
+
   return (
-    <section className="pb-12 pt-6 max-w-[1010px] m-auto  relative">
+    <section className="pb-12 pt-6 max-w-[1010px] m-auto relative">
       <div className="absolute top-28 -right-28 transform -translate-x-1/2 h-[230px] w-[690px] bg-gradient-to-r from-purple-800 via-pink-800 to-orange-800 blur-3xl opacity-25 -ml-20 -z-10"></div>
 
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12 text-primary">
           What I Offer
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
           {SERVICES_SECTION_LINKS.map((service, index) => (
             <motion.div
               key={index}
@@ -84,9 +95,9 @@ export function WhatIOffer() {
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-[425px] dark">
+        <DialogContent className="sm:max-w-[425px]">
           {selectedService && (
-            <>
+            <form onSubmit={handleSubmit}>
               <DialogHeader>
                 <DialogTitle>{selectedService.title}</DialogTitle>
                 <DialogDescription>
@@ -94,20 +105,47 @@ export function WhatIOffer() {
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
-                <Input id="name" placeholder="Full Name" />
-                <Input id="email" placeholder="Email Address" />
+                <Input 
+                  id="name" 
+                  placeholder="Full Name" 
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                />
+                <Input 
+                  id="email" 
+                  type="email"
+                  placeholder="Email Address" 
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                />
                 <Input
-                  id="service-type"
-                  value={selectedService.title}
+                  id="serviceType"
+                  value={formData.serviceType}
+                  onChange={handleInputChange}
                   readOnly
                   placeholder="Service Type"
+                  required
                 />
-                <Textarea id="message" placeholder="Message" />
+                <Textarea 
+                  id="message" 
+                  placeholder="Message" 
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
-              <Button type="submit" className="w-full">
-                Submit Request
-              </Button>
-            </>
+              <DialogFooter>
+                <Button 
+                  type="submit" 
+                  className="w-full"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Submitting..." : "Submit Request"}
+                </Button>
+              </DialogFooter>
+            </form>
           )}
         </DialogContent>
       </Dialog>

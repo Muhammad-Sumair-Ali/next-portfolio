@@ -92,23 +92,15 @@ export default function Navbar() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   align="end"
-                  className="w-[180px] bg-white/40 dark:bg-black/80 rounded-lg border-white/10 backdrop-blur-xl"
+                  className="w-[190px] bg-white/40 dark:bg-black/80 rounded-lg border-white/10 backdrop-blur-xl"
                 >
                   {NAV_LINKS.map((link) => {
                     const Icon = link.icon;
                     return (
-                      <DropdownMenuItem
-                        key={link.href}
-                        asChild
-                        className="focus:bg-black/10 text-zinc-800 dark:text-zinc-200 dark:focus:bg-white/10 focus:text-black dark:focus:text-white"
-                      >
+                      <DropdownMenuItem key={link.href} asChild>
                         <Link
                           href={link.href}
-                          className={`flex items-center text-black/70 dark:text-white gap-2 px-2 py-1.5 text-md ${
-                            pathname === link.href
-                              ? "text-white"
-                              : "text-white/70 hover:text-white transition-colors"
-                          }`}
+                          className="flex items-center gap-2 px-2 py-1.5"
                         >
                           <Icon className="h-4 w-4" />
                           {link.label}

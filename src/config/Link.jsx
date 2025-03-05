@@ -1,3 +1,4 @@
+import Home from "@/app/page";
 import { BarChartIcon, MessageCircle,
   Flame,
   User,
@@ -10,7 +11,8 @@ import { BarChartIcon, MessageCircle,
   Paintbrush,
   RefreshCw,
   Inbox,
-  MessagesSquare} from "lucide-react";
+  MessagesSquare,
+  Mail} from "lucide-react";
 
 
 
@@ -51,6 +53,7 @@ export const HEADER_LINKS = [
 
 
 export const NAV_LINKS = [
+  { href: "/", label: "Home", icon: Home },
   { href: "/user/guestbook", label: "Guestbook", icon: MessageCircle },
   { href: "/user/projects", label: "Projects", icon: Flame },
   { href: "/user/about", label: "About", icon: User },
@@ -73,6 +76,7 @@ export const NAV_ITEMS_ADMIN = [
   { name: "Projects", path: "/admin/project", icon: FolderKanban },
   { name: "Contact", path: "/admin/contact", icon: Inbox },
   { name: "GuestBooks", path: "/admin/guestbook", icon: MessagesSquare },
+  { name: "Services", path: "/admin/service", icon: Mail },
 ];
 
 
@@ -102,4 +106,27 @@ export const TECH_SKILLS_PROJECT_FORM = [
   "JavaScript", "TypeScript", "React", "Next.js", "Node.js", 
   "Express", "MongoDB", "CSS", "Tailwind", "Redux",
   "GraphQL", "Firebase", "AWS", "Docker", "Python"
+];
+
+export const HERO_TEXTS = [
+  {
+    key: "Amazing",
+    className:
+      "bg-gradient-to-r from-[#ff1835] to-[#ffc900] bg-clip-text text-transparent",
+  },
+  {
+    key: "Stunning",
+    className:
+      "bg-gradient-to-r from-[#0077ff] to-[#00e7df] bg-clip-text text-transparent",
+  },
+  {
+    key: "Fantastic",
+    className:
+      "bg-gradient-to-r from-[#7f00de] to-[#ff007f] bg-clip-text text-transparent",
+  },
+  {
+    key: "Attractive",
+    className:
+      "bg-gradient-to-r from-[#2ecc70] to-[#1ca085] bg-clip-text text-transparent",
+  },
 ];

@@ -11,8 +11,8 @@ const options = {
     strict: true,
     deprecationErrors: true,
   },
-  connectTimeoutMS: 10000, // 10 seconds timeout
-  socketTimeoutMS: 45000, // 45 seconds socket timeout
+  connectTimeoutMS: 10000, 
+  socketTimeoutMS: 45000, 
 };
 
 const client = new MongoClient(uri, options);
