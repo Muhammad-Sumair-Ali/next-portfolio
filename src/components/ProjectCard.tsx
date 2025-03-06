@@ -76,7 +76,7 @@ export function ProjectCard({ project }: { project: Project }) {
             ))}
           </motion.div>
 
-          <motion.p className="text-sm text-gray-700 dark:text-zinc-300 line-clamp-3">
+          <motion.p className="text-sm text-gray-700 dark:text-zinc-300 line-clamp-2">
             {description}
           </motion.p>
         </CardContent>
