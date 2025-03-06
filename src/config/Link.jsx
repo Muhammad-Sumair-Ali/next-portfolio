@@ -13,10 +13,27 @@ import { BarChartIcon, MessageCircle,
   Inbox,
   MessagesSquare,
   Mail,
-  HomeIcon} from "lucide-react";
+  HomeIcon,
+  GithubIcon,
+  FacebookIcon,
+  InstagramIcon,
+  Linkedin} from "lucide-react";
+import { FaTiktok } from "react-icons/fa";
 
 
-
+export const CONNECT_LINKS_ABOUT = [
+  { icon: <GithubIcon className="w-5 h-5" />, text: "GitHub" ,url:"https://github.com/Muhammad-Sumair-Ali"},
+  { icon: <Linkedin className="w-5 h-5" />, text: "Linkedin" ,url:"https://www.linkedin.com/in/muhammad-sumair-b60a91301"},
+  { icon: <FacebookIcon className="w-5 h-5" />, text: "Facebook" , url : "https://www.facebook.com/m.sumair.jatoi"},
+  { icon: <InstagramIcon className="w-5 h-5" />, text: "Instagram",url:"https://www.instagram.com/muhammadsumair607" },
+  { icon: <FaTiktok className="w-5 h-5" />, text: "TikTok",url:"https://www.tiktok.com/@sumairdev" },
+];
+export const CONTACT_LINKS = [
+  { icon: <GithubIcon className="w-5 h-5" />, text: "GitHub" ,url:"https://github.com/Muhammad-Sumair-Ali"},
+  { icon: <Linkedin className="w-5 h-5" />, text: "Linkedin" ,url:"https://www.linkedin.com/in/muhammad-sumair-b60a91301"},
+  { icon: <FacebookIcon className="w-5 h-5" />, text: "Facebook" , url : "https://www.facebook.com/m.sumair.jatoi"},
+  { icon: <FaTiktok className="w-5 h-5" />, text: "TikTok",url:"https://www.tiktok.com/@sumairdev" },
+];
 export const HEADER_LINKS = [
     {
       icon: <PencilIcon className='size-3.5' />,
@@ -49,8 +66,6 @@ export const HEADER_LINKS = [
       key: 'uses'
     }
   ] 
-
-
 
 
 export const NAV_LINKS = [

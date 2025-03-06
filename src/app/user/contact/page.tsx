@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Heading from "@/components/reuseable/Heading";
-import { SERVICES_CONTACT_FORM } from "@/config/Link";
+import { CONTACT_LINKS, SERVICES_CONTACT_FORM } from "@/config/Link";
 import { useContactForm } from "@/hooks/useContactForm"; 
+import Link from "next/link";
 
 const Contact = () => {
   const {
@@ -23,7 +24,7 @@ const Contact = () => {
       <Heading
         title={"Contact"}
         description={
-          "Hnn G , MilNa hai ya whatsApp be Baat karo Ghyy Bas BakwassS Mat Karna Time Is ValueABle !!"
+          "Feel free to reach out for any relevant inquiries or discussions. Let's keep it meaningful and productive"
         }
       />
 
@@ -67,14 +68,15 @@ const Contact = () => {
             </ul>
 
             <div className="flex items-center gap-4 mt-8">
-              {[Github, Linkedin, Twitter].map((Icon, i) => (
-                <a
+              {CONTACT_LINKS.map((item, i) => (
+                <Link
                   key={i}
-                  href="#"
+                  href={item.url}
+                  target=""
                   className="flex items-center justify-center w-10 h-10 rounded-full bg-zinc-800 dark:bg-zinc-700 text-white hover:bg-zinc-700 dark:hover:bg-zinc-600 transition-colors"
                 >
-                  <Icon className="w-5 h-5" />
-                </a>
+                 <span className="h-5 w-5 ">{item.icon}</span>
+                </Link>
               ))}
             </div>
           </div>

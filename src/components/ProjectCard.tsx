@@ -127,7 +127,7 @@ export function ProjectCard({ project }: { project: Project }) {
             <p className="text-gray-700 dark:text-zinc-300">{longDescription || description}</p>
             <div className="flex gap-4">
               {demoLink && (
-                <Button asChild className="w-full bg-zinc-800 dark:bg-black">
+                <Button asChild className="w-full dark:text-zinc-200 bg-zinc-800 dark:bg-black">
                   <Link href={demoLink} target="_blank">
                     <ExternalLink className="mr-2 h-5 w-5" />
                     Live Demo

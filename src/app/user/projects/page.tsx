@@ -55,7 +55,7 @@ const Projects: React.FC = () => {
     <div>
       <Heading
         title="Projects"
-        description="We All Here My Din Raat Ko Banaye Howee Projects"
+        description="The list of projects I have created. Everything was made with ❤️"
       />
 
       <div className="m-auto relative max-w-[1010px] mb-12 mt-4 mx-auto py-4 px-2">

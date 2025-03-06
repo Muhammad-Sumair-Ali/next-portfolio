@@ -1,4 +1,5 @@
 "use client";
+import { CONTACT_LINKS } from "@/config/Link";
 import { motion } from "framer-motion";
 import { FaGithub, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
@@ -21,14 +22,15 @@ export default function Footer() {
               <div className="mt-6">
                 <h3 className="text-xl font-semibold text-black dark:text-zinc-100">Follow Me</h3>
                 <div className="flex space-x-4 mt-3">
-                  {[FaGithub, FaTwitter, FaLinkedin, FaInstagram].map((Icon, index) => (
+                  {CONTACT_LINKS.map((item, index) => (
                     <motion.a
                       key={index}
-                      href="#"
+                      href={item.url}
+                      target="_blank"
                       whileHover={{ scale: 1.1 }}
-                      className="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
+                      className="text-zinc-600 bg-gray-100 p-2 dark:bg-zinc-900 rounded-full dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
                     >
-                      <Icon size={22} />
+                      <span className="h-10 w-10">{item.icon}</span>
                     </motion.a>
                   ))}
                 </div>

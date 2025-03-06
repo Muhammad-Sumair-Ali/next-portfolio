@@ -8,20 +8,22 @@ if (!mongoUrl) {
 
 export async function connectDb() {
   if (mongoose.connection.readyState === 1) {
-    console.log(" Using existing database connection");
+    console.log("Using existing database connection");
     return;
   }
 
   try {
     await mongoose.connect(mongoUrl, {
-      connectTimeoutMS: 10000, 
-      socketTimeoutMS: 45000,  
+      connectTimeoutMS: 30000, 
+      socketTimeoutMS: 60000, 
+      serverSelectionTimeoutMS: 50000, 
+      maxPoolSize: 10,
     });
 
     console.log("Connected to MongoDB");
 
   } catch (error) {
-    console.error(" Failed to connect to MongoDB:", error);
+    console.error("Failed to connect to MongoDB:", error);
     throw new Error("Database connection error");
   }
 }

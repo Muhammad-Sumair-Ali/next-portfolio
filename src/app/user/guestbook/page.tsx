@@ -32,7 +32,7 @@ const GuestBook: React.FC = () => {
     <>
       <Heading
         title="GuestBook"
-        description="Taaarif Na sahi, Koi Achi Baat Tou Kehhjaa"
+        description="Welcome to my Guestbook! We value your thoughts and feedback. Please share your message or ideas. Let us keep this space positive and respectful. Your voice matters so drop a message and connect!"
       />
 
       <div className="max-w-[1010px] min-h-screen mx-auto relative">

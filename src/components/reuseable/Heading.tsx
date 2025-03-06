@@ -30,7 +30,7 @@ const Heading = ({ title, description }: HeadingProps) => {
             {title}
           </motion.h1>
           <motion.p
-            className="text-lg text-zinc-800 font-semibold dark:text-gray-400"
+            className="text-lg text-zinc-700 font-semibold dark:text-gray-400"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}

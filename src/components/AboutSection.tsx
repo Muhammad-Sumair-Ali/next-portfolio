@@ -1,34 +1,17 @@
 "use client";
 
-import {
-  GithubIcon,
-  FacebookIcon,
-  InstagramIcon,
-  TwitterIcon,
-  YoutubeIcon,
-  MapPinIcon,
-  LinkIcon,
-  ClockIcon,
-} from "lucide-react";
+import { MapPinIcon, LinkIcon, ClockIcon } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Map from "./common/Map";
-import techStacks from "@/data/tech";
 import React from "react";
 import TechSkills from "./reuseable/skills";
-import { FaTiktok } from "react-icons/fa";
-
-const connectLinks = [
-  { icon: <GithubIcon className="w-5 h-5" />, text: "GitHub" },
-  { icon: <FacebookIcon className="w-5 h-5" />, text: "Facebook" },
-  { icon: <InstagramIcon className="w-5 h-5" />, text: "Instagram" },
-  { icon: <FaTiktok className="w-5 h-5" />, text: "TikTok" },
-  { icon: <YoutubeIcon className="w-5 h-5" />, text: "YouTube" },
-];
+import { CONNECT_LINKS_ABOUT } from "@/config/Link";
+import Link from "next/link";
 
 export default function AboutSection() {
   return (
     <div className="m-auto relative max-w-[1010px] mb-12 mt-4 mx-auto p-4 space-y-6">
-       <h2 className="text-4xl font-bold mb-10 text-zinc-900 dark:text-zinc-200 text-center m-auto">
+      <h2 className="text-4xl font-bold mb-10 text-zinc-900 dark:text-zinc-200 text-center m-auto">
         About Me
       </h2>
       {/* Background effect */}
@@ -88,15 +71,17 @@ export default function AboutSection() {
               <span className="text-lg font-semibold">Connect</span>
             </div>
             <div className="space-y-4 flex-1">
-              {connectLinks.map((item, index) => (
-                <a
+              {CONNECT_LINKS_ABOUT.map((item, index) => (
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
                   key={index}
-                  href="#"
+                  href={item.url}
                   className="flex items-center gap-3 text-gray-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
                 >
                   {item.icon}
                   <span>{item.text}</span>
-                </a>
+                </Link>
               ))}
             </div>
           </CardContent>
