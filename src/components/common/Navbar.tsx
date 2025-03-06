@@ -68,12 +68,13 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Menu */}
-            <div className="md:hidden flex items-center ">
+            {/* Mobile Menu */}
+            <div className="md:hidden flex items-center gap-x-3">
               <ThemeToggle />
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-zinc-600  hover:text-zinc-800  dark:text-zinc-400 dark:hover:bg-white/10  dark:hover:text-white"
+                className="text-zinc-600 hover:text-zinc-800 dark:text-zinc-400 dark:hover:bg-white/10 dark:hover:text-white"
               >
                 <Languages className="h-5 w-5" />
               </Button>
@@ -84,15 +85,16 @@ export default function Navbar() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="text-zinc-600 hover:text-zinc-800  dark:text-zinc-400 dark:hover:bg-white/10  dark:hover:text-white"
+                    className="text-zinc-600 hover:text-zinc-800 dark:text-zinc-400 dark:hover:bg-white/10 dark:hover:text-white"
                   >
                     <Menu className="h-6 w-6" />
                     <span className="sr-only">Toggle menu</span>
                   </Button>
                 </DropdownMenuTrigger>
+
                 <DropdownMenuContent
                   align="end"
-                  className="w-[190px] bg-white/40 dark:bg-black/80 rounded-lg border-white/10 backdrop-blur-xl"
+                  className="w-[200px] bg-white/40 dark:bg-black/70 rounded-lg shadow-md border border-white/10 backdrop-blur-xl flex flex-col gap-1 p-2"
                 >
                   {NAV_LINKS.map((link) => {
                     const Icon = link.icon;
@@ -100,7 +102,7 @@ export default function Navbar() {
                       <DropdownMenuItem key={link.href} asChild>
                         <Link
                           href={link.href}
-                          className="flex items-center gap-2 px-2 py-1.5"
+                          className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-zinc-800 transition"
                         >
                           <Icon className="h-4 w-4" />
                           {link.label}

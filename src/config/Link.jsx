@@ -1,4 +1,4 @@
-import Home from "@/app/page";
+
 import { BarChartIcon, MessageCircle,
   Flame,
   User,
@@ -12,7 +12,8 @@ import { BarChartIcon, MessageCircle,
   RefreshCw,
   Inbox,
   MessagesSquare,
-  Mail} from "lucide-react";
+  Mail,
+  HomeIcon} from "lucide-react";
 
 
 
@@ -53,7 +54,7 @@ export const HEADER_LINKS = [
 
 
 export const NAV_LINKS = [
-  { href: "/", label: "Home", icon: Home },
+  { href: "/", label: "Home", icon: HomeIcon },
   { href: "/user/guestbook", label: "Guestbook", icon: MessageCircle },
   { href: "/user/projects", label: "Projects", icon: Flame },
   { href: "/user/about", label: "About", icon: User },
