@@ -137,8 +137,8 @@ export default function ProjectForm({ project = {}, onCancel, onSuccess }: Proje
                   <div key={tech} className="flex items-center space-x-2">
                     <Checkbox
                       id={`tech-${tech}`}
-                      checked={formData.tags.includes(tech)}
-                      onCheckedChange={() => handleTagToggle(tech)}
+                      checked={formData.tags.includes(tech!)}
+                      onCheckedChange={() => handleTagToggle(tech!)}
                     />
                     <Label htmlFor={`tech-${tech}`} className="cursor-pointer">
                       {tech}

@@ -29,12 +29,23 @@ export const useAdminProjects = () => {
     queryFn: async () => {
       try {
         const response = await projectsApi.getProjects();
+        // Validate response format
+        if (!Array.isArray(response)) {
+          throw new Error("Invalid response format");
+        }
         return response as Project[];
       } catch (error) {
-        toast.error((error as any).response?.data?.message || "Fetch projects failed");
-        throw new Error("Failed to load projects. Please try again.");
+        console.error("Project fetch error:", error);
+        const errorMessage = (error as any).response?.data?.message || "Failed to load projects";
+        toast.error(errorMessage);
+        throw new Error(errorMessage);
       }
-    }
+    },
+    // Add retry configuration to handle network issues
+    retry: 3,
+    retryDelay: 1000,
+    // Improve stale time management
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
   const error = queryError ? queryError.message : null;

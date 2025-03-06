@@ -1,12 +1,17 @@
-
-import { BarChartIcon, MessageCircle,
+import {
+  BarChartIcon,
+  MessageCircle,
   Flame,
   User,
   Monitor,
   LayoutDashboard,
   Users,
   FolderKanban,
-   FlameIcon, MessageCircleIcon, MonitorIcon, PencilIcon, UserCircle2Icon, 
+  FlameIcon,
+  MessageCircleIcon,
+  MonitorIcon,
+  PencilIcon,
+  UserCircle2Icon,
   Code,
   Paintbrush,
   RefreshCw,
@@ -17,56 +22,91 @@ import { BarChartIcon, MessageCircle,
   GithubIcon,
   FacebookIcon,
   InstagramIcon,
-  Linkedin} from "lucide-react";
+  Linkedin,
+} from "lucide-react";
 import { FaTiktok } from "react-icons/fa";
 
-
 export const CONNECT_LINKS_ABOUT = [
-  { icon: <GithubIcon className="w-5 h-5" />, text: "GitHub" ,url:"https://github.com/Muhammad-Sumair-Ali"},
-  { icon: <Linkedin className="w-5 h-5" />, text: "Linkedin" ,url:"https://www.linkedin.com/in/muhammad-sumair-b60a91301"},
-  { icon: <FacebookIcon className="w-5 h-5" />, text: "Facebook" , url : "https://www.facebook.com/m.sumair.jatoi"},
-  { icon: <InstagramIcon className="w-5 h-5" />, text: "Instagram",url:"https://www.instagram.com/muhammadsumair607" },
-  { icon: <FaTiktok className="w-5 h-5" />, text: "TikTok",url:"https://www.tiktok.com/@sumairdev" },
+  {
+    icon: <GithubIcon className="w-5 h-5" />,
+    text: "GitHub",
+    url: "https://github.com/Muhammad-Sumair-Ali",
+  },
+  {
+    icon: <Linkedin className="w-5 h-5" />,
+    text: "Linkedin",
+    url: "https://www.linkedin.com/in/muhammad-sumair-b60a91301",
+  },
+  {
+    icon: <FacebookIcon className="w-5 h-5" />,
+    text: "Facebook",
+    url: "https://www.facebook.com/m.sumair.jatoi",
+  },
+  {
+    icon: <InstagramIcon className="w-5 h-5" />,
+    text: "Instagram",
+    url: "https://www.instagram.com/muhammadsumair607",
+  },
+  {
+    icon: <FaTiktok className="w-5 h-5" />,
+    text: "TikTok",
+    url: "https://www.tiktok.com/@sumairdev",
+  },
 ];
 export const CONTACT_LINKS = [
-  { icon: <GithubIcon className="w-5 h-5" />, text: "GitHub" ,url:"https://github.com/Muhammad-Sumair-Ali"},
-  { icon: <Linkedin className="w-5 h-5" />, text: "Linkedin" ,url:"https://www.linkedin.com/in/muhammad-sumair-b60a91301"},
-  { icon: <FacebookIcon className="w-5 h-5" />, text: "Facebook" , url : "https://www.facebook.com/m.sumair.jatoi"},
-  { icon: <FaTiktok className="w-5 h-5" />, text: "TikTok",url:"https://www.tiktok.com/@sumairdev" },
+  {
+    icon: <GithubIcon className="w-5 h-5" />,
+    text: "GitHub",
+    url: "https://github.com/Muhammad-Sumair-Ali",
+  },
+  {
+    icon: <Linkedin className="w-5 h-5" />,
+    text: "Linkedin",
+    url: "https://www.linkedin.com/in/muhammad-sumair-b60a91301",
+  },
+  {
+    icon: <FacebookIcon className="w-5 h-5" />,
+    text: "Facebook",
+    url: "https://www.facebook.com/m.sumair.jatoi",
+  },
+  {
+    icon: <FaTiktok className="w-5 h-5" />,
+    text: "TikTok",
+    url: "https://www.tiktok.com/@sumairdev",
+  },
 ];
 export const HEADER_LINKS = [
-    {
-      icon: <PencilIcon className='size-3.5' />,
-      href: '/blog',
-      key: 'blog'
-    },
-    {
-      icon: <MessageCircleIcon className='size-3.5' />,
-      href: '/guestbook',
-      key: 'guestbook'
-    },
-    {
-      icon: <BarChartIcon className='size-3.5' />,
-      href: '/dashboard',
-      key: 'dashboard'
-    },
-    {
-      icon: <FlameIcon className='size-3.5' />,
-      href: '/projects',
-      key: 'projects'
-    },
-    {
-      icon: <UserCircle2Icon className='size-3.5' />,
-      href: '/about',
-      key: 'about'
-    },
-    {
-      icon: <MonitorIcon className='size-3.5' />,
-      href: '/uses',
-      key: 'uses'
-    }
-  ] 
-
+  {
+    icon: <PencilIcon className="size-3.5" />,
+    href: "/blog",
+    key: "blog",
+  },
+  {
+    icon: <MessageCircleIcon className="size-3.5" />,
+    href: "/guestbook",
+    key: "guestbook",
+  },
+  {
+    icon: <BarChartIcon className="size-3.5" />,
+    href: "/dashboard",
+    key: "dashboard",
+  },
+  {
+    icon: <FlameIcon className="size-3.5" />,
+    href: "/projects",
+    key: "projects",
+  },
+  {
+    icon: <UserCircle2Icon className="size-3.5" />,
+    href: "/about",
+    key: "about",
+  },
+  {
+    icon: <MonitorIcon className="size-3.5" />,
+    href: "/uses",
+    key: "uses",
+  },
+];
 
 export const NAV_LINKS = [
   { href: "/", label: "Home", icon: HomeIcon },
@@ -76,7 +116,6 @@ export const NAV_LINKS = [
   { href: "/user/contact", label: "Contact", icon: Monitor },
 ];
 
-
 export const SERVICES_CONTACT_FORM = [
   { id: 1, name: "Full Stack Development" },
   { id: 2, name: "Frontend Development" },
@@ -84,7 +123,6 @@ export const SERVICES_CONTACT_FORM = [
   { id: 4, name: "API Development" },
   { id: 5, name: "UI/UX Design" },
 ];
-
 
 export const NAV_ITEMS_ADMIN = [
   { name: "Dashboard", path: "/admin", icon: LayoutDashboard },
@@ -94,7 +132,6 @@ export const NAV_ITEMS_ADMIN = [
   { name: "GuestBooks", path: "/admin/guestbook", icon: MessagesSquare },
   { name: "Services", path: "/admin/service", icon: Mail },
 ];
-
 
 export const SERVICES_SECTION_LINKS = [
   {
@@ -117,11 +154,65 @@ export const SERVICES_SECTION_LINKS = [
   },
 ];
 
-
 export const TECH_SKILLS_PROJECT_FORM = [
-  "JavaScript", "TypeScript", "React", "Next.js", "Node.js", 
-  "Express", "MongoDB", "CSS", "Tailwind", "Redux",
-  "GraphQL", "Firebase", "AWS", "Docker", "Python"
+  // Frontend Technologies
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "TypeScript",
+  "React",
+  "Next.js",
+
+  // UI Libraries & Styling
+  "Tailwind CSS",
+  "Bootstrap",
+  "Material UI",
+  "Chakra UI",
+  "Ant Design",
+  "ShadCN",
+  "SCSS/SASS",
+
+  // State Management
+  "Redux",
+  "Zustand",
+  "React Query",
+  "Apollo Client",
+
+  // Backend Technologies
+  "Node.js",
+  "Express",
+  "NestJS",
+
+  // API & Protocols
+  "WebSockets",
+  "Socket.io",
+  "JWT Authentication",
+
+  // Databases
+  "MongoDB",
+  "Firebase",
+
+  // ORMs & Database Tools
+  "Mongoose",
+
+  // Cloud & Deployment
+  "AWS",
+  "Vercel",
+  "Netlify",
+  "Firebase Hosting",
+
+  // Visualization & Charting
+  "Chart.js",
+  "Recharts",
+  "Framer Motion",
+
+  // Security & Authentication
+  "Next Auth",
+  "Firebase Auth",
+
+  ,
+  // Miscellaneous
+  "PWA",
 ];
 
 export const HERO_TEXTS = [

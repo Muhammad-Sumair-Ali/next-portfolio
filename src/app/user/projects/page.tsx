@@ -13,18 +13,9 @@ import { Input } from "@/components/ui/input";
 import { X, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useAdminProjects } from "@/hooks/useProjects";
+import { ProjectCardSkeleton } from "@/components/common/CardSkeleton";
 
 
-function Loader() {
-  return (
-    <div className="flex h-screen w-full items-center justify-center">
-      <div className="flex flex-col items-center space-y-4">
-        <div className="h-8 w-8  text-gray-500 dark:text-gray-400 animate-pulse" />
-        <p className="text-gray-500 text-2xl dark:text-gray-400">Loading...</p>
-      </div>
-    </div>
-  );
-}
 const Projects: React.FC = () => {
   const { projects, isLoading } = useAdminProjects();
 
@@ -58,9 +49,9 @@ const Projects: React.FC = () => {
         description="The list of projects I have created. Everything was made with ❤️"
       />
 
-      <div className="m-auto relative max-w-[1010px] mb-12 mt-4 mx-auto py-4 px-2">
+      <div className="m-auto relative min-h-screen max-w-[1010px] mb-12 mt-4  mx-auto py-4 px-2">
         {/* Gradient background */}
-        <div className="absolute top-20 right-20 transform -translate-x-1/2 h-[230px] w-[650px] bg-gradient-to-r from-purple-800 via-pink-800 to-orange-800 blur-3xl opacity-25 -ml-20 -z-10"></div>
+        <div className="absolute top-20 right-20 transform -translate-x-1/2 h-[230px] w-[650px] bg-gradient-to-r from-purple-800 via-pink-800 to-orange-800 blur-3xl opacity-25 -ml-20 -z-10" />
         <div className="absolute bottom-1 -right-44 transform -translate-x-1/2 h-[230px] w-[650px] bg-gradient-to-r from-purple-800 via-pink-800 to-orange-800 blur-3xl opacity-20 -ml-20 -z-10"></div>
 
         {/* Filter section */}
@@ -112,10 +103,12 @@ const Projects: React.FC = () => {
           )}
         </div>
 
-        {/* Projects grid */}
-        {isLoading && <Loader />}
         <div className="grid grid-cols-1 mb-14 px-4 sm:grid-cols-2 lg:grid-cols-2 gap-12">
-          {filteredProjects.length > 0 ? (
+          {isLoading ? (
+            Array.from({ length: 4 }).map((_, index) => (
+              <ProjectCardSkeleton key={`skeleton-${index}`} />
+            ))
+          ) : filteredProjects.length > 0 ? (
             filteredProjects.map((project: any) => (
               <ProjectCard key={project._id} project={project} />
             ))

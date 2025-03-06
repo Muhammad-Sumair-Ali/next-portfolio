@@ -4,12 +4,13 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { ProjectCard } from "./ProjectCard";
 import { useAdminProjects } from "@/hooks/useProjects";
-
+import { ProjectCardSkeleton } from "./common/CardSkeleton";
 
 const ProjectsSection = () => {
-  const { projects} = useAdminProjects();
-  const filteredProjects = projects?.filter((project: any) => project.isPinned) || [];
-  
+  const { projects, isLoading } = useAdminProjects();
+  const filteredProjects =
+    projects?.filter((project: any) => project.isPinned) || [];
+
   return (
     <div className="m-auto relative max-w-[1010px]  mb-28 mt-12 mx-auto py-4 px-2">
       <div className="absolute top-10 left-1/3   transform -translate-x-1/2 h-[280px] w-[350px] bg-gradient-to-r from-purple-800 via-pink-800 to-orange-800 blur-3xl opacity-40 -ml-20 -z-10"></div>
@@ -17,9 +18,13 @@ const ProjectsSection = () => {
         Selected Projects
       </h2>
       <div className=" grid grid-cols-1 mb-14 px-4 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-        {filteredProjects.map((project: any) => (
-          <ProjectCard key={project._id} project={project} />
-        ))}
+        {isLoading
+          ? Array(2)
+              .fill(0)
+              .map((_, i) => <ProjectCardSkeleton key={i} />)
+          : filteredProjects.map((project: any) => (
+              <ProjectCard key={project._id} project={project} />
+            ))}
       </div>
       <Link href={"/user/projects"}>
         <Button
