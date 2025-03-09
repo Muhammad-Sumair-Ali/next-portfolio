@@ -7,8 +7,24 @@ import React from "react";
 import TechSkills from "./reuseable/skills";
 import { CONNECT_LINKS_ABOUT } from "@/config/Link";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+
+const calculateCodingHours = () => {
+  const startDate = new Date("2023-06-29");
+  const today = new Date();
+  const timeDiff = today.getTime() - startDate.getTime();
+  const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  return daysPassed * 4; 
+};
+
 
 export default function AboutSection() {
+  const [codingHours, setCodingHours] = useState(0);
+
+  useEffect(() => {
+    setCodingHours(calculateCodingHours());
+  }, []);
+
   return (
     <div className="m-auto relative max-w-[1010px] mb-12 mt-4 mx-auto p-4 space-y-6">
       <h2 className="text-4xl font-bold mb-10 text-zinc-900 dark:text-zinc-200 text-center m-auto">
@@ -41,20 +57,20 @@ export default function AboutSection() {
             </div>
 
             <div className="text-4xl font-bold text-gray-700 dark:text-zinc-400 mt-auto">
-              3873 hrs
+            {codingHours} hrs
             </div>
 
             <div className="mt-4">
               <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400 mb-1">
-                <span>Goal: 4000 hrs</span>
-                <span>97%</span>
+              <span>Goal: 4000 hrs</span>
+              <span>{Math.min(parseFloat(((codingHours / 4000) * 100).toFixed(1)), 100)}%</span>
               </div>
               <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2.5">
-                <div
-                  className="bg-teal-600 dark:bg-teal-800 h-2.5 rounded-full"
-                  style={{ width: "97%" }}
-                ></div>
-              </div>
+            <div
+              className="bg-teal-600 dark:bg-teal-800 h-2.5 rounded-full"
+              style={{ width: `${Math.min((codingHours / 4000) * 100, 100)}%` }}
+            ></div>
+          </div>
             </div>
 
             <p className="mt-4 text-xs italic text-gray-500 dark:text-gray-400">
