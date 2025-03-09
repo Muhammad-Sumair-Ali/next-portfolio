@@ -23,6 +23,7 @@ import {
   FacebookIcon,
   InstagramIcon,
   Linkedin,
+  EyeIcon,
 } from "lucide-react";
 import { FaTiktok } from "react-icons/fa";
 
@@ -131,6 +132,7 @@ export const NAV_ITEMS_ADMIN = [
   { name: "Contact", path: "/admin/contact", icon: Inbox },
   { name: "GuestBooks", path: "/admin/guestbook", icon: MessagesSquare },
   { name: "Services", path: "/admin/service", icon: Mail },
+  { name: "Visitors", path: "/admin/visitors", icon: EyeIcon },
 ];
 
 export const SERVICES_SECTION_LINKS = [

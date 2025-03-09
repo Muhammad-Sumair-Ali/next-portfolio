@@ -2,6 +2,7 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import ProviderWrapper from "@/helpers/ProviderWrapper";
+import VisitorTracker from "./admin/components/TrackVisitor";
 
 export const metadata = {
   title: "Muhammad Sumair Portfolio - Full Stack Web Developer",
@@ -44,6 +45,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <ProviderWrapper>
+          <VisitorTracker/> 
           <Toaster position="top-center" />
           {children}
         </ProviderWrapper>
