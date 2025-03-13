@@ -11,14 +11,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -50,10 +42,11 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import PaginatedTable from "../components/common/UsersTable";
 
 export default function VisitorAnalyticsAdmin() {
   const { data = [], loading, error } = useFetchVisitors();
-
+  console.log("DATA", data);
   const [visitorData, setVisitorData] = useState<any[]>([]);
   const [visitorStats, setVisitorStats] = useState({
     total: 0,
@@ -235,7 +228,6 @@ export default function VisitorAnalyticsAdmin() {
               isText
             />
           </div>
-
           {/* Tabs for different analytics views */}
           <Tabs defaultValue="overview" className="w-full">
             <TabsList className="grid w-full grid-cols-3 md:w-auto md:inline-flex">
@@ -260,7 +252,7 @@ export default function VisitorAnalyticsAdmin() {
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                       data={visitorStats.timeData}
-                      margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                      margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
                     >
                       <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
                       <XAxis
@@ -292,12 +284,12 @@ export default function VisitorAnalyticsAdmin() {
                       Top Countries
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="h-72 px-4">
+                  <CardContent className="h-72 px-4 -ml-6">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart
                         data={visitorStats.countryData}
                         layout="vertical"
-                        margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
+                        margin={{ top: 0, right: 10, left: 0, bottom: 0 }}
                       >
                         <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
                         <XAxis
@@ -319,7 +311,7 @@ export default function VisitorAnalyticsAdmin() {
                           name="Visitors"
                           radius={[8, 8, 8, 8]}
                           fill="url(#colorUv)"
-                          barSize={14}
+                          barSize={20}
                         />
                         <defs>
                           <linearGradient
@@ -361,7 +353,7 @@ export default function VisitorAnalyticsAdmin() {
                           cx="50%"
                           cy="50%"
                           labelLine={false}
-                          outerRadius={80}
+                          outerRadius={90}
                           fill="#8884d8"
                           dataKey="value"
                           nameKey="name"
@@ -395,53 +387,73 @@ export default function VisitorAnalyticsAdmin() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Country</TableHead>
-                        <TableHead>City</TableHead>
-                        <TableHead>Region</TableHead>
-                        <TableHead>ISP</TableHead>
-                        <TableHead>Last Visit</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {visitorData.slice(0, 10).map((visitor, index) => (
-                        <TableRow key={visitor._id || index}>
-                          <TableCell>
-                            <div className="flex items-center gap-2">
-                              <Badge variant="outline">{visitor.country}</Badge>
-                            </div>
-                          </TableCell>
-                          <TableCell>{visitor.city}</TableCell>
-                          <TableCell>{visitor.region}</TableCell>
-                          <TableCell className="max-w-[200px] truncate">
+                  <PaginatedTable
+                    data={visitorData}
+                    searchable={true}
+                    searchKeys={["country", "city", "region", "isp"]}
+                    columns={[
+                      {
+                        key: "index",
+                        header: "NO",
+                        cell: (_, index) => index + 1,
+                      },
+                      {
+                        key: "country",
+                        header: "Country",
+                        cell: (visitor) => (
+                          <div className="flex items-center gap-2">
+                            <Badge variant="outline">{visitor.country}</Badge>
+                          </div>
+                        ),
+                        sortable: true,
+                      },
+                      {
+                        key: "city",
+                        header: "City",
+                        cell: (visitor) => visitor.city,
+                        sortable: true,
+                      },
+                      {
+                        key: "region",
+                        header: "Region",
+                        cell: (visitor) => visitor.region,
+                        sortable: true,
+                      },
+                      {
+                        key: "isp",
+                        header: "ISP",
+                        cell: (visitor) => (
+                          <span className="max-w-[200px] truncate block">
                             {visitor.isp}
-                          </TableCell>
-                          <TableCell>
-                            {formatDistanceToNow(new Date(visitor.timestamp), {
-                              addSuffix: true,
-                            })}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                          </span>
+                        ),
+                        sortable: true,
+                      },
+                      {
+                        key: "timestamp",
+                        header: "Last Visit",
+                        cell: (visitor) =>
+                          formatDistanceToNow(new Date(visitor.timestamp), {
+                            addSuffix: true,
+                          }),
+                        sortable: true,
+                      },
+                    ]}
+                  />
                 </CardContent>
               </Card>
             </TabsContent>
 
             {/* Devices Tab */}
-            <TabsContent value="devices" className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card>
+            <TabsContent value="devices" className="space-y-6 p-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="shadow-lg rounded-xl">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Monitor className="h-5 w-5" />
-                      Device Types
+                    <CardTitle className="flex items-center gap-2 text-lg font-semibold">
+                      <Monitor className="h-5 w-5 text-blue-500" /> Device Types
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="h-80">
+                  <CardContent className="h-80 flex justify-center items-center">
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
                         <Pie
@@ -449,8 +461,9 @@ export default function VisitorAnalyticsAdmin() {
                           cx="50%"
                           cy="50%"
                           labelLine={false}
-                          outerRadius={80}
-                          fill="#8884d8"
+                          outerRadius={90}
+                          innerRadius={40}
+                          fill="#4F46E5"
                           dataKey="value"
                           nameKey="name"
                           label={({ name, percent }) =>
@@ -471,14 +484,13 @@ export default function VisitorAnalyticsAdmin() {
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="shadow-lg rounded-xl">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Globe className="h-5 w-5" />
-                      Browsers
+                    <CardTitle className="flex items-center gap-2 text-lg font-semibold">
+                      <Globe className="h-5 w-5 text-green-500" /> Browsers
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="h-80">
+                  <CardContent className="h-80 flex justify-center items-center">
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
                         <Pie
@@ -486,8 +498,9 @@ export default function VisitorAnalyticsAdmin() {
                           cx="50%"
                           cy="50%"
                           labelLine={false}
-                          outerRadius={80}
-                          fill="#8884d8"
+                          outerRadius={90}
+                          innerRadius={40}
+                          fill="#16A34A"
                           dataKey="value"
                           nameKey="name"
                           label={({ name, percent }) =>
@@ -509,62 +522,76 @@ export default function VisitorAnalyticsAdmin() {
                 </Card>
               </div>
 
-              <Card>
+              <Card className="shadow-lg rounded-xl">
                 <CardHeader>
-                  <CardTitle>User Agents</CardTitle>
+                  <CardTitle className="text-lg font-semibold">
+                    User Agents
+                  </CardTitle>
                   <CardDescription>
                     Detailed browser and device information
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Device Type</TableHead>
-                        <TableHead>User Agent</TableHead>
-                        <TableHead>IP Address</TableHead>
-                        <TableHead>Last Visit</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {visitorData.slice(0, 10).map((visitor, index) => (
-                        <TableRow key={visitor._id || index}>
-                          <TableCell>
-                            <div className="flex items-center gap-2">
-                              {visitor.userAgent.includes("Mobile") ? (
-                                <>
-                                  <Smartphone className="h-4 w-4" /> Mobile
-                                </>
-                              ) : visitor.userAgent.includes("Tablet") ? (
-                                <>
-                                  <Tablet className="h-4 w-4" /> Tablet
-                                </>
-                              ) : (
-                                <>
-                                  <Laptop className="h-4 w-4" /> Desktop
-                                </>
-                              )}
-                            </div>
-                          </TableCell>
-                          <TableCell className="max-w-[300px] truncate">
+                  <PaginatedTable
+                    data={visitorData}
+                    searchable={true}
+                    searchKeys={["userAgent"]}
+                    columns={[
+                      {
+                        key: "index",
+                        header: "#",
+                        cell: (_, index) => index + 1,
+                      },
+                      {
+                        key: "deviceType",
+                        header: "Device Type",
+                        cell: (visitor) => (
+                          <div className="flex items-center gap-2">
+                            {visitor.userAgent.includes("Mobile") ? (
+                              <>
+                                <Smartphone className="h-4 w-4 text-blue-500" />{" "}
+                                Mobile
+                              </>
+                            ) : visitor.userAgent.includes("Tablet") ? (
+                              <>
+                                <Tablet className="h-4 w-4 text-orange-500" />{" "}
+                                Tablet
+                              </>
+                            ) : (
+                              <>
+                                <Laptop className="h-4 w-4 text-gray-700" />{" "}
+                                Desktop
+                              </>
+                            )}
+                          </div>
+                        ),
+                        sortable: true,
+                      },
+                      {
+                        key: "userAgent",
+                        header: "User Agent",
+                        cell: (visitor) => (
+                          <span className="max-w-[300px] truncate block text-gray-600">
                             {visitor.userAgent}
-                          </TableCell>
-                          <TableCell>{visitor.ip}</TableCell>
-                          <TableCell>
-                            {formatDistanceToNow(new Date(visitor.timestamp), {
-                              addSuffix: true,
-                            })}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                          </span>
+                        ),
+                      },
+                      {
+                        key: "timestamp",
+                        header: "Last Visit",
+                        cell: (visitor) =>
+                          formatDistanceToNow(new Date(visitor.timestamp), {
+                            addSuffix: true,
+                          }),
+                        sortable: true,
+                      },
+                    ]}
+                  />
                 </CardContent>
               </Card>
             </TabsContent>
           </Tabs>
 
-          {/* Recent Visitors */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -576,58 +603,74 @@ export default function VisitorAnalyticsAdmin() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>IP Address</TableHead>
-                    <TableHead>Location</TableHead>
-                    <TableHead>Device</TableHead>
-                    <TableHead>ISP</TableHead>
-                    <TableHead>Time</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {visitorData.map((visitor, index) => (
-                    <TableRow key={visitor._id || index}>
-                      <TableCell>{visitor.ip}</TableCell>
-                      <TableCell>
-                        <div className="flex flex-col">
-                          <span>
-                            {visitor.city}, {visitor.region}
-                          </span>
-                          <span className="text-xs text-muted-foreground">
-                            {visitor.country}
-                          </span>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        {visitor.userAgent.includes("Chrome")
-                          ? "Chrome"
-                          : visitor.userAgent.includes("Firefox")
-                          ? "Firefox"
-                          : visitor.userAgent.includes("Safari")
-                          ? "Safari"
-                          : visitor.userAgent.includes("Edge")
-                          ? "Edge"
-                          : "Other"}
-                      </TableCell>
-                      <TableCell className="max-w-[200px] truncate">
+              <PaginatedTable
+                data={visitorData}
+                searchable={true}
+                searchKeys={["country", "city", "region", "isp"]}
+                columns={[
+                  {
+                    key: "index",
+                    header: "NO",
+                    cell: (_, index) => index + 1,
+                    sortable: true,
+                  },
+                  {
+                    key: "location",
+                    header: "Location",
+                    cell: (visitor) => (
+                      <div className="flex flex-col">
+                        <span>
+                          {visitor.city}, {visitor.region}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          {visitor.country}
+                        </span>
+                      </div>
+                    ),
+                    sortable: true,
+                  },
+                  {
+                    key: "device",
+                    header: "Device",
+                    cell: (visitor) =>
+                      visitor.userAgent.includes("Chrome")
+                        ? "Chrome"
+                        : visitor.userAgent.includes("Firefox")
+                        ? "Firefox"
+                        : visitor.userAgent.includes("Safari")
+                        ? "Safari"
+                        : visitor.userAgent.includes("Edge")
+                        ? "Edge"
+                        : "Other",
+                    sortable: true,
+                  },
+                  {
+                    key: "isp",
+                    header: "ISP",
+                    cell: (visitor) => (
+                      <span className="max-w-[200px] truncate block">
                         {visitor.isp}
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex flex-col">
-                          <span>
-                            {new Date(visitor.timestamp).toLocaleDateString()}
-                          </span>
-                          <span className="text-xs text-muted-foreground">
-                            {new Date(visitor.timestamp).toLocaleTimeString()}
-                          </span>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                      </span>
+                    ),
+                    sortable: true,
+                  },
+                  {
+                    key: "timestamp",
+                    header: "Time",
+                    cell: (visitor) => (
+                      <div className="flex flex-col">
+                        <span>
+                          {new Date(visitor.timestamp).toLocaleDateString()}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          {new Date(visitor.timestamp).toLocaleTimeString()}
+                        </span>
+                      </div>
+                    ),
+                    sortable: true,
+                  },
+                ]}
+              />
             </CardContent>
           </Card>
         </>
