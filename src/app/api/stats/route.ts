@@ -8,7 +8,8 @@ import userModel from "@/models/user.model";
 import visitorsModel from "@/models/visitors.model";
 import { NextResponse } from "next/server";
 
-export async function GET(res:NextResponse) {
+
+export async function GET() {
   await connectDb(); 
 
   try {
