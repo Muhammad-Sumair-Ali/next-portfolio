@@ -251,7 +251,7 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious
-                  size="small"
+                  size="sm"
                   onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
                   className={currentPage === 1 ? "cursor-not-allowed opacity-50" : "cursor-pointer"}
                 />
@@ -263,7 +263,7 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
                     <span className="px-2">...</span>
                   ) : (
                     <PaginationLink
-                      size="small"
+                       size="sm"
                       onClick={() => handlePageChange(page as number)}
                       isActive={currentPage === page}
                       className="cursor-pointer"
@@ -276,7 +276,7 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
               
               <PaginationItem>
                 <PaginationNext
-                  size="small"
+                  size="sm"
                   onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
                   className={currentPage === totalPages ? "cursor-not-allowed opacity-50" : "cursor-pointer"}
                 />
