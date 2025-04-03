@@ -6,9 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Dev from "@/assets/deve.png";
 import { HERO_TEXTS } from "@/config/Link";
 
-
-
-
 const SPEED = 2;
 
 const variants = {
@@ -19,7 +16,7 @@ const variants = {
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % HERO_TEXTS.length);
@@ -75,7 +72,10 @@ export default function Hero() {
                     transition={{ type: "tween", duration: 0.3 }}
                     className="inline-flex items-center font-bold justify-center whitespace-nowrap"
                   >
-                    <span className={textItem.className}>
+                    <span
+                      className={textItem.className}
+                      style={{ WebkitBackgroundClip: "text" }} 
+                    >
                       {textItem.key.charAt(0).toUpperCase() +
                         textItem.key.slice(1)}
                     </span>
@@ -119,8 +119,6 @@ export default function Hero() {
           />
           <div className="absolute right-28 mt-16 w-44 ml-4 -z-10 bg-gradient-to-tl from-purple-800 to-orange-800 dark:opacity-35 opacity-40 h-72 blur-3xl" />
         </motion.div>
-
-
       </div>
     </>
   );
