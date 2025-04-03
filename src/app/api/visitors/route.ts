@@ -4,11 +4,7 @@ import visitorsModel from "@/models/visitors.model";
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-const TRACKING_CONFIG = {
-  REVISIT_DAYS: 7,
-  FALLBACK_IP: "202.163.122.1",
-  IP_LOOKUP_TIMEOUT: 5000
-};
+
 
 export async function POST(req: NextRequest) {
   try {
@@ -27,35 +23,32 @@ export async function POST(req: NextRequest) {
     }
     
     if (ip === "127.0.0.1" || ip === "::1" || ip.startsWith("192.168.") || ip === "Unknown") {
-      ip = TRACKING_CONFIG.FALLBACK_IP;
+      ip = "202.163.122.1"; 
     }
     
+    
     const userAgent = req.headers.get("user-agent") || "Unknown";
-    const currentDate = new Date();
     
     const existingVisitor = await visitorsModel.findOne({
       ip,
       userAgent,
-      timestamp: { $gte: new Date(currentDate.getTime() - (TRACKING_CONFIG.REVISIT_DAYS * 24 * 60 * 60 * 1000)) }
+      timestamp: { $gte: new Date(Date.now() - 24 * 60 * 60 * 1000) }
     });
     
     if (existingVisitor) {
       return NextResponse.json(
-        { 
-          success: true, 
-          message: `Visitor already recorded within the last ${TRACKING_CONFIG.REVISIT_DAYS} days`, 
-          data: existingVisitor,
-          duplicate: true
-        },
+        { success: true, message: "Visitor already recorded today", data: existingVisitor },
         { status: 200 }
       );
     }
     
+    
     let locationData = null;
     let source = "";
+    
     try {
       const response = await axios.get(`https://api.ipdata.co/${ip}?api-key=${ipDataKey}`, {
-        timeout: TRACKING_CONFIG.IP_LOOKUP_TIMEOUT
+        timeout: 5000
       });
       
       if (response.data && !response.data.error) {
@@ -63,7 +56,7 @@ export async function POST(req: NextRequest) {
           city: response.data.city || "Unknown",
           country: response.data.country_name || "Unknown",
           region: response.data.region || "Unknown",
-          timezone: response.data.time_zone?.name || "Unknown",
+          timezone: response.data.time_zone.name || "Unknown",
           isp: response.data.asn?.name || "Unknown",
         };
         source = "ipdata.co";
@@ -72,10 +65,12 @@ export async function POST(req: NextRequest) {
       console.log("ipdata.co lookup failed, trying next service");
     }
     
+    // Service 2: DB-IP (good Asia coverage)
     if (!locationData) {
       try {
+        // Using their free tier API
         const response = await axios.get(`https://api.db-ip.com/v2/free/${ip}`, {
-          timeout: TRACKING_CONFIG.IP_LOOKUP_TIMEOUT
+          timeout: 5000
         });
         
         if (response.data && response.data.ipAddress) {
@@ -83,8 +78,8 @@ export async function POST(req: NextRequest) {
             city: response.data.city || "Unknown",
             country: response.data.countryName || "Unknown",
             region: response.data.stateProv || "Unknown",
-            timezone: "Unknown", 
-            isp: "Unknown", 
+            timezone: "Unknown", // Not provided by free tier
+            isp: "Unknown", // Not provided by free tier
           };
           source = "db-ip.com";
         }
@@ -93,10 +88,11 @@ export async function POST(req: NextRequest) {
       }
     }
     
+    // Service 3: IP-API (third option)
     if (!locationData) {
       try {
         const response = await axios.get(`http://ip-api.com/json/${ip}`, {
-          timeout: TRACKING_CONFIG.IP_LOOKUP_TIMEOUT
+          timeout: 5000
         });
         
         if (response.data && response.data.status !== "fail") {
@@ -114,10 +110,11 @@ export async function POST(req: NextRequest) {
       }
     }
     
+    // Service 4: IPAPI.co (last resort)
     if (!locationData) {
       try {
         const response = await axios.get(`https://ipapi.co/${ip}/json/`, {
-          timeout: TRACKING_CONFIG.IP_LOOKUP_TIMEOUT
+          timeout: 5000
         });
         
         if (response.data && !response.data.error) {
@@ -135,6 +132,7 @@ export async function POST(req: NextRequest) {
       }
     }
     
+    // Default values if all services failed
     if (!locationData) {
       locationData = {
         city: "Unknown",
@@ -146,13 +144,12 @@ export async function POST(req: NextRequest) {
       source = "none";
     }
     
-    // Create visit record
     const visitData = {
       ip,
       userAgent,
       ...locationData,
-      source,
-      timestamp: currentDate,
+      source, // Store which service provided the data
+      timestamp: new Date(),
     };
     
     const newVisitor = await visitorsModel.create(visitData);
@@ -175,42 +172,23 @@ export async function POST(req: NextRequest) {
 export async function GET(req:NextRequest) {
   try {
     await connectDb();
-    const authHeader = req.headers.get("authorization");
-    if (!authHeader) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const token = authHeader.split(" ")[1];
-    const user = verifyToken(token);
-
-    if (!user || user.role !== "admin") {
-      return NextResponse.json({ error: "Access Denied" }, { status: 403 });
-    }
+        const authHeader = req.headers.get("authorization");
+        if (!authHeader) {
+          return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
     
-    const url = new URL(req.url);
-    const days = url.searchParams.get("days") ? parseInt(url.searchParams.get("days")!) : null;
-    const limit = url.searchParams.get("limit") ? parseInt(url.searchParams.get("limit")!) : 100;
+        // Verify user from token
+        const token = authHeader.split(" ")[1];
+        const user = verifyToken(token);
     
-    const query: any = {};
-    if (days) {
-      const dateThreshold = new Date();
-      dateThreshold.setDate(dateThreshold.getDate() - days);
-      query.timestamp = { $gte: dateThreshold };
-    }
+        if (!user || user.role !== "admin") {
+          return NextResponse.json({ error: "Access Denied" }, { status: 403 });
+        }
     
-    const visitors = await visitorsModel.find(query)
-      .sort({ timestamp: -1 })
-      .limit(limit);
-    
-    const totalCount = await visitorsModel.countDocuments(query);
+    const visitors = await visitorsModel.find().sort({ timestamp: -1 }).limit(100);
     
     return NextResponse.json(
-      { 
-        success: true, 
-        message: "Visitors retrieved", 
-        data: visitors,
-        count: totalCount
-      },
+      { success: true, message: "Visitors retrieved", data: visitors },
       { status: 200 }
     );
   } catch (error) {
