@@ -14,8 +14,10 @@ const config: Config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
+  purge: false, 
   theme: {
   	extend: {
+		backgroundClip: ["text"],
   		colors: {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',

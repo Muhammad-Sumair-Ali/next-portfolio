@@ -73,8 +73,12 @@ export default function Hero() {
                     className="inline-flex items-center font-bold justify-center whitespace-nowrap"
                   >
                     <span
-                      className={textItem.className}
-                      style={{ WebkitBackgroundClip: "text" }}
+                      className="bg-gradient-to-r from-blue-500 to-green-500 text-transparent"
+                      style={{
+                        WebkitBackgroundClip: "text",
+                        backgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
                     >
                       {textItem.key.charAt(0).toUpperCase() +
                         textItem.key.slice(1)}
