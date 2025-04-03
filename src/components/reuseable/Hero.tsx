@@ -72,10 +72,7 @@ export default function Hero() {
                     transition={{ type: "tween", duration: 0.3 }}
                     className="inline-flex items-center font-bold justify-center whitespace-nowrap"
                   >
-                    <span
-                      className={textItem.className}
-                      style={{ WebkitBackgroundClip: "text" }}
-                    >
+                    <span className={textItem.className}>
                       {textItem.key.charAt(0).toUpperCase() +
                         textItem.key.slice(1)}
                     </span>
