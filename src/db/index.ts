@@ -15,10 +15,13 @@ export async function connectDb() {
   try {
     await mongoose.connect(mongoUrl, {
       connectTimeoutMS: 30000, 
-      socketTimeoutMS: 60000, 
-      serverSelectionTimeoutMS: 50000, 
+      socketTimeoutMS: 45000, 
+      serverSelectionTimeoutMS: 60000, 
       maxPoolSize: 10,
+      retryWrites: true,
+      retryReads: true
     });
+
 
     console.log("Connected to MongoDB");
 
