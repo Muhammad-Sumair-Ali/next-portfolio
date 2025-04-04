@@ -185,7 +185,7 @@ export async function GET(req:NextRequest) {
           return NextResponse.json({ error: "Access Denied" }, { status: 403 });
         }
     
-    const visitors = await visitorsModel.find().sort({ timestamp: -1 }).limit(100);
+    const visitors = await visitorsModel.find().sort({ timestamp: -1 });
     
     return NextResponse.json(
       { success: true, message: "Visitors retrieved", data: visitors },
