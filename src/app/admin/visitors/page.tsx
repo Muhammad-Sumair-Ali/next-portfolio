@@ -46,7 +46,7 @@ import PaginatedTable from "../components/common/UsersTable";
 
 export default function VisitorAnalyticsAdmin() {
   const { data = [], loading, error } = useFetchVisitors();
-  console.log("DATA", data);
+  // console.log("DATA", data);
   const [visitorData, setVisitorData] = useState<any[]>([]);
   const [visitorStats, setVisitorStats] = useState({
     total: 0,

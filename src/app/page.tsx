@@ -1,9 +1,9 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
@@ -15,15 +15,15 @@ const WhatIOffer = dynamic(() => import("@/components/Services").then((mod) => m
 const AskQuestions = dynamic(() => import("@/components/AskQuestion"));
 
 export default function Home() {
-  const { data: session, status } = useSession();
+  // const { data: session, status } = useSession();
   const path = usePathname();
 
-  useEffect(() => {
-    if (session) {
-      console.log("LoggedIn User=>", session);
-      console.log("LoggedIn User status =>", status);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (session) {
+  //     console.log("LoggedIn User=>", session);
+  //     console.log("LoggedIn User status =>", status);
+  //   }
+  // }, []);
 
   return (
     <>

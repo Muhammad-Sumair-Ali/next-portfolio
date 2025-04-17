@@ -35,7 +35,7 @@ export const metadata = {
 
 const nunito = Nunito({
   subsets: ["latin"],
-  weight: ["500", "800"],
+  weight: ["600", "800"],
 });
 
 export default function RootLayout({

@@ -54,7 +54,7 @@ export const useGuestbookActions = () => {
       });
 
       if (response.data && response.data.success) {
-        console.log("Message added successfully:", response.data);
+        // console.log("Message added successfully:", response.data);
         setNewEntry({ message: "" });
         fetchMessages();
       } else {
