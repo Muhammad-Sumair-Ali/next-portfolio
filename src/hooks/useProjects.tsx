@@ -33,7 +33,13 @@ export const useAdminProjects = () => {
         if (!Array.isArray(response)) {
           throw new Error("Invalid response format");
         }
-        return response as Project[];
+        // Sort projects by tags length in descending order
+        const sortedProjects = [...response].sort((a, b) => {
+          const tagsA = a.tags || [];
+          const tagsB = b.tags || [];
+          return tagsB.length - tagsA.length;
+        });
+        return sortedProjects as Project[];
       } catch (error) {
         console.error("Project fetch error:", error);
         const errorMessage = (error as any).response?.data?.message || "Failed to load projects";

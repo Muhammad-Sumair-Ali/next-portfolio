@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import Dev from "@/assets/deve.png";
+import Dev from "@/assets/developer.png";
 import { HERO_TEXTS } from "@/config/Link";
 
 const SPEED = 2;
@@ -108,7 +108,7 @@ export default function Hero() {
         </div>
 
         <motion.div
-          className="relative  size-64 lg:size-80 hidden md:block -m-0 lg:- mr-12 rounded-full"
+          className="relative  size-64 lg:size-72 -mt-[110px] hidden md:block -m-0 lg:- mr-12 rounded-full"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.3 }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -36,6 +36,22 @@ export function ProjectCard({ project }: { project: Project }) {
     tags,
   } = project;
   const [showDetails, setShowDetails] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Check initially
+    checkMobile();
+    
+    // Add event listener
+    window.addEventListener('resize', checkMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <motion.div
@@ -62,11 +78,9 @@ export function ProjectCard({ project }: { project: Project }) {
         <CardContent className="relative z-10 px-4 py-4 md:p-6 flex-grow overflow-hidden">
           <motion.h3 className="mb-2 text-2xl font-bold text-black dark:text-white line-clamp-1">
             {title}
-          </motion.h3>
-
-          {/* Tags */}
-          <motion.div className="flex flex-wrap gap-2 mb-3">
-            {tags.map((tag, index) => (
+          </motion.h3>          {/* Tags */}          <motion.div className="flex flex-wrap gap-2 mb-3 relative">
+            {/* Show all tags on mobile, limit on larger screens */}
+            {(isMobile ? tags : tags.slice(0, 8)).map((tag, index) => (
               <span
                 key={`${tag}-${index}`}
                 className="rounded-full bg-gray-300 dark:bg-zinc-800 px-3 py-1 text-xs font-medium text-black dark:text-zinc-200 transition-colors hover:bg-gray-400 dark:hover:bg-zinc-700"
@@ -74,6 +88,14 @@ export function ProjectCard({ project }: { project: Project }) {
                 {tag}
               </span>
             ))}
+            {!isMobile && tags.length > 8 && (
+              <span
+                className="rounded-full bg-gray-300 dark:bg-zinc-800 px-3 py-1 text-xs font-medium text-black dark:text-zinc-200 transition-colors hover:bg-gray-400 dark:hover:bg-zinc-700 cursor-pointer"
+                onClick={() => setShowDetails(true)}
+              >
+                +{tags.length - 8} more...
+              </span>
+            )}
           </motion.div>
 
           <motion.p className="text-sm text-gray-700 dark:text-zinc-300 line-clamp-2">
