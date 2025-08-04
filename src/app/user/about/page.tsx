@@ -51,6 +51,71 @@ const About = () => {
 
           <section>
             <h2 className="mb-4 text-2xl font-semibold text-gray-800 dark:text-zinc-200">
+              Professional Experience
+            </h2>
+            <div className="space-y-6">
+              {/* Junior Full Stack Developer */}
+              <div className="rounded-lg border border-gray-200 p-6 dark:border-zinc-700">
+                <div className="mb-3">
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-zinc-200">
+                    Junior Full Stack Developer
+                  </h3>
+                  <p className="text-sm text-gray-500 dark:text-zinc-400">
+                    Silver Concepts LLC, Karachi, Sindh, Pakistan (Remote)
+                  </p>
+                  <p className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                    May 2025 – Present (2 months)
+                  </p>
+                </div>
+                <ul className="space-y-2 text-gray-600 dark:text-zinc-400">
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500"></span>
+                    Developed and maintained a full-stack SaaS application using Next.js (frontend) and NestJS (backend).
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500"></span>
+                    Built scalable RESTful APIs and backend services using NestJS and Prisma ORM with PostgreSQL.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500"></span>
+                    Created responsive, modern UIs using Next.js and Tailwind CSS to deliver smooth user experiences.
+                  </li>
+                </ul>
+              </div>
+
+              {/* Junior MERN Stack Developer */}
+              <div className="rounded-lg border border-gray-200 p-6 dark:border-zinc-700">
+                <div className="mb-3">
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-zinc-200">
+                    Junior MERN Stack Developer
+                  </h3>
+                  <p className="text-sm text-gray-500 dark:text-zinc-400">
+                    Freelance Project With Senior Developer (Remote)
+                  </p>
+                  <p className="text-sm font-medium text-green-600 dark:text-green-400">
+                    February 2025 – Present (3 months)
+                  </p>
+                </div>
+                <ul className="space-y-2 text-gray-600 dark:text-zinc-400">
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500"></span>
+                    Contributed to a MERN stack web application, developing front-end components with React.js and backend services with Node.js and Express.js.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500"></span>
+                    Worked remotely in a collaborative team environment, managing tasks via Git and ensuring timely project delivery.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500"></span>
+                    Designed and developed responsive UI components using React.js and Shadcn UI.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="mb-4 text-2xl font-semibold text-gray-800 dark:text-zinc-200">
               What I Do
             </h2>
             <p className="text-gray-600 dark:text-zinc-400">
