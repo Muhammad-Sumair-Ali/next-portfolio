@@ -50,7 +50,7 @@ const About = () => {
           </section>
 
           <section>
-            <h2 className="mb-4 text-2xl font-semibold text-gray-800 dark:text-zinc-200">
+            <h2 className="mb-5 text-2xl font-semibold text-gray-800 dark:text-zinc-200">
               Professional Experience
             </h2>
             <div className="space-y-6">
