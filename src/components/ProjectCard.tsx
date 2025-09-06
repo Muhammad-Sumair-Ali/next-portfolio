@@ -34,6 +34,7 @@ export function ProjectCard({ project }: { project: Project }) {
     demoLink,
     githubLink,
     tags,
+    _id
   } = project;
   const [showDetails, setShowDetails] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -64,6 +65,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="absolute inset-0 bg-gradient-to-t from-gray-200 via-white/90 to-transparent dark:from-zinc-900 dark:via-black/80 dark:to-transparent opacity-60 transition-opacity group-hover:opacity-100" />
 
         {/* Card Image */}
+        <Link href={`/user/project/${_id}`}>
         <div className="relative  aspect-video cursor-pointer overflow-hidden">
           <Image
             priority={false}
@@ -74,6 +76,7 @@ export function ProjectCard({ project }: { project: Project }) {
           />
           <div className="absolute inset-0 bg-white/10 dark:bg-black/50 opacity-0 transition-opacity group-hover:opacity-100" />
         </div>
+        </Link>
 
         <CardContent className="relative z-10 px-4 py-4 md:p-6 flex-grow overflow-hidden">
           <motion.h3 className="mb-2 text-2xl font-bold text-black dark:text-white line-clamp-1">

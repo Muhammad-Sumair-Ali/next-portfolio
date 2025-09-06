@@ -81,7 +81,7 @@ const TechSkills = () => {
   )
 }
 
-const TechRow = ({
+export const TechRow = ({
   items,
   isHovered,
   setIsHovered,
