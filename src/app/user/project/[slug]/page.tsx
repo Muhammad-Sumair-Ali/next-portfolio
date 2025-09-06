@@ -14,8 +14,12 @@ async function getProjectById(id: string) {
   }
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: Promise<{ slug: string }> 
+}) {
+  const { slug } = await params;
   if (!slug) return {};
 
   const project = await getProjectById(slug);
@@ -40,8 +44,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function ProjectPage({ params }: any) {
-  const { slug } = params;
+export default async function ProjectPage({ 
+  params 
+}: { 
+  params: Promise<{ slug: string }> 
+}) {
+  const { slug } = await params;
   if (!slug) return <div>ID is required</div>;
 
   const project = await getProjectById(slug);
