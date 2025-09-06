@@ -52,6 +52,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="google-site-verification" content="4pzpEF4OpHHEidQSWcuTB6MOzzU1eGMwlRE3vUNUfn0" />
+      </head>
       <body className={nunito.className}>
         <ProviderWrapper>
           <VisitorTracker />
