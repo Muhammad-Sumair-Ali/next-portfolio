@@ -13,13 +13,14 @@ async function getProjectById(id: string) {
     return null;
   }
 }
+interface ProjectPageProps {
+  params: {
+    slug: string;
+  };
+}
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const { slug } = params; 
+export async function generateMetadata({ params }: ProjectPageProps) {
+  const { slug } = params;
   if (!slug) return {};
 
   const project = await getProjectById(slug);
@@ -44,16 +45,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProjectPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const { slug } = params; 
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { slug } = params;
   if (!slug) return <div>ID is required</div>;
 
   const project = await getProjectById(slug);
-  // console.log("Project", project);
 
   if (!project) {
     return <div className="p-6 text-red-500">Project not found</div>;
