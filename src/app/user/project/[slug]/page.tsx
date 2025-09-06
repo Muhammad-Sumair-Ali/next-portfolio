@@ -4,7 +4,9 @@ import axios from "axios";
 
 async function getProjectById(id: string) {
   try {
-    const res = await axios.get(`http://localhost:3000/api/project/get/${id}`);
+    const res = await axios.get(
+      `${process.env.BASE_URL}/api/project/get/${id}`
+    );
     return res.data.project;
   } catch (err) {
     console.error("Error fetching project:", err);
@@ -17,15 +19,17 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params; 
   if (!slug) return {};
 
   const project = await getProjectById(slug);
+
   return {
     title: project?.title
       ? `${project.title} | Muhammad Sumair Portfolio`
       : "Project | Muhammad Sumair Portfolio",
-    description: trimDescription(project?.description) || "Project details page",
+    description:
+      trimDescription(project?.description) || "Project details page",
     keywords:
       "Muhammad Sumair Project, Full Stack Developer Portfolio, Next.js Projects, React.js Projects, MERN Stack Applications, Web Developer Portfolio, Modern Web Apps",
     author: "Muhammad Sumair",
@@ -39,19 +43,21 @@ export async function generateMetadata({
     },
   };
 }
+
 export default async function ProjectPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params; 
   if (!slug) return <div>ID is required</div>;
 
   const project = await getProjectById(slug);
-console.log("Project",project)
+  // console.log("Project", project);
+
   if (!project) {
     return <div className="p-6 text-red-500">Project not found</div>;
   }
 
-  return <Projectpage project={project}/>;
+  return <Projectpage project={project} />;
 }
