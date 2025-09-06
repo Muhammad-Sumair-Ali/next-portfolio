@@ -25,7 +25,6 @@ import {
   Linkedin,
   EyeIcon,
 } from "lucide-react";
-import { FaTiktok } from "react-icons/fa";
 
 export const CONNECT_LINKS_ABOUT = [
   {
@@ -46,12 +45,7 @@ export const CONNECT_LINKS_ABOUT = [
   {
     icon: <InstagramIcon className="w-5 h-5" />,
     text: "Instagram",
-    url: "https://www.instagram.com/muhammadsumair607",
-  },
-  {
-    icon: <FaTiktok className="w-5 h-5" />,
-    text: "TikTok",
-    url: "https://www.tiktok.com/@sumairdev",
+    url: "https://www.instagram.com/muhammadsumairdev",
   },
 ];
 export const CONTACT_LINKS = [
@@ -70,10 +64,10 @@ export const CONTACT_LINKS = [
     text: "Facebook",
     url: "https://www.facebook.com/m.sumair.jatoi",
   },
-  {
-    icon: <FaTiktok className="w-5 h-5" />,
-    text: "TikTok",
-    url: "https://www.tiktok.com/@sumairdev",
+   {
+    icon: <InstagramIcon className="w-5 h-5" />,
+    text: "Instagram",
+    url: "https://www.instagram.com/muhammadsumairdev",
   },
 ];
 export const HEADER_LINKS = [
@@ -184,6 +178,7 @@ export const TECH_SKILLS_PROJECT_FORM = [
   "Node.js",
   "Express",
   "NestJS",
+  "Strapi",
 
   // API & Protocols
   "WebSockets",

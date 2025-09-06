@@ -1,7 +1,6 @@
 "use client";
 import { CONTACT_LINKS } from "@/config/Link";
 import { motion } from "framer-motion";
-import { FaGithub, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -15,12 +14,17 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* About Section */}
             <div>
-              <h3 className="text-xl font-semibold text-black dark:text-zinc-100">About Me</h3>
+              <h3 className="text-xl font-semibold text-black dark:text-zinc-100">
+                About Me
+              </h3>
               <p className="text-zinc-600 dark:text-zinc-400 text-sm mt-2">
-                Passionate Full Stack Developer building modern, scalable, and user-friendly web applications.
+                Passionate Full Stack Developer building modern, scalable, and
+                user-friendly web applications.
               </p>
               <div className="mt-6">
-                <h3 className="text-xl font-semibold text-black dark:text-zinc-100">Follow Me</h3>
+                <h3 className="text-xl font-semibold text-black dark:text-zinc-100">
+                  Follow Me
+                </h3>
                 <div className="flex space-x-4 mt-3">
                   {CONTACT_LINKS.map((item, index) => (
                     <motion.a
@@ -39,9 +43,12 @@ export default function Footer() {
 
             {/* Newsletter Section */}
             <div className="md:block hidden">
-              <h3 className="text-xl font-semibold text-black dark:text-zinc-100">Stay Updated</h3>
+              <h3 className="text-xl font-semibold text-black dark:text-zinc-100">
+                Stay Updated
+              </h3>
               <p className="text-zinc-600 dark:text-zinc-400 text-sm mt-2">
-                Subscribe to get the latest updates on my projects. No spam, I promise!
+                Subscribe to get the latest updates on my projects. No spam, I
+                promise!
               </p>
               <form className="flex flex-col sm:flex-row items-center gap-3 mt-5">
                 <input
@@ -50,6 +57,7 @@ export default function Footer() {
                   className="w-full sm:w-auto bg-zinc-100/50 px-4  dark:bg-zinc-800/50 border border-zinc-300 dark:border-zinc-700 text-black dark:text-white placeholder-zinc-500 focus:ring-0 focus:border-zinc-500 p-2 rounded-md"
                 />
                 <button
+                  disabled
                   type="submit"
                   className="w-full sm:w-auto bg-zinc-800 hover:bg-zinc-700 text-white font-medium px-4 py-2 rounded-md transition"
                 >
@@ -64,7 +72,8 @@ export default function Footer() {
 
           {/* Copyright Section */}
           <div className="text-center text-zinc-600 font-bold dark:text-zinc-400 mt-6 text-[16px]">
-            &copy; {new Date().getFullYear()} Muhammad Sumair | Full Stack Developer
+            &copy; {new Date().getFullYear()} Muhammad Sumair | Full Stack
+            Developer
           </div>
         </div>
       </footer>

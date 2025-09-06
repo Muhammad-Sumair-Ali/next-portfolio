@@ -7,6 +7,7 @@ import {
   Command,
   Github,
   Globe,
+  Instagram,
   LinkedinIcon,
   LogIn,
   LogOut,
@@ -27,8 +28,8 @@ import { DialogTitle } from "@radix-ui/react-dialog";
 import { LoginDialog } from "../LoginDialog";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
-
 import { useSession, signOut } from "next-auth/react";
+import toast from "react-hot-toast";
 
 // Define command groups with items in an object listing
 interface CommandItem {
@@ -39,16 +40,13 @@ interface CommandItem {
 }
 
 export function CommandMenu() {
-
-
-  // logOut issue  hai 
+  // logOut issue  hai
   const [open, setOpen] = useState(false);
 
   const { data: session } = useSession();
 
   // Handle keyboard shortcut (⌘K or Ctrl+K)
   useEffect(() => {
-    // console.log("session" ,session)
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
@@ -58,16 +56,17 @@ export function CommandMenu() {
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, []);
-  
+
   const socialLinks = {
-    github: "https://github.com/yourusername",
-    twitter: "https://twitter.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
-    website: "https://yourwebsite.com",
+    github: "https://github.com/Muhammad-Sumair-Ali",
+    instagram: "https://www.instagram.com/muhammadsumairdev/",
+    linkedin: "https://www.linkedin.com/in/muhammad-sumair-b60a91301",
+    website: "https://muhammad-sumair.vercel.app/",
   };
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
+    toast.success("URl Copied!")
   };
 
   const commandGroups: { heading: string; commands: CommandItem[] }[] = [
@@ -78,13 +77,7 @@ export function CommandMenu() {
           label: "Copy URL",
           icon: <Code2 className="mr-2 h-4 w-4" />,
           shortcut: "⌘C",
-          onSelect: () => copyToClipboard(window.location.href),
-        },
-        {
-          label: "Source Code",
-          icon: <Code className="mr-2 h-4 w-4" />,
-          shortcut: "⌘G",
-          onSelect: () => copyToClipboard(window.location.href),
+          onSelect: () => copyToClipboard("https://muhammad-sumair.vercel.app"),
         },
       ],
     },
@@ -97,9 +90,9 @@ export function CommandMenu() {
           onSelect: () => window.open(socialLinks.github, "_blank"),
         },
         {
-          label: "Twitter",
-          icon: <Twitter className="mr-2 h-4 w-4" />,
-          onSelect: () => window.open(socialLinks.twitter, "_blank"),
+          label: "Instagram",
+          icon: <Instagram className="mr-2 h-4 w-4" />,
+          onSelect: () => window.open(socialLinks.instagram, "_blank"),
         },
         {
           label: "LinkedIn",

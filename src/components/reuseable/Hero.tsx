@@ -115,7 +115,7 @@ export default function Hero() {
         >
           <Image
             src={Dev}
-            className="rounded-full absolute   grayscale hover:grayscale-0 transition-all duration-1000"
+            className="rounded-full absolute grayscale transition-all duration-1000"
             width={320}
             height={280}
             alt="Profile"

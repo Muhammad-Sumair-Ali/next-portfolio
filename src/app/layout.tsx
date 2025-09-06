@@ -4,27 +4,35 @@ import { Toaster } from "react-hot-toast";
 import ProviderWrapper from "@/helpers/ProviderWrapper";
 import VisitorTracker from "./admin/components/TrackVisitor";
 
+
+const generateCanonicalURL = () => {
+  return `${process.env.BASE_URL}`;
+};
+
 export const metadata = {
-  title: "Muhammad Sumair Portfolio - Full Stack Web Developer",
+  title: "Muhammad Sumair Portfolio - Full Stack Developer",
   description:
-    "Explore Muhammad Sumair portfolio, a Full Stack Web Developer specializing in Next.js, React.js, and the MERN stack.",
+    "Explore Muhammad Sumair portfolio, a Full Stack Developer specializing in Next.js, React.js, and the MERN stack.",
   keywords:
     "Full Stack Developer, Next.js, React.js, MERN Stack, Web Development, Sumair Portfolio",
   author: "Muhammad Sumair",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
-    apple: "/favicon.ico", 
+    apple: "/favicon.ico",
   },
+  alternates: {
+      canonical: generateCanonicalURL(),
+    },
   openGraph: {
     title: "Muhammad Sumair Portfolio - Full Stack Web Developer",
     description:
       "Explore Muhammad Sumair portfolio showcasing expertise in Next.js, React.js, and the MERN stack.",
     type: "website",
-    url: "https://sumair-dev.vercel.app",
+    url: "https://muhammad-sumair.vercel.app",
     images: [
       {
-        url: "https://sumair-dev.vercel.app", 
+        url: "https://muhammad-sumair.vercel.app",
         width: 1200,
         height: 630,
         alt: "Muhammad Sumair Portfolio",
@@ -32,6 +40,7 @@ export const metadata = {
     ],
   },
 };
+
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -45,7 +54,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <ProviderWrapper>
-          <VisitorTracker/> 
+          <VisitorTracker />
           <Toaster position="top-center" />
           {children}
         </ProviderWrapper>
