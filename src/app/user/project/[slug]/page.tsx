@@ -13,13 +13,8 @@ async function getProjectById(id: string) {
     return null;
   }
 }
-interface ProjectPageProps {
-  params: {
-    slug: string;
-  };
-}
 
-export async function generateMetadata({ params }: ProjectPageProps) {
+export async function generateMetadata({ params }: { params: { slug: string } }) {
   const { slug } = params;
   if (!slug) return {};
 
@@ -45,7 +40,7 @@ export async function generateMetadata({ params }: ProjectPageProps) {
   };
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
+export default async function ProjectPage({ params }: any) {
   const { slug } = params;
   if (!slug) return <div>ID is required</div>;
 
