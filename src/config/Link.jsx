@@ -105,10 +105,10 @@ export const HEADER_LINKS = [
 
 export const NAV_LINKS = [
   { href: "/", label: "Home", icon: HomeIcon },
-  { href: "/user/guestbook", label: "Guestbook", icon: MessageCircle },
-  { href: "/user/projects", label: "Projects", icon: Flame },
-  { href: "/user/about", label: "About", icon: User },
-  { href: "/user/contact", label: "Contact", icon: Monitor },
+  { href: "/guestbook", label: "Guestbook", icon: MessageCircle },
+  { href: "/projects", label: "Projects", icon: Flame },
+  { href: "/about", label: "About", icon: User },
+  { href: "/contact", label: "Contact", icon: Monitor },
 ];
 
 export const SERVICES_CONTACT_FORM = [

@@ -52,14 +52,15 @@ export default function Footer() {
               </p>
               <form className="flex flex-col sm:flex-row items-center gap-3 mt-5">
                 <input
+                readOnly
                   type="email"
-                  placeholder="Your email"
+                placeholder="Not Available Right now!"
                   className="w-full sm:w-auto bg-zinc-100/50 px-4  dark:bg-zinc-800/50 border border-zinc-300 dark:border-zinc-700 text-black dark:text-white placeholder-zinc-500 focus:ring-0 focus:border-zinc-500 p-2 rounded-md"
                 />
                 <button
                   disabled
                   type="submit"
-                  className="w-full sm:w-auto bg-zinc-800 hover:bg-zinc-700 text-white font-medium px-4 py-2 rounded-md transition"
+                  className="w-full sm:w-auto bg-zinc-800  cursor-not-allowed text-white font-medium px-4 py-2 rounded-md transition"
                 >
                   Subscribe
                 </button>

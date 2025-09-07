@@ -1,25 +1,29 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { cn } from "@/lib/utils"
-import techStacks from "@/data/tech"
-
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import techStacks from "@/data/tech";
 
 const TechSkills = () => {
-  const [isHovered, setIsHovered] = useState<number | null>(null)
-  const [mounted, setMounted] = useState(false)
+  const [isHovered, setIsHovered] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
 
-  const firstRow = techStacks.slice(0, Math.ceil(techStacks.length / 2))
-  const secondRow = techStacks.slice(Math.ceil(techStacks.length / 2))
+  const firstRow = techStacks.slice(0, Math.ceil(techStacks.length / 2));
+  const secondRow = techStacks.slice(Math.ceil(techStacks.length / 2));
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  if (!mounted) return null
+  if (!mounted) return null;
 
   return (
     <Card className="bg-white dark:bg-zinc-950 w-full md:w-[990px] overflow-hidden border-2 shadow-black/10 dark:shadow-zinc-700">
@@ -58,40 +62,76 @@ const TechSkills = () => {
             {/* First row - left to right */}
             <div className="flex overflow-hidden relative">
               <div className="flex animate-marquee-infinite whitespace-nowrap">
-                <TechRow items={firstRow} isHovered={isHovered} setIsHovered={setIsHovered} />
-                <TechRow items={firstRow} isHovered={isHovered} setIsHovered={setIsHovered} />
-                <TechRow items={firstRow} isHovered={isHovered} setIsHovered={setIsHovered} />
-                <TechRow items={firstRow} isHovered={isHovered} setIsHovered={setIsHovered} />
+                <TechRow
+                  items={firstRow}
+                  isHovered={isHovered}
+                  setIsHovered={setIsHovered}
+                />
+                <TechRow
+                  items={firstRow}
+                  isHovered={isHovered}
+                  setIsHovered={setIsHovered}
+                />
+                <TechRow
+                  items={firstRow}
+                  isHovered={isHovered}
+                  setIsHovered={setIsHovered}
+                />
+                <TechRow
+                  items={firstRow}
+                  isHovered={isHovered}
+                  setIsHovered={setIsHovered}
+                />
               </div>
             </div>
 
             {/* Second row - right to left */}
             <div className="flex overflow-hidden relative">
               <div className="flex animate-marquee-infinite-reverse whitespace-nowrap">
-                <TechRow items={secondRow} isHovered={isHovered} setIsHovered={setIsHovered} />
-                <TechRow items={secondRow} isHovered={isHovered} setIsHovered={setIsHovered} />
-                <TechRow items={secondRow} isHovered={isHovered} setIsHovered={setIsHovered} />
-                <TechRow items={secondRow} isHovered={isHovered} setIsHovered={setIsHovered} />
+                <TechRow
+                  items={secondRow}
+                  isHovered={isHovered}
+                  setIsHovered={setIsHovered}
+                />
+                <TechRow
+                  items={secondRow}
+                  isHovered={isHovered}
+                  setIsHovered={setIsHovered}
+                />
+                <TechRow
+                  items={secondRow}
+                  isHovered={isHovered}
+                  setIsHovered={setIsHovered}
+                />
+                <TechRow
+                  items={secondRow}
+                  isHovered={isHovered}
+                  setIsHovered={setIsHovered}
+                />
               </div>
             </div>
           </div>
         </div>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
+
+import clsx from "clsx";
 
 export const TechRow = ({
   items,
   isHovered,
   setIsHovered,
+  className,
 }: {
-  items: typeof techStacks
-  isHovered: number | null
-  setIsHovered: (index: number | null) => void
+  items: typeof techStacks;
+  isHovered: number | null;
+  setIsHovered: (index: number | null) => void;
+  className?: string;
 }) => {
   return (
-    <div className="flex gap-4  md:gap-6 px-4">
+    <div className={clsx("flex gap-4 md:gap-6 px-4", className)}>
       {items.map((tech, i) => (
         <TooltipProvider key={`tech-${i}`} delayDuration={100}>
           <Tooltip>
@@ -101,7 +141,7 @@ export const TechRow = ({
                   "group relative aspect-square w-[70px] md:w-20 backdrop-blur-sm",
                   "hover:scale-110 bg-white/5 hover:bg-white/10 dark:bg-transparent dark:hover:bg-black/80 shadow-lg transition-all duration-300",
                   "rounded-xl flex items-center justify-center p-2 shrink-0",
-                  "border border-black/5 hover:border-black/10 dark:border-white/5 dark:hover:border-white/20",
+                  "border border-black/5 hover:border-black/10 dark:border-white/5 dark:hover:border-white/20"
                 )}
                 onMouseEnter={() => setIsHovered(i)}
                 onMouseLeave={() => setIsHovered(null)}
@@ -110,7 +150,7 @@ export const TechRow = ({
                 <div
                   className={cn(
                     "absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500",
-                    isHovered === i && "opacity-100",
+                    isHovered === i && "opacity-100"
                   )}
                 />
 
@@ -118,15 +158,16 @@ export const TechRow = ({
                   className={cn(
                     "relative w-full h-full transition-transform duration-300",
                     tech.className,
-                    "group-hover:scale-110",
+                    "group-hover:scale-110"
                   )}
                 >
-                  {React.cloneElement(tech.svg, {
-                    className: cn(
-                      "w-full h-full fill-zinc-700 transition-colors duration-300 group-hover:fill-zinc-900",
-                      "dark:fill-zinc-200 dark:group-hover:fill-white p-1",
-                    ),
-                  })}
+                   {React.cloneElement(tech.svg, {
+                className: cn(
+                  "w-full h-full transition-colors duration-300 p-1",
+                  tech.className, 
+                  "group-hover:scale-110"
+                ),
+              })}
                 </div>
               </div>
             </TooltipTrigger>
@@ -140,8 +181,61 @@ export const TechRow = ({
         </TooltipProvider>
       ))}
     </div>
-  )
-}
+  );
+};
+export const TechRowProject = ({
+  items,
+  setIsHovered,
+  className,
+}: {
+  items: typeof techStacks;
+  isHovered: number | null;
+  setIsHovered: (index: number | null) => void;
+  className?: string;
+}) => {
+  return (
+    <div className={clsx("flex gap-6 flex-wrap justify-center", className)}>
+      {items.map((tech, i) => (
+        <div
+          key={`tech-${i}`}
+          className="flex flex-col items-center gap-2"
+          onMouseEnter={() => setIsHovered(i)}
+          onMouseLeave={() => setIsHovered(null)}
+        >
+          {/* Icon */}
+          <div
+            className={cn(
+              "group relative aspect-square w-[70px] md:w-20 backdrop-blur-sm",
+              "hover:scale-110 bg-white/5 hover:bg-white/10 dark:bg-transparent dark:hover:bg-black/80 shadow-lg transition-all duration-300",
+              "rounded-xl flex items-center justify-center p-2 shrink-0",
+              "border border-black/5 hover:border-black/10 dark:border-white/5 dark:hover:border-white/20"
+            )}
+          >
+            <div
+              className={cn(
+                "relative w-full h-full transition-transform duration-300",
+                tech.className,
+                "group-hover:scale-110"
+              )}
+            >
+              {React.cloneElement(tech.svg, {
+                className: cn(
+                  "w-full h-full transition-colors duration-300 p-1",
+                  tech.className, 
+                  "group-hover:scale-110"
+                ),
+              })}
+            </div>
+          </div>
 
-export default TechSkills
+          {/* Title (always visible) */}
+          <span className="text-xs sm:text-sm font-medium text-center text-zinc-700 dark:text-zinc-300">
+            {tech.title}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+};
 
+export default TechSkills;

@@ -1,3 +1,4 @@
+import ProjectNotFound from "@/components/NotFoundProject";
 import { trimDescription } from "@/lib/utils";
 import Projectpage from "@/view/ProjectPage";
 import axios from "axios";
@@ -9,15 +10,15 @@ async function getProjectById(id: string) {
     );
     return res.data.project;
   } catch (err) {
-    console.error("Error fetching project:", err);
+    console.log("Error fetching project:", err);
     return null;
   }
 }
 
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   if (!slug) return {};
@@ -39,15 +40,15 @@ export async function generateMetadata({
       apple: "/favicon.ico",
     },
     alternates: {
-      canonical: `${process.env.BASE_URL}/user/${slug}`,
+      canonical: `${process.env.BASE_URL}/project/${slug}`,
     },
   };
 }
 
-export default async function ProjectPage({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   if (!slug) return <div>ID is required</div>;
@@ -55,7 +56,7 @@ export default async function ProjectPage({
   const project = await getProjectById(slug);
 
   if (!project) {
-    return <div className="p-6 text-red-500">Project not found</div>;
+    return <ProjectNotFound />;
   }
 
   return <Projectpage project={project} />;

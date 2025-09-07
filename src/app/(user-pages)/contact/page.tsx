@@ -1,7 +1,7 @@
 import ContactPage from "@/view/ContactPage";
 
 const generateCanonicalURL = () => {
-  return `${process.env.BASE_URL}/user/contact`;
+  return `${process.env.BASE_URL}/contact`;
 };
 
 export const metadata = {

@@ -26,7 +26,7 @@ const ProjectsSection = () => {
               <ProjectCard key={project._id} project={project} />
             ))}
       </div>
-      <Link href={"/user/projects"}>
+      <Link href={"/projects"}>
         <Button
           variant="outline"
           className="group px-4 m-auto py-3 -mt-4 text-sm border-zinc-300 text-zinc-800 bg-white dark:bg-zinc-950 dark:border-gray-800 dark:text-gray-200 hover:bg-zinc-800 hover:text-gray-100 transition-all flex items-center gap-2"

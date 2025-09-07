@@ -2,7 +2,7 @@
 import AboutPage from "@/view/AboutPage";
 
 const generateCanonicalURL = () => {
-  return `${process.env.BASE_URL}/user/about`;
+  return `${process.env.BASE_URL}/about`;
 };
 
 export const metadata = {

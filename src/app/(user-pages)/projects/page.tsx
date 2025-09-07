@@ -2,7 +2,7 @@ import ProjectsPage from '@/view/ProjectsPage';
 
 
 const generateCanonicalURL = () => {
-  return `${process.env.BASE_URL}/user/projects`;
+  return `${process.env.BASE_URL}/projects`;
 };
 
 export const metadata = {

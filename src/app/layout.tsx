@@ -25,7 +25,7 @@ export const metadata = {
       canonical: generateCanonicalURL(),
     },
   openGraph: {
-    title: "Muhammad Sumair Portfolio - Full Stack Web Developer",
+    title: "Muhammad Sumair Portfolio - Full Stack Developer",
     description:
       "Explore Muhammad Sumair portfolio showcasing expertise in Next.js, React.js, and the MERN stack.",
     type: "website",
@@ -53,6 +53,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="apple-mobile-web-app-title" content="Sumair Portfolio" />
         <meta name="google-site-verification" content="4pzpEF4OpHHEidQSWcuTB6MOzzU1eGMwlRE3vUNUfn0" />
       </head>
       <body className={nunito.className}>

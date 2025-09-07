@@ -14,7 +14,7 @@ export const metadata = {
     apple: "/favicon.ico",
   },
   alternates: {
-    canonical: `${process.env.BASE_URL}/user/guestbook`,
+    canonical: `${process.env.BASE_URL}/guestbook`,
   },
 };
 

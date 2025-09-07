@@ -65,7 +65,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="absolute inset-0 bg-gradient-to-t from-gray-200 via-white/90 to-transparent dark:from-zinc-900 dark:via-black/80 dark:to-transparent opacity-60 transition-opacity group-hover:opacity-100" />
 
         {/* Card Image */}
-        <Link href={`/user/project/${_id}`}>
+        <Link href={`/project/${_id}`}>
         <div className="relative  aspect-video cursor-pointer overflow-hidden">
           <Image
             priority={false}

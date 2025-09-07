@@ -19,7 +19,7 @@ const Heading = ({ title, description }: HeadingProps) => {
 
   return (
     <motion.div ref={scope} initial={{ opacity: 0, y: 20 }}>
-      <div className="mt-36 px-8 mb-16 max-w-[1010px] m-auto">
+      <div className="pt-36 px-8 pb-16 max-w-[1010px] m-auto">
         <div className="text-left flex items-start flex-col">
           <motion.h1
             className="text-5xl font-bold bg-gradient-to-br from-zinc-900 to-zinc-600 dark:from-white dark:to-zinc-600 bg-clip-text text-transparent mb-4"

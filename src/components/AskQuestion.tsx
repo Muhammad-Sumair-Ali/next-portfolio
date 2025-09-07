@@ -139,7 +139,7 @@ export default function AskQuestions() {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="flex flex-col sm:flex-row  gap-4 justify-start"
             >
-              <Link href="/user/guestbook">
+              <Link href="/guestbook">
                 <Button
                   variant="destructive"
                   className="w-full  border font-sans rounded-3xl transition-all

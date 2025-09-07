@@ -1,16 +1,17 @@
+import { Project } from "@/hooks/useApi";
 
 function xmlEscape(str: string) {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-async function fetchProjectSlugs(): Promise<string[]> {
+async function fetchProjectSlugs(): Promise<Project[]> {
   try {
-    const res = await fetch(`${process.env.BASE_URL}/api/projects/slugs`, {
+    const res = await fetch(`${process.env.BASE_URL}/api/project/get`, {
       next: { revalidate: 3600 },
     });
     if (!res.ok) return [];
     const data = await res.json();
-    return Array.isArray(data?.slugs) ? data.slugs : [];
+    return Array.isArray(data) ? data : [];
   } catch {
     return [];
   }
@@ -22,14 +23,15 @@ export async function GET() {
 
   const staticRoutes = [
     "/",
-    "/user/about",
-    "/user/projects",
-    "/user/contact",
-    "/user/guestbook",
+    "/about",
+    "/projects",
+    "/contact",
+    "/guestbook",
   ];
 
   const projectSlugs = await fetchProjectSlugs();
-  const projectRoutes = projectSlugs.map((slug) => `/user/projects/${slug}`);
+ const projectRoutes = projectSlugs.map((slug) => `/project/${slug._id}`);
+
 
   const urls = [...staticRoutes, ...projectRoutes];
   const lastmod = new Date().toISOString();
