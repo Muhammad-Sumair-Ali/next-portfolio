@@ -62,9 +62,9 @@ const Projectpage = ({ project }: { project: Project }) => {
             {/* Project Info */}
             <div className="flex flex-col justify-center space-y-6">
               <div className="space-y-3">
-                <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+                <h3 className="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                   {project.title}
-                </h1>
+                </h3>
                 <p className="text-base sm:text-lg text-muted-foreground">
                   Technologies used in this project
                 </p>
