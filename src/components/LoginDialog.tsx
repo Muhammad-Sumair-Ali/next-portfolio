@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Github, Mail } from "lucide-react"
 import { signIn } from "next-auth/react"
-import { LoginForm } from "@/app/admin/components/Login"
+import { LoginForm } from "@/components/Login"
 
 export function LoginDialog({ isDialog }: { isDialog: boolean }) {
   const [open, setOpen] = useState(false)

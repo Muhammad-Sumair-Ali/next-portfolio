@@ -2,7 +2,7 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import ProviderWrapper from "@/helpers/ProviderWrapper";
-import VisitorTracker from "./admin/components/TrackVisitor";
+import VisitorTracker from "@/components/TrackVisitors";
 
 
 const generateCanonicalURL = () => {
