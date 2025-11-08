@@ -73,7 +73,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
         <CardContent className="relative z-10 px-4 py-4 md:p-6 flex-grow overflow-hidden">
           <Link href={`/project/${_id}`}>
-          <motion.h3 className="mb-2 text-2xl font-bold text-black dark:text-white dark:hover:text-blue-500 hover:text-blue-500 hover:underline cursor-pointer line-clamp-1">
+          <motion.h3 className="mb-2 text-2xl font-semibold text-zinc-900 dark:text-white dark:hover:text-blue-500 hover:text-blue-500 hover:underline cursor-pointer line-clamp-1">
             {title}
           </motion.h3>{" "}
           </Link>

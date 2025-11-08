@@ -40,7 +40,7 @@ const ContactPage = () => {
         <div className="grid md:grid-cols-2 items-start gap-14 p-8 rounded-2xl backdrop-blur-xl border-zinc-200 dark:border-zinc-800">
           <div className="pt-8">
             {/* Left side contact info remains the same */}
-            <h1 className="text-4xl font-bold bg-gradient-to-br from-zinc-900 to-zinc-600 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-semibold bg-gradient-to-br from-zinc-900 to-zinc-600 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent">
               Get in Touch
             </h1>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-4 leading-relaxed">

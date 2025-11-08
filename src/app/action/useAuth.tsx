@@ -21,7 +21,7 @@ export const useAuthentication = () => {
       const res = await axios.post("/api/auth/login", { email, password });
       localStorage.setItem("adminToken", res.data.token);
       toast.success("Login successful! Redirecting...");
-      router.push("/admin");
+      router.push("https://sumair-portfolio-admin.vercel.app/");
     } catch (error) {
       toast.error((error as any).response?.data?.message || "Login failed");
     } finally {

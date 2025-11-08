@@ -113,7 +113,7 @@ export default function AskQuestions() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
+              className="text-3xl md:text-4xl font-semibold text-gray-900 dark:text-white"
             >
               Ask Questions About
               <span className="text-transparent my-1 pr-1 bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
