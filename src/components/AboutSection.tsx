@@ -27,7 +27,7 @@ export default function AboutSection() {
 
   return (
     <div className="m-auto relative max-w-[1010px] mb-12 mt-4 mx-auto p-4 space-y-6">
-      <h2 className="text-4xl font-bold mb-10 text-zinc-900 dark:text-zinc-200 text-center m-auto">
+      <h2 className="text-4xl font-semibold mb-10 text-zinc-900 dark:text-zinc-200 text-center m-auto">
         About Me
       </h2>
       {/* Background effect */}

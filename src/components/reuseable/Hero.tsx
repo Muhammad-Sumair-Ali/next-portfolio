@@ -55,7 +55,7 @@ export default function Hero() {
               <motion.div
                 layout
                 key="title-middle-left"
-                className="text-3xl mt-1 font-bold lg:text-5xl whitespace-nowrap"
+                className="text-3xl mt-1 font-semibold lg:text-5xl whitespace-nowrap"
               >
                 a Full Stack Developer
               </motion.div>
