@@ -6,7 +6,7 @@ const AboutPage = () => {
       <Heading
         title={"About"}
         description={
-          "👋 Hi there! I'm Muhammad Sumair, a web developer who loves building websites."
+          "👋 Hi there! I'm Muhammad Sumair, a Full Stack Developer building production-ready web applications."
         }
       />
       <div className="mx-auto min-h-screen max-w-[1010px] px-4 sm:px-6 lg:px-8">
@@ -18,16 +18,14 @@ const AboutPage = () => {
             </h2>
             <p className="text-gray-600 dark:text-zinc-400">
               I'm Muhammad Sumair, a 20-year-old Full Stack Developer from
-              Pakistan with
+              Karachi, Pakistan with
               <span className="font-medium text-blue-500"> 2+ years</span> of
-              hands-on experience in building web applications. My passion lies
-              in creating efficient solutions using modern technologies like
+              hands-on experience building web applications for clients across the US, Canada, and Pakistan. My passion lies in creating efficient, scalable solutions using modern technologies like
               <span className="font-medium text-green-500"> React</span>,
-              <span className="font-medium text-teal-400"> Next </span>,
+              <span className="font-medium text-teal-400"> Next.js</span>,
               <span className="font-medium text-purple-500"> Node.js</span>, and
               <span className="font-medium text-yellow-500"> MongoDB</span>. I
-              specialize in building scalable web applications, APIs, and
-              responsive user interfaces.
+              specialize in building production-ready e-commerce platforms, SaaS dashboards, and AI-powered web applications that work beyond the demo phase.
             </p>
           </section>
 
@@ -40,15 +38,12 @@ const AboutPage = () => {
               <span className="font-medium">June 29, 2023</span>, learning from
               YouTube tutorials. A huge thanks to
               <span className="text-red-400"> Hadi e Learning</span> for making
-              coding accessible to me. After that, I completed structured
-              courses to sharpen my skills. Over time, I built multiple
-              projects, gained real-world experience, and transitioned into a
-              professional Full Stack Developer. I believe that
+              coding accessible to me. After completing structured courses, I dove into real-world projects building e-commerce stores, SaaS platforms, and AI-powered applications. Over time, I've delivered 10+ complete projects for international clients with consistent 5-star ratings. I believe that
               <span className="italic">
                 {" "}
                 consistent practice and real-world projects{" "}
               </span>
-              are the key to mastering web development.
+              are the key to mastering web development. Today, I work as a Full Stack Developer while taking on select freelance projects.
             </p>
           </section>
 
@@ -57,7 +52,69 @@ const AboutPage = () => {
               Professional Experience
             </h2>
             <div className="space-y-6">
-              {/* Junior Full Stack Developer */}
+              {/* AI Voro */}
+              <div className="rounded-lg border border-gray-200 p-6 dark:border-zinc-700">
+                <div className="mb-3">
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-zinc-200">
+                    Full Stack Developer
+                  </h3>
+                  <p className="text-sm text-gray-500 dark:text-zinc-400">
+                    AI Voro, Sindh, Pakistan (Remote)
+                  </p>
+                  <p className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                    August 2025 – Present (5 months)
+                  </p>
+                </div>
+                <ul className="space-y-2 text-gray-600 dark:text-zinc-400">
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500"></span>
+                    Managing complete project lifecycle including frontend UI/UX design, backend API development with Strapi, and deployment.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500"></span>
+                    Implementing SEO optimization and sitemap integration for improved search engine visibility.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500"></span>
+                    Collaborating with senior developers to adopt industry best practices and deliver pixel-perfect, responsive interfaces.
+                  </li>
+                </ul>
+              </div>
+
+              {/* Fiverr Freelance */}
+              <div className="rounded-lg border border-gray-200 p-6 dark:border-zinc-700">
+                <div className="mb-3">
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-zinc-200">
+                    Full Stack Developer (Freelance)
+                  </h3>
+                  <p className="text-sm text-gray-500 dark:text-zinc-400">
+                    Fiverr, Karachi, Sindh, Pakistan (Remote)
+                  </p>
+                  <p className="text-sm font-medium text-green-600 dark:text-green-400">
+                    August 2024 – Present (1 year 5 months)
+                  </p>
+                </div>
+                <ul className="space-y-2 text-gray-600 dark:text-zinc-400">
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500"></span>
+                    Delivered 10+ complete web applications for international clients (US, Canada, Pakistan) with consistent 5-star ratings.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500"></span>
+                    Built Fecund Lush a complete e-commerce platform for a Canadian footwear business with Stripe payments, admin panel, and Cloudinary integration.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500"></span>
+                    Developed AI KidzTory an AI-powered story generation platform with OpenAI integration, admin dashboard, and user analytics.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500"></span>
+                    Created custom SaaS dashboards, role-based admin panels, and responsive web applications using MERN stack and Next.js.
+                  </li>
+                </ul>
+              </div>
+
+              {/* Silver Concepts */}
               <div className="rounded-lg border border-gray-200 p-6 dark:border-zinc-700">
                 <div className="mb-3">
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-zinc-200">
@@ -66,25 +123,22 @@ const AboutPage = () => {
                   <p className="text-sm text-gray-500 dark:text-zinc-400">
                     Silver Concepts LLC, Karachi, Sindh, Pakistan (Remote)
                   </p>
-                  <p className="text-sm font-medium text-blue-600 dark:text-blue-400">
-                    May 2025 – Present (2 months)
+                  <p className="text-sm font-medium text-purple-600 dark:text-purple-400">
+                    May 2025 – June 2025 (2 months)
                   </p>
                 </div>
                 <ul className="space-y-2 text-gray-600 dark:text-zinc-400">
                   <li className="flex items-start">
-                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500"></span>
-                    Developed and maintained a full-stack SaaS application using
-                    Next.js (frontend) and NestJS (backend).
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-purple-500"></span>
+                    Designed and developed OurPhoneMD Clinic Portal a full-featured admin dashboard for patient and appointment management.
                   </li>
                   <li className="flex items-start">
-                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500"></span>
-                    Built scalable RESTful APIs and backend services using
-                    NestJS and Prisma ORM with PostgreSQL.
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-purple-500"></span>
+                    Implemented secure authentication, role-based access control, and form validation using Zod.
                   </li>
                   <li className="flex items-start">
-                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500"></span>
-                    Created responsive, modern UIs using Next.js and Tailwind
-                    CSS to deliver smooth user experiences.
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-purple-500"></span>
+                    Built responsive UI/UX with React.js, Redux state management, and modern design patterns.
                   </li>
                 </ul>
               </div>
@@ -98,26 +152,22 @@ const AboutPage = () => {
                   <p className="text-sm text-gray-500 dark:text-zinc-400">
                     Freelance Project With Senior Developer (Remote)
                   </p>
-                  <p className="text-sm font-medium text-green-600 dark:text-green-400">
-                    February 2025 – Present (3 months)
+                  <p className="text-sm font-medium text-orange-600 dark:text-orange-400">
+                    January 2025 – March 2025 (3 months)
                   </p>
                 </div>
                 <ul className="space-y-2 text-gray-600 dark:text-zinc-400">
                   <li className="flex items-start">
-                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500"></span>
-                    Contributed to a MERN stack web application, developing
-                    front-end components with React.js and backend services with
-                    Node.js and Express.js.
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-orange-500"></span>
+                    Worked with a senior Full Stack Developer on enterprise-level MERN stack projects.
                   </li>
                   <li className="flex items-start">
-                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500"></span>
-                    Worked remotely in a collaborative team environment,
-                    managing tasks via Git and ensuring timely project delivery.
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-orange-500"></span>
+                    Converted Figma designs to pixel-perfect React components and built RESTful APIs using Node.js and MongoDB.
                   </li>
                   <li className="flex items-start">
-                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500"></span>
-                    Designed and developed responsive UI components using
-                    React.js and Shadcn UI.
+                    <span className="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-orange-500"></span>
+                    Learned professional Git workflows, code reviews, and collaborative development practices.
                   </li>
                 </ul>
               </div>
@@ -129,19 +179,76 @@ const AboutPage = () => {
               What I Do
             </h2>
             <p className="text-gray-600 dark:text-zinc-400">
-              I specialize in developing modern web applications using
+              I specialize in developing modern, production-ready web applications using
               <span className="font-medium text-green-500">
                 {" "}
-                MERN Stack & NextJs
+                MERN Stack & Next.js
               </span>
               . My expertise includes:
             </p>
             <ul className="mt-2 list-inside list-disc space-y-2 text-gray-600 dark:text-zinc-400">
-              <li>⚡ Building full-stack web applications</li>
-              <li>🚀 Creating optimized and scalable APIs</li>
-              <li>🎨 Developing responsive UI/UX with modern frameworks</li>
-              <li>🔍 Debugging and optimizing code for performance</li>
+              <li>⚡ Building full-stack e-commerce platforms with payment integration</li>
+              <li>🚀 Creating SaaS dashboards with role-based access and analytics</li>
+              <li>🤖 Developing AI-powered applications using OpenAI and modern APIs</li>
+              <li>🎨 Designing responsive UI/UX with React, Next.js, and Tailwind CSS</li>
+              <li>🔧 Building scalable REST APIs with Node.js, Express.js, and MongoDB</li>
+              <li>🔍 SEO optimization and performance tuning for faster load times</li>
             </ul>
+          </section>
+
+          <section>
+            <h2 className="mb-4 text-2xl font-semibold text-gray-800 dark:text-zinc-200">
+              Tech Stack
+            </h2>
+            <div className="text-gray-600 dark:text-zinc-400">
+              <p className="mb-3">Technologies I work with daily:</p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <h3 className="mb-2 font-semibold text-gray-800 dark:text-zinc-200">
+                    Frontend
+                  </h3>
+                  <ul className="space-y-1 text-sm">
+                    <li>→ React.js & Next.js</li>
+                    <li>→ TypeScript & JavaScript</li>
+                    <li>→ Tailwind CSS & Shadcn UI</li>
+                    <li>→ React Native (Mobile)</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="mb-2 font-semibold text-gray-800 dark:text-zinc-200">
+                    Backend
+                  </h3>
+                  <ul className="space-y-1 text-sm">
+                    <li>→ Node.js & Express.js</li>
+                    <li>→ Nest.js & Strapi CMS</li>
+                    <li>→ MongoDB & PostgreSQL</li>
+                    <li>→ REST APIs & Authentication</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="mb-2 font-semibold text-gray-800 dark:text-zinc-200">
+                    Tools & Services
+                  </h3>
+                  <ul className="space-y-1 text-sm">
+                    <li>→ Git & GitHub</li>
+                    <li>→ Stripe & Payment Gateways</li>
+                    <li>→ Cloudinary & Firebase</li>
+                    <li>→ OpenAI API & AI Integration</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="mb-2 font-semibold text-gray-800 dark:text-zinc-200">
+                    Practices
+                  </h3>
+                  <ul className="space-y-1 text-sm">
+                    <li>→ Clean Code & Best Practices</li>
+                    <li>→ SEO Optimization</li>
+                    <li>→ Responsive Design</li>
+                    <li>→ State Management (Redux, React Query)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </section>
 
           <section>
@@ -152,9 +259,24 @@ const AboutPage = () => {
               When I'm not coding, you'll find me:
               <ul className="mt-2 list-inside list-disc space-y-2">
                 <li>🔥 Contributing to open-source projects</li>
+                <li>📚 Learning new technologies and best practices</li>
                 <li>☕ Experimenting with new coffee brewing techniques</li>
-                <li>🎮 Playing games or exploring new technologies</li>
+                <li>🎮 Playing games or exploring new tech trends</li>
               </ul>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="mb-4 text-2xl font-semibold text-gray-800 dark:text-zinc-200">
+              Let's Work Together
+            </h2>
+            <p className="text-gray-600 dark:text-zinc-400">
+              Currently open for freelance projects and contract work. Whether you need an e-commerce platform, SaaS dashboard, or custom web application let's build something great together.
+            </p>
+            <div className="mt-4 space-y-2 text-gray-600 dark:text-zinc-400">
+              <p>→ Fiverr: <a href="https://www.fiverr.com/muhammadsumair6" className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">muhammadsumairdev</a></p>
+              <p>→ WhatsApp: <a href="https://wa.me/923194075607" className="text-green-500 hover:underline" target="_blank" rel="noopener noreferrer">+92 319 4075607</a></p>
+              <p>→ Response time: Within 24 hours</p>
             </div>
           </section>
         </div>

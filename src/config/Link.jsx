@@ -135,18 +135,21 @@ export const SERVICES_SECTION_LINKS = [
     description:
       "Building robust and scalable web applications using modern technologies.",
     icon: Code,
+    thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop&crop=center",
   },
   {
     title: "Web Design",
     description:
       "Creating beautiful and intuitive user interfaces for exceptional user experiences.",
     icon: Paintbrush,
+    thumbnail: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=200&fit=crop&crop=center",
   },
   {
     title: "Website Maintenance",
     description:
       "Keeping your website up-to-date with the latest features and security patches.",
     icon: RefreshCw,
+    thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop&crop=center",
   },
 ];
 

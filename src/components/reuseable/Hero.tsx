@@ -47,7 +47,7 @@ export default function Hero() {
         {/* Top Center Blurred Gradient Effect */}
 
         <div className="flex flex-col text-left pt-10  sm:text-left">
-          <h1 className="flex max-w-[550px] flex-wrap text-zinc-800 dark:text-zinc-200 gap-2 text-xl lg:text-[30px] font-bold sm:text-xl">
+          <h1 className="flex max-w-[550px] flex-wrap text-zinc-800 dark:text-zinc-200 gap-2 text-xl lg:text-[30px] font-semibold sm:text-xl">
             <div className="text-3xl lg:text-5xl ">
               I&apos;m Muhammad Sumair,
             </div>
@@ -59,7 +59,7 @@ export default function Hero() {
               >
                 a Full Stack Developer
               </motion.div>
-              <div className="relative mt-2 overflow-hidden font-bold flex-wrap text-3xl  sm:text-3xl lg:text-5xl flex gap-x-2 min-w-0">
+              <div className="relative mt-2 overflow-hidden font-semibold flex-wrap text-3xl  sm:text-3xl lg:text-5xl flex gap-x-2 min-w-0">
                 building
                 <AnimatePresence mode="popLayout">
                   <motion.div
@@ -70,7 +70,7 @@ export default function Hero() {
                     exit="exit"
                     layout
                     transition={{ type: "tween", duration: 0.3 }}
-                    className="inline-flex items-center font-bold justify-center whitespace-nowrap"
+                    className="inline-flex items-center font-semibold justify-center whitespace-nowrap"
                   >
                     <span
                       className="bg-gradient-to-r from-blue-500 to-green-500 text-transparent"

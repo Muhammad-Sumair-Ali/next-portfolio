@@ -9,10 +9,10 @@ import Footer from "@/components/common/Footer";
 const Hero = dynamic(() => import("@/components/reuseable/Hero"));
 const ProjectsSection = dynamic(() => import("@/components/ProjectsSection"));
 const AboutSection = dynamic(() => import("@/components/AboutSection"));
+const ProfessionalExperienceSection = dynamic(() => import("@/components/ProfessionalExperienceSection"));
 const WhatIOffer = dynamic(() =>
   import("@/components/Services").then((mod) => mod.WhatIOffer)
 );
-const AskQuestions = dynamic(() => import("@/components/AskQuestion"));
 
 export default function Home() {
   const path = usePathname();
@@ -30,8 +30,8 @@ export default function Home() {
         <Hero />
         <ProjectsSection />
         <AboutSection />
+        <ProfessionalExperienceSection />
         <WhatIOffer />
-        <AskQuestions />
       </motion.div>
       {path === "/" ? <Footer /> : null}
     </>

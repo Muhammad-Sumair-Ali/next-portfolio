@@ -56,13 +56,7 @@ export default function Navbar() {
 
               <div className="flex items-center gap-x-3 border-l border-gray-700">
                 <ThemeToggle />
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="text-zinc-600  hover:text-zinc-800  dark:text-zinc-400 dark:hover:bg-white/10  dark:hover:text-white"
-                >
-                  <Languages className="h-5 w-5" />
-                </Button>
+   
                 <CommandMenu />
               </div>
             </div>
@@ -70,13 +64,7 @@ export default function Navbar() {
             {/* Mobile Menu */}
             <div className="md:hidden flex items-center gap-x-3">
               <ThemeToggle />
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-zinc-600 hover:text-zinc-800 dark:text-zinc-400 dark:hover:bg-white/10 dark:hover:text-white"
-              >
-                <Languages className="h-5 w-5" />
-              </Button>
+           
               <CommandMenu />
 
               <DropdownMenu>
