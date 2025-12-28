@@ -112,7 +112,7 @@ export function WhatIOffer() {
                   <div className="mt-auto">
                     <Button
                       onClick={() => handleOpenDialog(service)}
-                      className="w-full bg-primary hover:bg-primary/80 text-primary-foreground transition-colors duration-300"
+                      className="w-full bg-zinc-900 hover:bg-primary/80 text-primary-foreground dark:text-zinc-200 transition-colors duration-300"
                     >
                       Get Service
                     </Button>
