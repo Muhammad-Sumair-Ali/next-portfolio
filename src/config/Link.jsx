@@ -35,7 +35,7 @@ export const CONNECT_LINKS_ABOUT = [
   {
     icon: <Linkedin className="w-5 h-5" />,
     text: "Linkedin",
-    url: "https://www.linkedin.com/in/muhammad-sumair-b60a91301",
+    url: "https://www.linkedin.com/in/muhammad-sumair-developer",
   },
   {
     icon: <FacebookIcon className="w-5 h-5" />,
@@ -45,7 +45,7 @@ export const CONNECT_LINKS_ABOUT = [
   {
     icon: <InstagramIcon className="w-5 h-5" />,
     text: "Instagram",
-    url: "https://www.instagram.com/muhammadsumairdev",
+    url: "https://www.instagram.com/sumair_dev",
   },
 ];
 export const CONTACT_LINKS = [
@@ -57,17 +57,17 @@ export const CONTACT_LINKS = [
   {
     icon: <Linkedin className="w-5 h-5" />,
     text: "Linkedin",
-    url: "https://www.linkedin.com/in/muhammad-sumair-b60a91301",
+    url: "https://www.linkedin.com/in/muhammad-sumair-developer",
   },
   {
     icon: <FacebookIcon className="w-5 h-5" />,
     text: "Facebook",
     url: "https://www.facebook.com/m.sumair.jatoi",
   },
-   {
+  {
     icon: <InstagramIcon className="w-5 h-5" />,
     text: "Instagram",
-    url: "https://www.instagram.com/muhammadsumairdev",
+    url: "https://www.instagram.com/sumair_dev",
   },
 ];
 export const HEADER_LINKS = [
@@ -135,21 +135,24 @@ export const SERVICES_SECTION_LINKS = [
     description:
       "Building robust and scalable web applications using modern technologies.",
     icon: Code,
-    thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop&crop=center",
+    thumbnail:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop&crop=center",
   },
   {
     title: "Web Design",
     description:
       "Creating beautiful and intuitive user interfaces for exceptional user experiences.",
     icon: Paintbrush,
-    thumbnail: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=200&fit=crop&crop=center",
+    thumbnail:
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=200&fit=crop&crop=center",
   },
   {
     title: "Website Maintenance",
     description:
       "Keeping your website up-to-date with the latest features and security patches.",
     icon: RefreshCw,
-    thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop&crop=center",
+    thumbnail:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop&crop=center",
   },
 ];
 
