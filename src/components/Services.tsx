@@ -130,7 +130,7 @@ export function WhatIOffer() {
           {selectedService && (
             <>
               <DialogHeader>
-                <DialogTitle className="text-2xl">Get {selectedService.title}</DialogTitle>
+                <DialogTitle className="text-2xl text-zinc-900 dark:text-zinc-200">Get {selectedService.title}</DialogTitle>
                 <DialogDescription className="text-base pt-2">
                   Choose your preferred way to discuss this project. I'll respond within 24 hours.
                 </DialogDescription>
