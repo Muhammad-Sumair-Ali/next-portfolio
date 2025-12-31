@@ -43,25 +43,41 @@ const contactOptions = [
   },
 ];
 const generateCanonicalURL = () => {
-  return `${process.env.BASE_URL}/services`;
+  return `${process.env.BASE_URL || 'https://muhammad-sumair.vercel.app'}/services`;
 };
 
 export const metadata = {
+  title: "Discuss Your Project | Muhammad Sumair",
+  description:
+    "Book a 14-minute WhatsApp call or explore Muhammad Sumair's portfolio showcasing expertise in Next.js, React.js, and MERN stack projects for clients worldwide.",
+  keywords:
+    "Muhammad Sumair Projects, Full Stack Developer Portfolio, Next.js Projects, React.js Projects, MERN Stack Applications, Web Developer Portfolio, Modern Web Apps",
+  author: "Muhammad Sumair",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
+  alternates: {
+    canonical: generateCanonicalURL(),
+  },
+  openGraph: {
     title: "Discuss Your Project | Muhammad Sumair",
     description:
-      "Book a quick 14-minute WhatsApp call to discuss your project.",
-    keywords:
-      "Muhammad Sumair Projects, Full Stack Developer Portfolio, Next.js Projects, React.js Projects, MERN Stack Applications, Web Developer Portfolio, Modern Web Apps",
-    author: "Muhammad Sumair",
-    icons: {
-      icon: "/favicon.ico",
-      shortcut: "/favicon.ico",
-      apple: "/favicon.ico",
-    },
-    alternates: {
-      canonical: generateCanonicalURL(),
-    },
-}
+      "Book a 14-minute WhatsApp call or explore Muhammad Sumair's portfolio showcasing expertise in Next.js, React.js, and MERN stack projects for clients worldwide.",
+    url: generateCanonicalURL(),
+    type: "website",
+    images: [
+      {
+        url: "/get-started.png",
+        width: 1200,
+        height: 630,
+        alt: "Muhammad Sumair Portfolio Thumbnail",
+      },
+    ],
+  },
+};
+
 
 const Page = () => {
   return (
