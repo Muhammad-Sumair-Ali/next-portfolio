@@ -220,22 +220,22 @@ export const TECH_SKILLS_PROJECT_FORM = [
 
 export const HERO_TEXTS = [
   {
-    key: "Amazing",
+    key: "Fast",
     className:
       "bg-gradient-to-r from-[#ff1835] to-[#ffc900] bg-clip-text text-transparent",
   },
   {
-    key: "Stunning",
+    key: "Scalable",
     className:
       "bg-gradient-to-r from-[#0077ff] to-[#00e7df] bg-clip-text text-transparent",
   },
   {
-    key: "Fantastic",
+    key: "High-Converting",
     className:
       "bg-gradient-to-r from-[#7f00de] to-[#ff007f] bg-clip-text text-transparent",
   },
   {
-    key: "Attractive",
+    key: "Production-Ready",
     className:
       "bg-gradient-to-r from-[#2ecc70] to-[#1ca085] bg-clip-text text-transparent",
   },

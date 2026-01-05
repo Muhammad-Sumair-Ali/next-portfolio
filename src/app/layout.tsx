@@ -55,6 +55,7 @@ export default function RootLayout({
       <head>
         <meta name="apple-mobile-web-app-title" content="Sumair Portfolio" />
         <meta name="google-site-verification" content="4pzpEF4OpHHEidQSWcuTB6MOzzU1eGMwlRE3vUNUfn0" />
+        
       </head>
       <body className={nunito.className}>
         <ProviderWrapper>

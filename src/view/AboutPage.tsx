@@ -9,9 +9,9 @@ const AboutPage = () => {
           "👋 Hi there! I'm Muhammad Sumair, a Full Stack Developer building production-ready web applications."
         }
       />
-      <div className="mx-auto min-h-screen max-w-[1010px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto min-h-screen max-w-[1010px] px-0 sm:px-6 lg:px-8">
         {/* Content Section */}
-        <div className="space-y-8 rounded-2xl p-8">
+        <div className="space-y-8 rounded-2xl px-4 py-8 sm:p-8">
           <section>
             <h2 className="mb-4 text-2xl font-semibold text-gray-800 dark:text-zinc-200">
               Who Am I?

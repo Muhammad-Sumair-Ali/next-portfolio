@@ -47,7 +47,7 @@ export default function Hero() {
         {/* Top Center Blurred Gradient Effect */}
 
         <div className="flex flex-col text-left pt-10  sm:text-left">
-          <h1 className="flex max-w-[550px] flex-wrap text-zinc-800 dark:text-zinc-200 gap-2 text-xl lg:text-[30px] font-semibold sm:text-xl">
+          <h1 className="flex max-w-[590px] flex-wrap text-zinc-800 dark:text-zinc-200 gap-2 text-xl lg:text-[30px] font-semibold sm:text-xl">
             <div className="text-3xl lg:text-5xl ">
               I&apos;m Muhammad Sumair,
             </div>
@@ -59,7 +59,7 @@ export default function Hero() {
               >
                 a Full Stack Developer
               </motion.div>
-              <div className="relative mt-2 overflow-hidden font-semibold flex-wrap text-3xl  sm:text-3xl lg:text-5xl flex gap-x-2 min-w-0">
+              <div className="relative mt-2 overflow-hidden font-semibold whitespace-nowrap flex-wrap text-3xl  sm:text-3xl lg:text-5xl flex gap-x-2 min-w-0">
                 building
                 <AnimatePresence mode="popLayout">
                   <motion.div
@@ -92,12 +92,10 @@ export default function Hero() {
                     className="whitespace-nowrap"
                   >
                     <span className="text-2xl lg:text-4xl ">
-                      websites using
+                     & result-driven web apps
                     </span>
                   </motion.div>
-                  <h2 className="whitespace-nowrap font-semibold -mb-1 text-xl md:text-3xl">
-                    Modern Stacks
-                  </h2>
+                 
                 </div>
               </div>
             </div>

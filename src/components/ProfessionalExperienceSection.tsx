@@ -1,6 +1,6 @@
 const ProfessionalExperienceSection = () => {
   return (
-    <section>
+    <section className="px-2">
     
        <h2 className="text-3xl font-semibold text-center mb-12 text-primary">
          Professional Experience
